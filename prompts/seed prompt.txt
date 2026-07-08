@@ -1,0 +1,407 @@
+You are building a complete offline browser-based cooking assistant and cooking log.
+
+I have attached a JSON file named `offline_cooking_journal_seed.json`. Use that file as the seed data and inspect its schema carefully. It contains recipes under a top-level `recipes` array, with fields such as `id`, `title`, `meal_type`, `tags`, `ingredients`, `ingredient_keywords`, `method_steps`, `difficulty`, `speed`, `budget`, `commonness`, `searchable_values`, `user_fields`, `air_fryer`, and `image_path`.
+
+Build the project as a single `index.html` file only. All CSS and JavaScript must be inside this one HTML file. The only external file should be the recipe JSON file. Do not use any server, build step, package manager, CDN, external library, framework, external font, or install process.
+
+Important offline/local-file requirement:
+A local `index.html` opened directly from disk may not be allowed to automatically `fetch()` a neighbouring JSON file because of browser file restrictions. Therefore:
+
+1. Try to load `offline_cooking_journal_seed.json` with `fetch()` if possible.
+2. If that fails, show a friendly first-run import panel asking the user to select the JSON file manually with a file picker.
+3. After the user imports the JSON once, save the current catalogue and user changes in `localStorage` so the app works offline across future browser sessions.
+4. Include Import and Export buttons for manually loading/saving JSON.
+
+Core goal:
+Create a personal cooking assistant, cooking catalogue, and cooking log. It should feel like a simple video-streaming interface, similar to Netflix, but for recipes. The landing page should show a title and horizontal category rows of recipe cards.
+
+General app behaviour:
+
+* Single-page app only.
+* Use panel show/hide and overlays. Do not create or navigate to other HTML pages.
+* Must work offline after the JSON has been imported.
+* Must be flexible when new recipes are added or old recipes are removed from the JSON.
+* Must not hard-code recipe IDs.
+* Must handle missing/null fields gracefully.
+* Must preserve user changes using `localStorage`.
+* Must allow exporting the current merged dataset back out as a downloadable `.json` file.
+
+Visual design:
+
+* Dark, cosy, streaming-platform-inspired interface.
+* Main background should be dark charcoal.
+* Cards should be rectangular and arranged in horizontal scroll rows.
+* Use soft shadows, rounded corners, readable text, and warm accent colours.
+* Do not make colours too bright.
+* If a recipe has `image_path`, use it as a faded card background image.
+* If `image_path` is null or the image fails to load, use a deterministic washed-out background colour based on the recipe ID or title. The colour should be stable across reloads, not random every time.
+* Cards should have a dark gradient overlay so the text remains readable.
+
+Landing page / home panel:
+Display:
+
+* App title: “Cooking Journal”
+* Optional subtitle: “What should we cook?”
+* Category rows generated from the data.
+
+Initial useful category rows should include, where data exists:
+
+* My List
+* Dinner
+* Lunch
+* Breakfast
+* Dessert
+* Snack
+* Budget
+* Easy
+* Quick
+* Healthy
+* Vegetarian
+* Vegan
+* Smoothies
+* Baking
+* Air Fryer
+* Freezer Friendly
+* Make Ahead
+* Pasta
+* Chicken
+* Rice
+* Noodles
+* Curry
+
+Generate categories dynamically from `meal_type`, `tags`, `difficulty`, `speed`, `budget`, and boolean values inside `searchable_values`. Use sensible display names. Do not break if future JSON files add new categories.
+
+Each category row:
+
+* Horizontally scrolling.
+* Show the first 5 recipe cards.
+* The 6th card should be a “View all [Category]” card/button.
+* Clicking “View all” should replace the main content panel with a full category view showing all recipes in that category.
+* Include a back button from category view to home.
+
+Recipe cards:
+Each card should display:
+
+* Recipe title.
+* Estimated total time.
+* 5-star rating row along the bottom edge.
+* Filled stars based on `recipe.user_fields.rating`, from 0 to 5.
+* Ratings must support half-star increments, e.g. 3.5 shows 3 full gold stars, 1 half-gold/half-grey star, and 1 grey star.
+
+Time calculation:
+Display a human-friendly estimated total time.
+Use:
+
+* `total_time_minutes` if it exists and is greater than 0.
+* Otherwise calculate from `prep_time_minutes + cook_time_minutes + inactive_time_minutes`, treating null as 0.
+* Also inspect `method_steps[].time_minutes` as fallback if top-level times are null.
+* If a step says overnight in `visual_or_texture_cue`, `instruction`, or `beginner_tip`, and no exact time is available, treat overnight as 720 minutes / 12 hours.
+* Format times as “15 min”, “1 hr 20 min”, or “12 hr 30 min”.
+* If no usable time exists, show “Time unknown”.
+
+Card click behaviour:
+
+* Clicking a recipe card should open the recipe detail panel.
+* The recipe detail panel should replace the main category/card area, not navigate to a new page.
+* Include a visible Back button to return to the previous panel.
+
+Recipe detail panel:
+Display all relevant information from the dataset in a beginner-friendly layout:
+
+* Title.
+* Estimated total time.
+* Source name and source URL if present.
+* Servings.
+* Difficulty, speed, budget, commonness.
+* Image if `image_path` exists.
+* Tags.
+* Meal type.
+* Ingredients.
+* Specialty / less common ingredients.
+* Australian shop notes.
+* Equipment.
+* Method steps, including:
+
+  * instruction
+  * time
+  * temperature
+  * heat level
+  * visual/texture cue
+  * beginner tip
+  * air fryer information when present on the step
+* Make-ahead/storage notes.
+* Beginner notes.
+* User notes / note to future self.
+* Air fryer note if recipe-level `air_fryer` exists.
+
+My List toggle:
+Near the recipe title and time, display a circular icon:
+
+* If `user_fields.added_to_list` is false, show `+`.
+* If `user_fields.added_to_list` is true, show `−`.
+* Clicking `+` sets `user_fields.added_to_list = true`.
+* Clicking `−` sets `user_fields.added_to_list = false`.
+* Save this change immediately to `localStorage`.
+* The My List category row should update automatically.
+
+Rating:
+
+* On the recipe detail panel, display a clickable 5-star rating control.
+* The user can rate in 0.5 star increments.
+* Clicking a star position should update `user_fields.rating`.
+* Save rating immediately to `localStorage`.
+* Recipe cards should reflect the updated rating.
+
+Editing:
+At the bottom of the recipe detail panel, include:
+
+* Edit button.
+* Save button.
+* Cancel button if practical.
+
+When Edit is clicked:
+
+* Make the recipe’s user-facing fields editable.
+* For simple text fields, use text inputs or textareas.
+* For array fields such as `ingredients`, `tags`, `equipment`, `beginner_notes`, and `specialty_or_less_common_ingredients`, use multiline textareas with one item per line.
+* For `method_steps`, show editable step blocks. Each step should allow editing at least:
+
+  * instruction
+  * time_minutes
+  * temperature_c
+  * heat_level
+  * visual_or_texture_cue
+  * beginner_tip
+* Allow adding and removing method steps if reasonable.
+* The Save button should save changes to `localStorage`, not overwrite the original attached JSON file.
+* The Cancel button should discard unsaved edits and return to read-only view.
+* Saved edits must persist across browser sessions and browser restarts.
+
+Persistence model:
+Use `localStorage`.
+Use a clear versioned key, for example:
+`cookingJournalAppState_v1`.
+
+Store:
+
+* imported seed dataset or current catalogue
+* recipe edits
+* ratings
+* added_to_list values
+* any user notes
+
+When app starts:
+
+1. Load state from `localStorage` if available.
+2. Otherwise try to fetch `offline_cooking_journal_seed.json`.
+3. If fetch fails, show JSON import panel.
+
+When importing a JSON file:
+
+* Validate that it has a `recipes` array.
+* Replace the current catalogue with the imported data.
+* Save the imported catalogue to `localStorage`.
+* Re-render the home screen.
+
+When exporting:
+
+* Merge current recipe data and all user changes into a complete JSON object.
+* Update `recipe_count`.
+* Update or add a meta field noting export timestamp if possible.
+* Trigger a download of the merged JSON file.
+* Use a filename like `offline_cooking_journal_export_YYYY-MM-DD.json`.
+* Browser security means the app usually cannot directly overwrite the original `.json` file. Use a download/save-as flow instead.
+* If the File System Access API is available, optionally allow the user to choose a save location. If not available, fall back to normal browser download.
+
+Burger menu:
+Add a pop-out burger menu button on the left side of the screen.
+
+Burger menu contents:
+
+* Search
+* My List
+* My Kitchen
+* Home
+* Import Data
+* Export Data
+* Clear Local Data / Reset App
+
+Behaviour:
+
+* The burger menu slides or pops out from the left.
+* Clicking outside it or pressing close hides it.
+* Home returns to the main category landing page.
+* My List opens a full category-style view of recipes where `user_fields.added_to_list === true`.
+* Search opens the search panel.
+* My Kitchen opens the My Kitchen panel.
+* Import Data opens a file picker for JSON.
+* Export Data downloads the current merged JSON.
+* Clear Local Data should ask for confirmation before clearing localStorage.
+
+Search panel:
+When Search is opened:
+
+* Cover or replace the main content area with a search panel.
+* Show a search input at the top.
+* Search through:
+
+  * recipe title
+  * meal_type
+  * tags
+  * cuisine
+  * difficulty
+  * speed
+  * budget
+  * commonness
+  * ingredients
+  * ingredient_keywords
+  * searchable_values keys
+* Results should be text-only list items showing recipe title and maybe a small time/rating summary.
+* Clicking a search result opens the recipe detail panel.
+* Search should be case-insensitive and support partial matches.
+* The search panel should have a close/back button.
+
+My Kitchen panel:
+Create a “My Kitchen” panel for answering: “What can I cook with the ingredients I have?”
+
+Layout:
+
+* Title: “My Kitchen”
+* Short helper text: “Type ingredients you have, press Enter, and I’ll rank recipes by closest match.”
+* Ingredient input box with predictive/autocomplete suggestions.
+* A selected ingredient list on the left or near the top.
+* Clicking a selected ingredient removes it.
+* Beneath the selected ingredients, show ranked recipe results using recipe cards.
+* Clicking a recipe card opens the recipe detail panel.
+* My Kitchen selected ingredients/results are temporary. Do not save them to localStorage and do not export them to JSON.
+
+Ingredient autocomplete:
+
+* Build suggestions from all recipe `ingredient_keywords`.
+* Normalize suggestions to lowercase.
+* Deduplicate suggestions.
+* As the user types, show matching suggestions.
+* Pressing Enter adds the typed ingredient or selected suggestion.
+* Avoid duplicate selected ingredients.
+
+My Kitchen matching logic:
+Do not use strict AND filtering by default.
+
+When the user enters ingredients, treat them as ingredients currently available in the pantry/fridge.
+
+Use each recipe’s `ingredient_keywords` array as the main searchable ingredient set.
+
+Normalize:
+
+* lowercase
+* trim whitespace
+* remove duplicate spaces
+* simple singular/plural tolerance where easy
+* case-insensitive matching
+* partial matching
+
+Include simple synonym support. At minimum:
+
+* capsicum / bell pepper
+* coriander / cilantro
+* prawns / shrimp
+* bi-carb soda / baking soda / bicarb soda
+* cornflour / cornstarch
+* spring onion / green onion / scallion
+* yoghurt / yogurt
+* passata / tomato puree
+* mince / ground beef where appropriate
+
+For every recipe calculate:
+
+1. `matchedIngredients`: recipe ingredient keywords that match the selected available ingredients.
+2. `missingIngredients`: important recipe ingredient keywords not matched.
+3. `matchPercent`: approximate percentage of recipe ingredient keywords matched.
+4. `missingCount`.
+5. `score`.
+
+Ranking:
+
+* Sort recipes by highest score.
+* A recipe with more matched ingredients and fewer missing ingredients should appear higher.
+* Do not eliminate recipes simply because some ingredients are missing.
+* Display what the user has and what is missing.
+* Penalise missing main/specialty ingredients more than missing pantry staples.
+* Give less penalty for common pantry staples.
+
+Define a pantry staples list in code, including:
+salt, pepper, black pepper, white pepper, water, oil, neutral oil, olive oil, vegetable oil, butter, sugar, brown sugar, flour, plain flour, milk, egg, eggs, garlic, onion, rice, pasta, soy sauce, stock, chicken stock, vegetable stock.
+
+Important:
+
+* `missingIngredients` should not list every synonym duplicate. Keep it readable.
+* Do not show 40 missing ingredients. Limit displayed missing ingredients to a useful number such as 5, with “+X more” if needed.
+
+Group My Kitchen results into:
+
+* Ready to cook
+* Missing only pantry staples
+* Missing 1-2 ingredients
+* Partial matches
+
+Add a Strict Filter Mode toggle:
+
+* Default is OFF.
+* When OFF, use ranked best-match behaviour.
+* When ON, require every selected ingredient to appear in the recipe’s searchable ingredient set.
+* Strict mode should still be case-insensitive and synonym-aware.
+
+Category generation:
+Use the attached JSON’s available schema. The dataset includes top-level scales like difficulty/speed/budget/commonness and recipe fields like `meal_type`, `tags`, and `searchable_values`. Use these to generate category rows.
+Do not assume all future recipes have all fields.
+Do not fail if a recipe lacks `ingredient_keywords`; fall back to searching `ingredients`.
+
+Suggested category source logic:
+
+* My List: user_fields.added_to_list === true
+* Dinner: meal_type includes dinner
+* Lunch: meal_type includes lunch
+* Breakfast: meal_type includes breakfast
+* Dessert: meal_type includes dessert or tags/searchable_values dessert
+* Budget: budget === budget or searchable_values.budget_scale === budget
+* Easy: difficulty === easy
+* Quick: speed === quick or tags include quick
+* Healthy: tags include healthy or searchable_values.healthy === true
+* Vegetarian: tags include vegetarian or searchable_values.vegetarian === true
+* Vegan: searchable_values.vegan === true
+* Smoothies: meal_type or tags include smoothie
+* Baking: tags include baking or searchable_values.baking === true
+* Air Fryer: searchable_values.air_fryer_candidate === true or air_fryer.applicable === true
+* Freezer Friendly: searchable_values.freezer_friendly === true
+* Make Ahead: searchable_values.make_ahead === true or tags include make-ahead
+
+Implementation requirements:
+
+* Vanilla JavaScript only.
+* Use semantic HTML where reasonable.
+* Use CSS variables for colours.
+* Keep code readable and organised.
+* Include comments explaining major functions.
+* Handle errors gracefully.
+* No alert spam; use small inline messages/toasts where practical.
+* The UI should be usable on desktop and reasonably responsive on mobile.
+* Horizontal rows should scroll smoothly.
+* Keyboard accessibility is a plus: buttons should be real buttons, not only divs.
+
+Expected output:
+Create a working `index.html` file that I can put in the same folder as `offline_cooking_journal_seed.json`.
+
+Acceptance tests:
+
+1. Opening `index.html` directly from disk should show the app or an import prompt if it cannot fetch the JSON.
+2. Importing the attached JSON should load all recipes.
+3. The home screen should show category rows.
+4. Recipe cards should open recipe detail panels.
+5. My List plus/minus should persist after refresh.
+6. Rating should support half-stars and persist after refresh.
+7. Editing a recipe and saving should persist after refresh.
+8. Search should find recipes by title, category, and ingredients.
+9. My Kitchen should rank recipes by ingredient match, not strict AND filtering.
+10. Export should download a complete JSON file including the user’s saved changes.
+11. Importing that exported JSON later should restore the saved changes.
+12. Adding/removing recipes from the JSON in the future should not break the app.

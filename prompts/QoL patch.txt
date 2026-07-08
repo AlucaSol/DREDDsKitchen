@@ -1,0 +1,277 @@
+Context:
+This is a follow-up task for the existing cooking journal app in this VSCode project folder. Please inspect the current project files before making changes. The app should already contain a single-page `index.html` cooking assistant that loads recipe data from `offline_cooking_journal_seed.json`, uses localStorage for saved user changes, and includes a My Kitchen ingredient-matching panel.
+
+Do not start a new app from scratch. Modify the existing `index.html` in this project. Preserve the current layout, existing features, localStorage behaviour, import/export behaviour, ratings, My List, recipe editing, recipe detail panels, normal search, and JSON schema compatibility.
+
+The goal of this task is only to optimise and improve the existing My Kitchen ingredient search/ranking feature.
+
+
+Please inspect the existing `index.html` in this VSCode project folder and optimise the current My Kitchen panel and ingredient-based recipe matching.
+
+Do not redesign the whole app. Do not remove existing features. Keep the existing single `index.html` architecture, localStorage behaviour, import/export behaviour, recipe cards, recipe detail panels, ratings, My List, and normal search intact.
+
+Problem:
+The My Kitchen feature currently feels too slow. It appears to re-scan/re-normalise/re-score too much of the recipe dataset whenever ingredients are added. It also requires the user to manually add pantry staples like salt, pepper, water, oil, etc., which makes the feature tedious.
+
+Goal:
+Make My Kitchen feel fast and practical.
+
+Required changes:
+
+1. Build a precomputed recipe ingredient index once after the JSON data is loaded.
+
+When the app loads or imports recipe data, create an in-memory index for My Kitchen matching.
+
+For each recipe, precompute and store:
+
+* recipe id
+* title
+* normalized title
+* normalized/canonical ingredient keyword set
+* non-pantry ingredient keyword set
+* pantry ingredient keyword set
+* display-safe keyword list
+* any searchable ingredient text needed for autocomplete/matching
+
+Use the recipe’s `ingredient_keywords` array as the primary source.
+If a recipe lacks `ingredient_keywords`, fall back to parsing/searching its `ingredients` array.
+
+Do not rebuild this full index every time the user types or adds an ingredient. Rebuild it only when:
+
+* app first loads data
+* user imports a new JSON file
+* user edits recipe ingredients/ingredient_keywords and saves
+* local catalogue is reset or replaced
+
+2. Build a unique ingredient autocomplete index once.
+
+Create a deduplicated, normalized list of all known ingredient keywords from the dataset.
+Use this list for predictive/autocomplete suggestions in My Kitchen.
+
+Autocomplete should search only this ingredient suggestion list, not all recipe objects.
+
+3. Add canonical synonym support.
+
+Create a normalization/canonicalization function for ingredient matching.
+
+It should:
+
+* lowercase
+* trim
+* remove duplicate spaces
+* normalize simple punctuation differences
+* support simple singular/plural tolerance where practical
+* map common synonyms to the same canonical value
+
+Include at least these synonym groups:
+
+* capsicum / bell pepper
+* coriander / cilantro
+* prawns / shrimp
+* bi-carb soda / bicarb soda / baking soda
+* cornflour / cornstarch
+* spring onion / green onion / scallion
+* yoghurt / yogurt
+* passata / tomato puree
+* mince / ground beef
+* egg / eggs
+* tomato / tomatoes
+* chilli / chili
+
+For example, if the user enters `capsicum`, recipes with `bell pepper` should match.
+
+4. Treat pantry staples as assumed available by default.
+
+The user should not need to manually add salt, pepper, water, oil, flour, butter, sugar, etc.
+
+Important:
+Do not require pantry staples to be added to the selected ingredient list.
+
+For scoring, treat pantry staples as available by default when the “Pantry staples assumed” toggle is ON.
+
+For missing ingredient display, either hide missing pantry staples or show them separately under “Pantry assumed” / “Pantry staple” rather than penalising them heavily.
+
+Create a default PANTRY_STAPLES set, including at minimum:
+- salt
+- pepper
+- black pepper
+- white pepper
+- water
+- oil
+- neutral oil
+- olive oil
+- vegetable oil
+- canola oil
+- butter
+- sugar
+- brown sugar
+- flour
+- plain flour
+- milk
+- egg
+- eggs
+- garlic
+- onion
+- rice
+- pasta
+- soy sauce
+- stock
+- chicken stock
+- vegetable stock
+
+Add a visible note in the My Kitchen panel:
+“Pantry staples such as salt, pepper, oil, water, flour, sugar and basic stock are assumed.”
+
+Add a small “Pantry staples assumed” toggle.
+
+* Default ON.
+* If OFF, pantry staples are no longer assumed and can appear as missing.
+
+5. Optimise My Kitchen result calculation.
+
+Recipe ranking should only run when:
+
+* an ingredient is added
+* an ingredient is removed
+* Strict Filter Mode is toggled
+* the pantry-staples-assumed toggle is changed
+
+It should NOT re-rank recipes on every autocomplete keystroke.
+
+Use `Set` operations rather than repeated string scanning through full recipe objects.
+
+For each recipe:
+
+* matchedIngredients: selected ingredients that match the recipe’s indexed ingredient set
+* missingIngredients: important non-pantry ingredients that are not matched
+* pantryMatchedOrAssumed: pantry ingredients that are assumed or matched
+* matchPercent: percentage of important non-pantry recipe ingredients matched
+* missingCount: count of important non-pantry ingredients not matched
+* score: weighted score
+
+Suggested scoring:
+
+* Start with 0
+* Add strong points for each matched non-pantry ingredient
+* Add smaller points for each matched/assumed pantry staple
+* Penalise missing non-pantry ingredients
+* Penalise missing specialty ingredients more if they appear in `specialty_or_less_common_ingredients`
+* Do not heavily penalise missing pantry staples when pantry staples are assumed ON
+* Boost recipes where selected ingredients include likely core ingredients such as chicken, beef, lamb, tuna, prawns/shrimp, eggs, pasta, rice, noodles, chickpeas, lentils, banana, oats, yoghurt, etc.
+
+Keep the exact formula simple and readable.
+
+6. Cache My Kitchen results.
+
+Use an in-memory cache keyed by:
+
+* sorted selected canonical ingredient list
+* strict mode on/off
+* pantry staples assumed on/off
+* current recipe data version/index version
+
+If the same ingredient combination is searched again, reuse the cached results instead of recalculating.
+
+Clear the cache when:
+
+* recipe data changes
+* user imports data
+* user edits and saves a recipe
+* index is rebuilt
+
+7. Debounce autocomplete only.
+
+When the user is typing in the My Kitchen input, debounce autocomplete suggestions by about 200ms.
+
+Do not debounce adding ingredients via Enter or clicking a suggestion; those should feel immediate.
+
+8. Improve My Kitchen UI behaviour.
+
+Selected ingredient chips should:
+
+* be easy to remove by clicking
+* not allow duplicates
+* display the friendly entered name where practical
+* internally use canonical values for matching
+
+Autocomplete suggestions should:
+
+* be fast
+* show the best matching ingredient names
+* be limited to maybe 10 suggestions
+* not trigger recipe scoring until selected/entered
+
+9. Keep result grouping.
+
+Keep these My Kitchen result groups:
+
+* Ready to cook
+* Missing only pantry staples
+* Missing 1-2 ingredients
+* Partial matches
+
+Update group logic so that when pantry staples are assumed ON:
+
+* “Ready to cook” means all important non-pantry ingredients are matched, ignoring assumed pantry staples.
+* “Missing only pantry staples” should only show if pantry staples are not assumed, or if useful as an informational group.
+* “Missing 1-2 ingredients” should count important non-pantry missing ingredients.
+* “Partial matches” contains lower-scoring recipes.
+
+10. Keep Strict Filter Mode.
+
+Strict Filter Mode should remain optional and OFF by default.
+
+When Strict Filter Mode is OFF:
+
+* Use ranked best-match behaviour.
+* Do not eliminate recipes just because ingredients are missing.
+
+When Strict Filter Mode is ON:
+
+* Only show recipes that contain every selected ingredient, using canonical/synonym-aware matching.
+* Pantry staple assumptions should still follow the pantry toggle.
+
+11. Performance expectations.
+
+The current dataset is small, but the app should be designed to remain responsive as the catalogue grows to hundreds of recipes.
+
+My Kitchen should feel instant after the index is built.
+
+Avoid:
+
+* repeatedly normalising every recipe on every search
+* repeatedly walking deeply through full recipe JSON objects during My Kitchen matching
+* rebuilding autocomplete data while typing
+* excessive DOM re-rendering
+
+When rendering results:
+
+* Clear and rebuild only the My Kitchen results area, not the whole app.
+* Use `DocumentFragment` or similar efficient DOM updates if helpful.
+* Limit displayed results per group initially if necessary, with a “show more” button.
+
+12. Preserve existing data and functionality.
+
+Do not change the JSON schema unless necessary.
+Do not remove existing fields.
+Do not break import/export.
+Do not break recipe editing.
+Do not break ratings.
+Do not break My List.
+Do not break normal search.
+Do not overwrite the source JSON file directly.
+
+Acceptance tests:
+
+1. Open the app and load/import the existing recipe JSON.
+2. Open My Kitchen.
+3. Type `chicken` and confirm autocomplete is responsive.
+4. Press Enter to add `chicken`; results should update quickly.
+5. Add `rice`; results should update quickly and should not require salt, pepper, oil, or water to be added.
+6. Add `garlic`; results should update quickly.
+7. Search with `capsicum`; recipes containing `bell pepper` should be treated as matches.
+8. Search with `prawns`; recipes containing `shrimp` should be treated as matches.
+9. Remove an ingredient chip; results should update quickly.
+10. Refresh the app; saved recipes/ratings/edits should still persist, but My Kitchen selected ingredients should not persist.
+11. Import a new JSON file; indexes and caches should rebuild correctly.
+12. Export still works and includes saved user changes.
