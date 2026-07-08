@@ -218,25 +218,6 @@
       margin-bottom: 24px;
     }
 
-    .home-toolbar {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 10px;
-      margin: -8px 0 22px;
-    }
-
-    .quick-toggle {
-      min-width: 92px;
-    }
-
-    .quick-toggle.is-active {
-      color: #1d1711;
-      background: var(--accent);
-      border-color: transparent;
-      font-weight: 700;
-    }
-
     h1,
     h2,
     h3,
@@ -438,94 +419,6 @@
       aspect-ratio: 1.55 / 1;
       height: auto;
       min-height: 132px;
-    }
-
-    .quick-recipe-list {
-      display: grid;
-      gap: 10px;
-    }
-
-    .quick-recipe-card {
-      display: grid;
-      grid-template-columns: 96px minmax(0, 1fr);
-      gap: 12px;
-      align-items: stretch;
-      width: 100%;
-      min-height: 112px;
-      padding: 10px;
-      border-radius: var(--radius);
-      color: var(--text);
-      background:
-        linear-gradient(135deg, rgba(255, 239, 218, 0.08), rgba(0, 0, 0, 0.2)),
-        var(--panel);
-      border: 1px solid rgba(255, 239, 218, 0.12);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.26);
-      text-align: left;
-      transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
-    }
-
-    .quick-recipe-card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(217, 155, 87, 0.48);
-      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.36);
-    }
-
-    .quick-card-image {
-      min-height: 92px;
-      border-radius: 6px;
-      background-color: var(--panel-strong);
-      background-position: center;
-      background-size: cover;
-      border: 1px solid rgba(255, 239, 218, 0.1);
-    }
-
-    .quick-card-body {
-      display: flex;
-      min-width: 0;
-      flex-direction: column;
-      justify-content: center;
-      gap: 5px;
-    }
-
-    .quick-card-title {
-      display: -webkit-box;
-      overflow: hidden;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      font-weight: 700;
-      line-height: 1.15;
-    }
-
-    .quick-card-cook {
-      color: #fff6eb;
-      font-size: 0.9rem;
-      font-weight: 700;
-      line-height: 1.25;
-    }
-
-    .quick-card-ingredients {
-      color: var(--muted);
-      font-size: 0.86rem;
-      line-height: 1.3;
-    }
-
-    .quick-view-all {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      min-height: 48px;
-      padding: 0 14px;
-      border-radius: var(--radius);
-      color: var(--text);
-      background: rgba(255, 239, 218, 0.065);
-      border: 1px solid var(--line);
-      text-align: left;
-    }
-
-    .quick-view-all span {
-      color: var(--muted);
-      font-size: 0.86rem;
     }
 
     .side-backdrop {
@@ -1187,16 +1080,6 @@
         width: min(100%, 260px);
       }
 
-      .quick-recipe-card {
-        grid-template-columns: 86px minmax(0, 1fr);
-        min-height: 106px;
-        gap: 10px;
-      }
-
-      .quick-card-image {
-        min-height: 86px;
-      }
-
       .cook-card .detail-image-wrap,
       .cook-card .detail-image-placeholder {
         min-height: 210px;
@@ -1272,7 +1155,6 @@
       var currentPanel = { type: "home" };
       var navStack = [];
       var searchQuery = "";
-      var quickMode = false;
       var kitchen = {
         selected: [],
         draft: "",
@@ -1483,10 +1365,6 @@
           case "view-category":
             navigate({ type: "category", categoryId: el.dataset.categoryId, title: el.dataset.categoryTitle });
             break;
-          case "toggle-quick":
-            quickMode = !quickMode;
-            renderPanel({ type: "home" }, false);
-            break;
           case "open-recipe":
             navigate({ type: "cook-card", recipeId: el.dataset.recipeId });
             break;
@@ -1617,43 +1495,30 @@
       function renderHome() {
         var categories = buildCategories();
         var rows = categories.map(renderCategoryRow).join("");
-        var quickClass = quickMode ? " quick-toggle is-active" : " quick-toggle";
         mainEl().innerHTML =
-          '<section class="home-panel' + (quickMode ? ' is-quick' : '') + '">' +
+          '<section class="home-panel">' +
             '<div class="home-header">' +
               "<div><h1 class='home-title'>DREDD's Kitchen</h1><p class='subtitle'>What's Cookin'?</p></div>" +
               '<div class="count-pill">' + recipes().length + ' recipes</div>' +
-            '</div>' +
-            '<div class="home-toolbar">' +
-              '<button class="ghost-button' + quickClass + '" type="button" data-action="toggle-quick" aria-pressed="' + (quickMode ? "true" : "false") + '">Quick</button>' +
             '</div>' +
             (rows || '<div class="empty-state">No recipes are loaded yet.</div>') +
           '</section>';
       }
 
       function renderCategoryRow(category) {
-        var renderer = quickMode ? renderQuickRecipeCard : renderRecipeCard;
-        var cards = category.items.slice(0, 5).map(renderer).join("");
+        var cards = category.items.slice(0, 5).map(renderRecipeCard).join("");
         var viewAll = "";
         if (category.items.length > 5) {
-          if (quickMode) {
-            viewAll =
-              '<button class="quick-view-all" type="button" data-action="view-category" data-category-id="' +
-              escapeAttr(category.id) + '" data-category-title="' + escapeAttr(category.name) + '">' +
-                '<strong>View all</strong><span>' + escapeHtml(category.name) + '</span>' +
-              '</button>';
-          } else {
-            viewAll =
-              '<button class="view-all-card" type="button" data-action="view-category" data-category-id="' +
-              escapeAttr(category.id) + '" data-category-title="' + escapeAttr(category.name) + '">' +
-                '<strong>View all</strong><span>' + escapeHtml(category.name) + '</span>' +
-              '</button>';
-          }
+          viewAll =
+            '<button class="view-all-card" type="button" data-action="view-category" data-category-id="' +
+            escapeAttr(category.id) + '" data-category-title="' + escapeAttr(category.name) + '">' +
+              '<strong>View all</strong><span>' + escapeHtml(category.name) + '</span>' +
+            '</button>';
         }
         return (
           '<section class="category-row" aria-label="' + escapeAttr(category.name) + '">' +
             '<div class="row-heading"><h2>' + escapeHtml(category.name) + '</h2><span class="count-pill">' + category.items.length + '</span></div>' +
-            '<div class="' + (quickMode ? "quick-recipe-list" : "recipe-row") + '">' + cards + viewAll + '</div>' +
+            '<div class="recipe-row">' + cards + viewAll + '</div>' +
           '</section>'
         );
       }
@@ -1690,27 +1555,6 @@
               '<span class="card-title">' + escapeHtml(title) + '</span>' +
               '<span class="card-cook-badge">' + escapeHtml(cookingInfo.label) + '</span>' +
               renderStars(getRating(recipe)) +
-            '</span>' +
-          '</button>'
-        );
-      }
-
-      function renderQuickRecipeCard(recipe) {
-        var title = displayValue(recipe.title, "Untitled recipe");
-        var cookingInfo = getPrimaryCookingInfo(recipe);
-        var color = stableRecipeColor(recipe);
-        var imagePath = getRecipeImagePath(recipe);
-        var imageStyle = "background-color: " + color + ";";
-        if (imagePath) {
-          imageStyle += ' background-image: linear-gradient(180deg, rgba(0,0,0,0.04), rgba(0,0,0,0.22)), url("' + cssUrl(imagePath) + '");';
-        }
-        return (
-          '<button class="quick-recipe-card" type="button" data-action="open-recipe" data-recipe-id="' + escapeAttr(recipe.id) + '">' +
-            '<span class="quick-card-image" style="' + escapeAttr(imageStyle) + '"></span>' +
-            '<span class="quick-card-body">' +
-              '<span class="quick-card-title">' + escapeHtml(title) + '</span>' +
-              '<span class="quick-card-cook">' + escapeHtml(cookingInfo.label) + '</span>' +
-              '<span class="quick-card-ingredients">' + escapeHtml(formatIngredientPreview(recipe)) + '</span>' +
             '</span>' +
           '</button>'
         );
@@ -3365,11 +3209,6 @@
 
       function getIngredientLabels(recipe) {
         return asArray(recipe && recipe.ingredients);
-      }
-
-      function formatIngredientPreview(recipe) {
-        var ingredients = getIngredientLabels(recipe);
-        return ingredients.length ? ingredients.join(", ") : "Ingredients not listed";
       }
 
       function formatRecipeTime(recipe) {
