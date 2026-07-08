@@ -79,6 +79,46 @@
       min-height: 100vh;
     }
 
+    :fullscreen {
+      overflow-y: auto;
+    }
+
+    :-webkit-full-screen {
+      overflow-y: auto;
+    }
+
+    html:fullscreen,
+    body:fullscreen,
+    #app:fullscreen {
+      width: 100%;
+      height: auto;
+      min-height: 100vh;
+      background: var(--bg);
+      overflow-y: auto;
+      overscroll-behavior-y: auto;
+      touch-action: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    html:-webkit-full-screen,
+    body:-webkit-full-screen,
+    #app:-webkit-full-screen {
+      width: 100%;
+      height: auto;
+      min-height: 100vh;
+      background: var(--bg);
+      overflow-y: auto;
+      overscroll-behavior-y: auto;
+      touch-action: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    #app:fullscreen .app-shell,
+    #app:-webkit-full-screen .app-shell {
+      height: auto;
+      min-height: 100vh;
+    }
+
     .topbar {
       position: sticky;
       top: 0;
