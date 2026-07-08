@@ -160,6 +160,7 @@
 
     .topbar-actions {
       display: flex;
+      align-items: center;
       gap: 10px;
       margin-left: auto;
     }
@@ -204,9 +205,31 @@
       filter: brightness(1.08);
     }
 
+    .topbar-actions .icon-button {
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      border-radius: var(--radius);
+    }
+
+    .button-icon {
+      display: block;
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 2;
+    }
+
     .main-content {
       width: 100%;
       padding: 26px clamp(16px, 4vw, 44px) 56px;
+    }
+
+    .timer-visible .main-content {
+      padding-bottom: 170px;
     }
 
     .home-header,
@@ -551,6 +574,20 @@
       box-shadow: var(--shadow);
     }
 
+    .cook-card-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .cook-card-title-block {
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      gap: 10px;
+    }
+
     .cook-card .detail-image-wrap,
     .cook-card .detail-image-placeholder {
       height: 100%;
@@ -616,6 +653,33 @@
       gap: 10px;
       margin-top: auto;
       padding-top: 4px;
+    }
+
+    .timer-button {
+      color: var(--text);
+      background: var(--accent-dim);
+      border-color: rgba(217, 155, 87, 0.42);
+    }
+
+    .timer-button .button-icon {
+      width: 22px;
+      height: 22px;
+    }
+
+    .method-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .method-heading h2 {
+      margin: 0;
+    }
+
+    .detail-section .method-heading h2 {
+      margin: 0;
     }
 
     .title-line {
@@ -1040,6 +1104,87 @@
       background: var(--danger-dim);
     }
 
+    .timer-panel {
+      position: fixed;
+      right: clamp(12px, 4vw, 44px);
+      bottom: 12px;
+      left: clamp(12px, 4vw, 44px);
+      z-index: 70;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 14px;
+      border: 1px solid rgba(255, 239, 218, 0.24);
+      border-radius: var(--radius);
+      color: var(--text);
+      background: rgba(32, 28, 25, 0.96);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    .timer-panel.is-expired {
+      border-color: #ffd65a;
+      box-shadow:
+        0 0 0 1px rgba(255, 214, 90, 0.55),
+        0 0 30px rgba(255, 214, 90, 0.58),
+        var(--shadow);
+    }
+
+    .timer-display-button {
+      display: flex;
+      min-width: 0;
+      flex: 1 1 auto;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      padding: 0;
+      color: var(--text);
+      background: transparent;
+      text-align: left;
+    }
+
+    .timer-time {
+      font-size: clamp(2.2rem, 8vw, 4rem);
+      font-weight: 800;
+      line-height: 0.95;
+    }
+
+    .timer-label {
+      overflow: hidden;
+      max-width: 100%;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.2;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .timer-control {
+      min-width: 112px;
+      min-height: 56px;
+      font-weight: 800;
+    }
+
+    .timer-edit-form {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto auto;
+      gap: 10px;
+      width: 100%;
+      align-items: center;
+    }
+
+    .timer-edit-input {
+      width: 100%;
+      min-height: 56px;
+      padding: 0 14px;
+      border-radius: var(--radius);
+      color: var(--text);
+      background: rgba(255, 239, 218, 0.08);
+      border: 1px solid var(--line);
+      font-size: clamp(1.5rem, 6vw, 2.4rem);
+      font-weight: 800;
+    }
+
     .hidden {
       display: none !important;
     }
@@ -1086,6 +1231,32 @@
         aspect-ratio: 4 / 3;
       }
 
+      .cook-card-head {
+        align-items: flex-start;
+      }
+
+      .timer-panel {
+        right: 10px;
+        bottom: 10px;
+        left: 10px;
+        gap: 10px;
+        padding: 10px;
+      }
+
+      .timer-control {
+        min-width: 92px;
+        min-height: 52px;
+      }
+
+      .timer-edit-form {
+        grid-template-columns: 1fr;
+      }
+
+      .timer-edit-form .primary-button,
+      .timer-edit-form .ghost-button {
+        width: 100%;
+      }
+
       .object-row {
         grid-template-columns: 1fr;
         gap: 4px;
@@ -1102,6 +1273,7 @@
       "use strict";
 
       var STATE_KEY = "cookingJournalAppState_v1";
+      var TIMER_KEY = "dreddsKitchenTimerState_v1";
       var SEED_FILE = "recipe_seed.json";
       var EXPORT_PREFIX = "cooking_journal_export_";
       var DEFAULT_USER_FIELDS = {
@@ -1174,11 +1346,22 @@
       var kitchenSuggestionTimer = null;
       var toastTimer = null;
       var pendingResetConfirm = false;
+      var timerState = createEmptyTimerState();
+      var timerInterval = null;
+      var timerEditing = false;
+      var timerEditWasRunning = false;
+      var timerAudioContext = null;
+      var alarmInterval = null;
+      var alarmTimeout = null;
+      var alarmNodes = [];
+      var wakeLock = null;
 
       var app = document.getElementById("app");
       var fileInput = document.getElementById("jsonFileInput");
 
       initShell();
+      setupFullscreenButton();
+      restoreTimerState();
       attachGlobalEvents();
       boot();
 
@@ -1191,6 +1374,7 @@
               '<div class="topbar-actions">' +
                 '<button class="text-button" type="button" data-action="open-search">Search</button>' +
                 '<button class="text-button" type="button" data-action="open-kitchen">My Kitchen</button>' +
+                '<button id="fullscreenButton" class="icon-button fullscreen-button hidden" type="button" data-action="toggle-fullscreen" aria-label="Enter fullscreen" title="Fullscreen">' + renderFullscreenIcon() + '</button>' +
               '</div>' +
             '</header>' +
             '<div id="sideBackdrop" class="side-backdrop" data-action="close-menu">' +
@@ -1208,6 +1392,7 @@
               '</aside>' +
             '</div>' +
             '<main id="mainContent" class="main-content" tabindex="-1"></main>' +
+            '<div id="timerMount"></div>' +
             '<div id="toast" class="toast" role="status" aria-live="polite"></div>' +
           '</div>';
       }
@@ -1300,6 +1485,18 @@
             event.preventDefault();
             saveRecipeEdit();
           }
+          if (event.target.id === "timerEditForm") {
+            event.preventDefault();
+            confirmTimerEdit();
+          }
+        });
+
+        document.addEventListener("visibilitychange", function () {
+          syncTimerFromClock(true);
+          if (document.visibilityState === "visible" && timerState.running) {
+            requestTimerWakeLock();
+          }
+          renderTimerPanel();
         });
 
         document.addEventListener("error", function (event) {
@@ -1334,6 +1531,9 @@
           case "open-kitchen":
             closeMenu();
             navigate({ type: "kitchen" });
+            break;
+          case "toggle-fullscreen":
+            toggleFullscreen();
             break;
           case "open-my-list":
             closeMenu();
@@ -1370,6 +1570,18 @@
             break;
           case "expand-recipe":
             navigate({ type: "detail", recipeId: el.dataset.recipeId });
+            break;
+          case "start-timer":
+            startRecipeTimer(el.dataset.recipeId);
+            break;
+          case "toggle-timer-pause":
+            toggleTimerPause();
+            break;
+          case "edit-timer":
+            beginTimerEdit();
+            break;
+          case "cancel-timer-edit":
+            cancelTimerEdit();
             break;
           case "toggle-list":
             toggleMyList(el.dataset.recipeId);
@@ -1416,6 +1628,66 @@
 
       function closeMenu() {
         document.getElementById("sideBackdrop").classList.remove("is-open");
+      }
+
+      function setupFullscreenButton() {
+        var button = document.getElementById("fullscreenButton");
+        if (!button) {
+          return;
+        }
+        if (!isFullscreenSupported()) {
+          button.classList.add("hidden");
+          button.disabled = true;
+          return;
+        }
+        button.classList.remove("hidden");
+        document.addEventListener("fullscreenchange", updateFullscreenButton);
+        document.addEventListener("webkitfullscreenchange", updateFullscreenButton);
+        updateFullscreenButton();
+      }
+
+      function isFullscreenSupported() {
+        var root = document.documentElement;
+        return Boolean(root && (root.requestFullscreen || root.webkitRequestFullscreen)) &&
+          Boolean(document.exitFullscreen || document.webkitExitFullscreen);
+      }
+
+      function fullscreenElement() {
+        return document.fullscreenElement || document.webkitFullscreenElement || null;
+      }
+
+      function updateFullscreenButton() {
+        var button = document.getElementById("fullscreenButton");
+        if (!button || button.disabled) {
+          return;
+        }
+        var isActive = Boolean(fullscreenElement());
+        button.setAttribute("aria-label", isActive ? "Exit fullscreen" : "Enter fullscreen");
+        button.title = isActive ? "Exit fullscreen" : "Fullscreen";
+      }
+
+      function toggleFullscreen() {
+        if (!isFullscreenSupported()) {
+          return;
+        }
+        try {
+          if (fullscreenElement()) {
+            var exit = document.exitFullscreen || document.webkitExitFullscreen;
+            var exitResult = exit.call(document);
+            if (exitResult && exitResult.catch) {
+              exitResult.catch(function () {});
+            }
+          } else {
+            var target = app || document.documentElement;
+            var request = target.requestFullscreen || target.webkitRequestFullscreen;
+            var requestResult = request.call(target);
+            if (requestResult && requestResult.catch) {
+              requestResult.catch(function () {});
+            }
+          }
+        } catch (error) {
+          // Fullscreen can be blocked by browser policy; fail without breaking the app.
+        }
       }
 
       function navigate(panel) {
@@ -1560,6 +1832,22 @@
         );
       }
 
+      function renderTimerButton(recipe) {
+        return (
+          '<button class="round-button timer-button" type="button" data-action="start-timer" data-recipe-id="' + escapeAttr(recipe.id) + '" aria-label="Start timer for ' + escapeAttr(displayValue(recipe.title, "recipe")) + '" title="Start timer">' +
+            renderTimerIcon() +
+          '</button>'
+        );
+      }
+
+      function renderTimerIcon() {
+        return '<svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v5l3 2"></path><path d="M9 2h6"></path><path d="M12 2v3"></path></svg>';
+      }
+
+      function renderFullscreenIcon() {
+        return '<svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5"></path><path d="M16 3h5v5"></path><path d="M21 16v5h-5"></path><path d="M8 21H3v-5"></path></svg>';
+      }
+
       function renderCookCard(panel) {
         var recipe = getRecipeById(panel.recipeId);
         if (!recipe) {
@@ -1575,8 +1863,13 @@
             '<div class="cook-card">' +
               renderDetailImage(recipe) +
               '<div class="cook-card-body">' +
-                '<h1>' + escapeHtml(title) + '</h1>' +
-                '<div class="cook-card-label">' + escapeHtml(cookingInfo.label) + '</div>' +
+                '<div class="cook-card-head">' +
+                  '<div class="cook-card-title-block">' +
+                    '<h1>' + escapeHtml(title) + '</h1>' +
+                    '<div class="cook-card-label">' + escapeHtml(cookingInfo.label) + '</div>' +
+                  '</div>' +
+                  renderTimerButton(recipe) +
+                '</div>' +
                 renderCookSummary(cookingInfo) +
                 '<section><h2>Ingredients</h2>' + renderCookIngredientList(recipe) + '</section>' +
                 '<div class="cook-card-actions">' +
@@ -1616,6 +1909,468 @@
         }).join("") + '</ul>';
       }
 
+      function createEmptyTimerState() {
+        return {
+          visible: false,
+          running: false,
+          expired: false,
+          remainingSeconds: 0,
+          durationSeconds: 0,
+          endAt: null,
+          recipeId: null,
+          label: "Timer",
+          sourceLabel: ""
+        };
+      }
+
+      function timerMount() {
+        return document.getElementById("timerMount");
+      }
+
+      function startRecipeTimer(recipeId) {
+        var recipe = getRecipeById(recipeId);
+        if (!recipe) {
+          return;
+        }
+        unlockTimerAudio();
+        stopTimerAlarmSound();
+        releaseTimerWakeLock();
+        var cookingInfo = getPrimaryCookingInfo(recipe);
+        var seconds = parseTimerSeconds(cookingInfo.time || cookingInfo.label);
+        if (seconds == null) {
+          seconds = 0;
+        }
+        timerEditing = false;
+        timerEditWasRunning = false;
+        timerState = {
+          visible: true,
+          running: seconds > 0,
+          expired: false,
+          remainingSeconds: seconds,
+          durationSeconds: seconds,
+          endAt: seconds > 0 ? Date.now() + seconds * 1000 : null,
+          recipeId: recipe.id,
+          label: displayValue(recipe.title, "Timer"),
+          sourceLabel: cookingInfo.label || ""
+        };
+        saveTimerState();
+        renderTimerPanel();
+        if (timerState.running) {
+          ensureTimerTicker();
+          requestTimerWakeLock();
+        }
+      }
+
+      function restoreTimerState() {
+        try {
+          var raw = localStorage.getItem(TIMER_KEY);
+          if (!raw) {
+            renderTimerPanel();
+            return;
+          }
+          var parsed = JSON.parse(raw);
+          timerState = Object.assign(createEmptyTimerState(), parsed || {});
+          timerState.remainingSeconds = Math.max(0, Math.round(Number(timerState.remainingSeconds) || 0));
+          timerState.durationSeconds = Math.max(0, Math.round(Number(timerState.durationSeconds) || timerState.remainingSeconds));
+          timerState.endAt = timerState.endAt ? Number(timerState.endAt) : null;
+          if (timerState.running) {
+            syncTimerFromClock(false);
+          }
+          renderTimerPanel();
+          if (timerState.running) {
+            ensureTimerTicker();
+            requestTimerWakeLock();
+          }
+        } catch (error) {
+          timerState = createEmptyTimerState();
+          renderTimerPanel();
+        }
+      }
+
+      function saveTimerState() {
+        try {
+          if (!timerState.visible) {
+            localStorage.removeItem(TIMER_KEY);
+            return;
+          }
+          localStorage.setItem(TIMER_KEY, JSON.stringify(timerState));
+        } catch (error) {
+          // Timer persistence is best-effort; the timer still works in memory.
+        }
+      }
+
+      function renderTimerPanel() {
+        var mount = timerMount();
+        if (!mount) {
+          return;
+        }
+        setTimerVisibleClass(timerState.visible);
+        if (!timerState.visible) {
+          mount.innerHTML = "";
+          stopTimerTicker();
+          return;
+        }
+        if (timerEditing) {
+          mount.innerHTML =
+            '<form id="timerEditForm" class="timer-panel" autocomplete="off">' +
+              '<input id="timerEditInput" class="timer-edit-input" type="text" inputmode="numeric" aria-label="Timer time" value="' + escapeAttr(formatTimerClock(timerState.remainingSeconds)) + '">' +
+              '<button class="primary-button" type="submit">Set</button>' +
+              '<button class="ghost-button" type="button" data-action="cancel-timer-edit">Cancel</button>' +
+            '</form>';
+          return;
+        }
+        var controlLabel = timerState.expired ? "Stop" : (timerState.running ? "Pause" : (timerState.remainingSeconds > 0 ? "Resume" : "Stop"));
+        var controlClass = timerState.expired ? "danger-button" : "primary-button";
+        var label = timerState.expired ? "Time is up" : [timerState.label, timerState.sourceLabel].filter(Boolean).join(" - ");
+        mount.innerHTML =
+          '<div class="timer-panel' + (timerState.expired ? ' is-expired' : '') + '" role="timer" aria-live="polite">' +
+            '<button class="timer-display-button" type="button" data-action="edit-timer" aria-label="Edit timer">' +
+              '<span class="timer-time">' + escapeHtml(formatTimerClock(timerState.remainingSeconds)) + '</span>' +
+              '<span class="timer-label">' + escapeHtml(label || "Timer") + '</span>' +
+            '</button>' +
+            '<button class="' + controlClass + ' timer-control" type="button" data-action="toggle-timer-pause">' + controlLabel + '</button>' +
+          '</div>';
+        if (timerState.running) {
+          ensureTimerTicker();
+        }
+      }
+
+      function setTimerVisibleClass(isVisible) {
+        if (document.body && document.body.classList) {
+          document.body.classList.toggle("timer-visible", Boolean(isVisible));
+        }
+      }
+
+      function ensureTimerTicker() {
+        if (timerInterval) {
+          return;
+        }
+        timerInterval = setInterval(tickTimer, 1000);
+      }
+
+      function stopTimerTicker() {
+        if (timerInterval) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+        }
+      }
+
+      function tickTimer() {
+        if (!timerState.running) {
+          stopTimerTicker();
+          return;
+        }
+        syncTimerFromClock(true);
+        renderTimerPanel();
+      }
+
+      function syncTimerFromClock(playAlarm) {
+        if (!timerState.running || !timerState.endAt) {
+          return;
+        }
+        var seconds = Math.max(0, Math.ceil((timerState.endAt - Date.now()) / 1000));
+        timerState.remainingSeconds = seconds;
+        if (seconds <= 0) {
+          expireTimer(playAlarm);
+        }
+      }
+
+      function expireTimer(playAlarm) {
+        if (timerState.expired) {
+          return;
+        }
+        timerState.running = false;
+        timerState.expired = true;
+        timerState.remainingSeconds = 0;
+        timerState.endAt = null;
+        timerEditing = false;
+        releaseTimerWakeLock();
+        stopTimerTicker();
+        saveTimerState();
+        renderTimerPanel();
+        if (playAlarm) {
+          playTimerAlarm();
+        }
+      }
+
+      function toggleTimerPause() {
+        if (timerState.expired || timerState.remainingSeconds <= 0) {
+          clearTimer();
+          return;
+        }
+        if (timerState.running) {
+          pauseTimer(true);
+        } else {
+          resumeTimer();
+        }
+      }
+
+      function pauseTimer(shouldRender) {
+        syncTimerFromClock(false);
+        timerState.running = false;
+        timerState.endAt = null;
+        releaseTimerWakeLock();
+        stopTimerTicker();
+        saveTimerState();
+        if (shouldRender) {
+          renderTimerPanel();
+        }
+      }
+
+      function resumeTimer() {
+        if (!timerState.visible || timerState.remainingSeconds <= 0) {
+          renderTimerPanel();
+          return;
+        }
+        unlockTimerAudio();
+        timerState.running = true;
+        timerState.expired = false;
+        timerState.endAt = Date.now() + timerState.remainingSeconds * 1000;
+        saveTimerState();
+        renderTimerPanel();
+        ensureTimerTicker();
+        requestTimerWakeLock();
+      }
+
+      function beginTimerEdit() {
+        if (!timerState.visible || timerState.expired) {
+          return;
+        }
+        timerEditWasRunning = timerState.running;
+        pauseTimer(false);
+        timerEditing = true;
+        renderTimerPanel();
+        setTimeout(function () {
+          var input = document.getElementById("timerEditInput");
+          if (input) {
+            input.focus();
+            input.select();
+          }
+        }, 0);
+      }
+
+      function confirmTimerEdit() {
+        var input = document.getElementById("timerEditInput");
+        var seconds = parseTimerSeconds(input ? input.value : "");
+        if (seconds == null) {
+          showToast("Enter a timer like 16 min, 1:20, or 1 hr 20 min.");
+          return;
+        }
+        timerState.remainingSeconds = seconds;
+        timerState.durationSeconds = seconds;
+        timerState.expired = false;
+        timerState.endAt = null;
+        timerEditing = false;
+        if (timerEditWasRunning && seconds > 0) {
+          resumeTimer();
+        } else {
+          timerState.running = false;
+          saveTimerState();
+          renderTimerPanel();
+        }
+      }
+
+      function cancelTimerEdit() {
+        timerEditing = false;
+        if (timerEditWasRunning && timerState.remainingSeconds > 0) {
+          resumeTimer();
+        } else {
+          saveTimerState();
+          renderTimerPanel();
+        }
+      }
+
+      function clearTimer() {
+        timerEditing = false;
+        timerEditWasRunning = false;
+        stopTimerAlarmSound();
+        releaseTimerWakeLock();
+        stopTimerTicker();
+        timerState = createEmptyTimerState();
+        saveTimerState();
+        renderTimerPanel();
+      }
+
+      function parseTimerSeconds(value) {
+        var text = String(value == null ? "" : value).toLowerCase().trim();
+        if (!text) {
+          return null;
+        }
+        if (/^\d+(:\d{1,2}){1,2}$/.test(text)) {
+          var parts = text.split(":").map(function (part) { return Number(part); });
+          if (parts.some(function (part) { return !Number.isFinite(part); })) {
+            return null;
+          }
+          return parts.length === 3 ?
+            parts[0] * 3600 + parts[1] * 60 + parts[2] :
+            parts[0] * 60 + parts[1];
+        }
+        text = text.replace(/(\d+(?:\.\d+)?)\s*(?:-|to)\s*(\d+(?:\.\d+)?)\s*(hours?|hrs?|hr|minutes?|mins?|min|seconds?|secs?|sec)\b/g, "$2 $3");
+        var total = 0;
+        var matched = false;
+        var pattern = /(\d+(?:\.\d+)?)\s*(hours?|hrs?|hr|minutes?|mins?|min|seconds?|secs?|sec)\b/g;
+        var match;
+        while ((match = pattern.exec(text))) {
+          matched = true;
+          total += secondsForTimerUnit(Number(match[1]), match[2]);
+        }
+        if (matched) {
+          return Math.max(0, Math.round(total));
+        }
+        if (/^\d+(?:\.\d+)?$/.test(text)) {
+          return Math.round(Number(text) * 60);
+        }
+        return null;
+      }
+
+      function secondsForTimerUnit(value, unit) {
+        if (!Number.isFinite(value)) {
+          return 0;
+        }
+        if (/^h/.test(unit)) {
+          return value * 3600;
+        }
+        if (/^s/.test(unit)) {
+          return value;
+        }
+        return value * 60;
+      }
+
+      function formatTimerClock(seconds) {
+        seconds = Math.max(0, Math.round(Number(seconds) || 0));
+        var hours = Math.floor(seconds / 3600);
+        var minutes = Math.floor((seconds % 3600) / 60);
+        var secs = seconds % 60;
+        if (hours > 0) {
+          return hours + ":" + padTimerNumber(minutes) + ":" + padTimerNumber(secs);
+        }
+        return minutes + ":" + padTimerNumber(secs);
+      }
+
+      function padTimerNumber(value) {
+        return String(value).padStart(2, "0");
+      }
+
+      function unlockTimerAudio() {
+        if (typeof window === "undefined") {
+          return;
+        }
+        var AudioContextCtor = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextCtor) {
+          return;
+        }
+        try {
+          if (!timerAudioContext) {
+            timerAudioContext = new AudioContextCtor();
+          }
+          if (timerAudioContext.state === "suspended" && timerAudioContext.resume) {
+            timerAudioContext.resume().catch(function () {});
+          }
+        } catch (error) {
+          timerAudioContext = null;
+        }
+      }
+
+      function playTimerAlarm() {
+        if (alarmInterval || alarmTimeout) {
+          return;
+        }
+        unlockTimerAudio();
+        if (!timerAudioContext) {
+          return;
+        }
+        var startSound = function () {
+          var startedAt = Date.now();
+          var index = 0;
+          var tones = [880, 660, 990, 660];
+          var beep = function () {
+            if (Date.now() - startedAt >= 15000) {
+              stopTimerAlarmSound();
+              return;
+            }
+            playTimerTone(tones[index % tones.length], 0.18);
+            index += 1;
+          };
+          beep();
+          alarmInterval = setInterval(beep, 420);
+          alarmTimeout = setTimeout(stopTimerAlarmSound, 15000);
+        };
+        if (timerAudioContext.state === "suspended" && timerAudioContext.resume) {
+          timerAudioContext.resume().then(startSound).catch(function () {});
+        } else {
+          startSound();
+        }
+      }
+
+      function playTimerTone(frequency, durationSeconds) {
+        if (!timerAudioContext) {
+          return;
+        }
+        try {
+          var oscillator = timerAudioContext.createOscillator();
+          var gain = timerAudioContext.createGain();
+          var now = timerAudioContext.currentTime;
+          oscillator.type = "sine";
+          oscillator.frequency.setValueAtTime(frequency, now);
+          gain.gain.setValueAtTime(0.0001, now);
+          gain.gain.exponentialRampToValueAtTime(0.12, now + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + durationSeconds);
+          oscillator.connect(gain);
+          gain.connect(timerAudioContext.destination);
+          oscillator.start(now);
+          oscillator.stop(now + durationSeconds + 0.02);
+          alarmNodes.push(oscillator);
+          oscillator.onended = function () {
+            alarmNodes = alarmNodes.filter(function (node) { return node !== oscillator; });
+            gain.disconnect();
+          };
+        } catch (error) {
+          // Audio output is best-effort.
+        }
+      }
+
+      function stopTimerAlarmSound() {
+        if (alarmInterval) {
+          clearInterval(alarmInterval);
+          alarmInterval = null;
+        }
+        if (alarmTimeout) {
+          clearTimeout(alarmTimeout);
+          alarmTimeout = null;
+        }
+        alarmNodes.forEach(function (node) {
+          try {
+            node.stop();
+          } catch (error) {}
+        });
+        alarmNodes = [];
+      }
+
+      async function requestTimerWakeLock() {
+        if (!timerState.running || wakeLock || typeof navigator === "undefined" || !navigator.wakeLock || document.visibilityState === "hidden") {
+          return;
+        }
+        try {
+          wakeLock = await navigator.wakeLock.request("screen");
+          wakeLock.addEventListener("release", function () {
+            wakeLock = null;
+          });
+        } catch (error) {
+          wakeLock = null;
+        }
+      }
+
+      function releaseTimerWakeLock() {
+        if (!wakeLock) {
+          return;
+        }
+        var lock = wakeLock;
+        wakeLock = null;
+        try {
+          lock.release().catch(function () {});
+        } catch (error) {}
+      }
+
       // Recipe detail is the read-only cooking view; editing swaps in a form
       // for user-facing fields and preserves unedited nested fields.
       function renderDetail(panel) {
@@ -1652,7 +2407,7 @@
               renderListSection("Specialty / less common ingredients", recipe.specialty_or_less_common_ingredients) +
               renderValueSection("Australian shop notes", recipe.australian_shop_notes) +
               renderListSection("Equipment", recipe.equipment) +
-              renderMethodSteps(recipe.method_steps) +
+              renderMethodSteps(recipe) +
               renderValueSection("Make-ahead / storage", recipe.make_ahead_or_storage) +
               renderListSection("Beginner notes", recipe.beginner_notes) +
               renderUserNotes(recipe) +
@@ -1810,13 +2565,14 @@
         return '<section class="detail-section"><h2>Air fryer note</h2>' + renderObject(airFryer) + '</section>';
       }
 
-      function renderMethodSteps(steps) {
-        var items = Array.isArray(steps) ? steps : [];
+      function renderMethodSteps(recipe) {
+        var items = Array.isArray(recipe && recipe.method_steps) ? recipe.method_steps : [];
         if (!items.length) {
           return "";
         }
         return (
-          '<section class="detail-section"><h2>Method</h2>' +
+          '<section class="detail-section method-section">' +
+            '<div class="method-heading"><h2>Method</h2>' + renderTimerButton(recipe) + '</div>' +
             '<ol class="method-list">' + items.map(function (step) {
               return '<li class="method-step">' + renderMethodStep(step) + '</li>';
             }).join("") + '</ol>' +
