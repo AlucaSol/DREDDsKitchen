@@ -218,6 +218,25 @@
       margin-bottom: 24px;
     }
 
+    .home-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 10px;
+      margin: -8px 0 22px;
+    }
+
+    .quick-toggle {
+      min-width: 92px;
+    }
+
+    .quick-toggle.is-active {
+      color: #1d1711;
+      background: var(--accent);
+      border-color: transparent;
+      font-weight: 700;
+    }
+
     h1,
     h2,
     h3,
@@ -346,6 +365,21 @@
       text-shadow: 0 2px 8px rgba(0, 0, 0, 0.75);
     }
 
+    .card-cook-badge {
+      display: inline-block;
+      max-width: 100%;
+      min-height: 24px;
+      padding: 3px 8px;
+      border-radius: 99px;
+      color: #fff6eb;
+      background: rgba(0, 0, 0, 0.58);
+      border: 1px solid rgba(255, 239, 218, 0.22);
+      font-size: 0.8rem;
+      font-weight: 700;
+      line-height: 1.15;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.75);
+    }
+
     .stars {
       display: inline-flex;
       align-items: center;
@@ -404,6 +438,94 @@
       aspect-ratio: 1.55 / 1;
       height: auto;
       min-height: 132px;
+    }
+
+    .quick-recipe-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .quick-recipe-card {
+      display: grid;
+      grid-template-columns: 96px minmax(0, 1fr);
+      gap: 12px;
+      align-items: stretch;
+      width: 100%;
+      min-height: 112px;
+      padding: 10px;
+      border-radius: var(--radius);
+      color: var(--text);
+      background:
+        linear-gradient(135deg, rgba(255, 239, 218, 0.08), rgba(0, 0, 0, 0.2)),
+        var(--panel);
+      border: 1px solid rgba(255, 239, 218, 0.12);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.26);
+      text-align: left;
+      transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .quick-recipe-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(217, 155, 87, 0.48);
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.36);
+    }
+
+    .quick-card-image {
+      min-height: 92px;
+      border-radius: 6px;
+      background-color: var(--panel-strong);
+      background-position: center;
+      background-size: cover;
+      border: 1px solid rgba(255, 239, 218, 0.1);
+    }
+
+    .quick-card-body {
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .quick-card-title {
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      font-weight: 700;
+      line-height: 1.15;
+    }
+
+    .quick-card-cook {
+      color: #fff6eb;
+      font-size: 0.9rem;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .quick-card-ingredients {
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.3;
+    }
+
+    .quick-view-all {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      min-height: 48px;
+      padding: 0 14px;
+      border-radius: var(--radius);
+      color: var(--text);
+      background: rgba(255, 239, 218, 0.065);
+      border: 1px solid var(--line);
+      text-align: left;
+    }
+
+    .quick-view-all span {
+      color: var(--muted);
+      font-size: 0.86rem;
     }
 
     .side-backdrop {
@@ -470,6 +592,7 @@
     }
 
     .detail-panel,
+    .cook-card-panel,
     .category-panel,
     .search-panel,
     .kitchen-panel,
@@ -519,6 +642,87 @@
       padding: 18px;
       color: rgba(255, 255, 255, 0.75);
       font-weight: 700;
+    }
+
+    .cook-card {
+      display: grid;
+      grid-template-columns: minmax(240px, 360px) minmax(0, 1fr);
+      gap: clamp(18px, 4vw, 32px);
+      align-items: stretch;
+      padding: clamp(14px, 3vw, 20px);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(135deg, rgba(255, 239, 218, 0.08), rgba(0, 0, 0, 0.16)),
+        var(--panel);
+      border: 1px solid rgba(255, 239, 218, 0.14);
+      box-shadow: var(--shadow);
+    }
+
+    .cook-card .detail-image-wrap,
+    .cook-card .detail-image-placeholder {
+      height: 100%;
+      min-height: 260px;
+      aspect-ratio: auto;
+      box-shadow: none;
+    }
+
+    .cook-card-body {
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .cook-card-body h1 {
+      margin-bottom: 0;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      line-height: 1;
+    }
+
+    .cook-card-label {
+      display: inline-flex;
+      align-self: flex-start;
+      padding: 6px 10px;
+      border-radius: 99px;
+      color: #fff6eb;
+      background: rgba(0, 0, 0, 0.42);
+      border: 1px solid rgba(255, 239, 218, 0.18);
+      font-weight: 700;
+    }
+
+    .cook-summary {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .cook-chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 4px 10px;
+      border-radius: 99px;
+      color: var(--text);
+      background: rgba(255, 239, 218, 0.08);
+      border: 1px solid var(--line);
+      font-size: 0.9rem;
+    }
+
+    .cook-ingredients {
+      display: grid;
+      gap: 6px;
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    .cook-card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: auto;
+      padding-top: 4px;
     }
 
     .title-line {
@@ -964,6 +1168,7 @@
       }
 
       .detail-layout,
+      .cook-card,
       .edit-grid,
       .kitchen-builder,
       .kitchen-result {
@@ -975,11 +1180,27 @@
       .kitchen-result .recipe-card {
         flex-basis: 178px;
         width: 178px;
-        height: 122px;
+        height: 132px;
       }
 
       .kitchen-result .recipe-card {
         width: min(100%, 260px);
+      }
+
+      .quick-recipe-card {
+        grid-template-columns: 86px minmax(0, 1fr);
+        min-height: 106px;
+        gap: 10px;
+      }
+
+      .quick-card-image {
+        min-height: 86px;
+      }
+
+      .cook-card .detail-image-wrap,
+      .cook-card .detail-image-placeholder {
+        min-height: 210px;
+        aspect-ratio: 4 / 3;
       }
 
       .object-row {
@@ -1051,6 +1272,7 @@
       var currentPanel = { type: "home" };
       var navStack = [];
       var searchQuery = "";
+      var quickMode = false;
       var kitchen = {
         selected: [],
         draft: "",
@@ -1261,7 +1483,14 @@
           case "view-category":
             navigate({ type: "category", categoryId: el.dataset.categoryId, title: el.dataset.categoryTitle });
             break;
+          case "toggle-quick":
+            quickMode = !quickMode;
+            renderPanel({ type: "home" }, false);
+            break;
           case "open-recipe":
+            navigate({ type: "cook-card", recipeId: el.dataset.recipeId });
+            break;
+          case "expand-recipe":
             navigate({ type: "detail", recipeId: el.dataset.recipeId });
             break;
           case "toggle-list":
@@ -1336,6 +1565,8 @@
           renderHome();
         } else if (currentPanel.type === "category") {
           renderCategoryView(currentPanel);
+        } else if (currentPanel.type === "cook-card") {
+          renderCookCard(currentPanel);
         } else if (currentPanel.type === "detail") {
           renderDetail(currentPanel);
         } else if (currentPanel.type === "search") {
@@ -1386,30 +1617,43 @@
       function renderHome() {
         var categories = buildCategories();
         var rows = categories.map(renderCategoryRow).join("");
+        var quickClass = quickMode ? " quick-toggle is-active" : " quick-toggle";
         mainEl().innerHTML =
-          '<section class="home-panel">' +
+          '<section class="home-panel' + (quickMode ? ' is-quick' : '') + '">' +
             '<div class="home-header">' +
               "<div><h1 class='home-title'>DREDD's Kitchen</h1><p class='subtitle'>What's Cookin'?</p></div>" +
               '<div class="count-pill">' + recipes().length + ' recipes</div>' +
+            '</div>' +
+            '<div class="home-toolbar">' +
+              '<button class="ghost-button' + quickClass + '" type="button" data-action="toggle-quick" aria-pressed="' + (quickMode ? "true" : "false") + '">Quick</button>' +
             '</div>' +
             (rows || '<div class="empty-state">No recipes are loaded yet.</div>') +
           '</section>';
       }
 
       function renderCategoryRow(category) {
-        var cards = category.items.slice(0, 5).map(renderRecipeCard).join("");
+        var renderer = quickMode ? renderQuickRecipeCard : renderRecipeCard;
+        var cards = category.items.slice(0, 5).map(renderer).join("");
         var viewAll = "";
         if (category.items.length > 5) {
-          viewAll =
-            '<button class="view-all-card" type="button" data-action="view-category" data-category-id="' +
-            escapeAttr(category.id) + '" data-category-title="' + escapeAttr(category.name) + '">' +
-              '<strong>View all</strong><span>' + escapeHtml(category.name) + '</span>' +
-            '</button>';
+          if (quickMode) {
+            viewAll =
+              '<button class="quick-view-all" type="button" data-action="view-category" data-category-id="' +
+              escapeAttr(category.id) + '" data-category-title="' + escapeAttr(category.name) + '">' +
+                '<strong>View all</strong><span>' + escapeHtml(category.name) + '</span>' +
+              '</button>';
+          } else {
+            viewAll =
+              '<button class="view-all-card" type="button" data-action="view-category" data-category-id="' +
+              escapeAttr(category.id) + '" data-category-title="' + escapeAttr(category.name) + '">' +
+                '<strong>View all</strong><span>' + escapeHtml(category.name) + '</span>' +
+              '</button>';
+          }
         }
         return (
           '<section class="category-row" aria-label="' + escapeAttr(category.name) + '">' +
             '<div class="row-heading"><h2>' + escapeHtml(category.name) + '</h2><span class="count-pill">' + category.items.length + '</span></div>' +
-            '<div class="recipe-row">' + cards + viewAll + '</div>' +
+            '<div class="' + (quickMode ? "quick-recipe-list" : "recipe-row") + '">' + cards + viewAll + '</div>' +
           '</section>'
         );
       }
@@ -1432,8 +1676,9 @@
 
       function renderRecipeCard(recipe) {
         var title = displayValue(recipe.title, "Untitled recipe");
+        var cookingInfo = getPrimaryCookingInfo(recipe);
         var color = stableRecipeColor(recipe);
-        var imagePath = typeof recipe.image_path === "string" ? recipe.image_path.trim() : "";
+        var imagePath = getRecipeImagePath(recipe);
         var cardClass = imagePath ? "recipe-card has-image" : "recipe-card";
         var style = "background-color: " + color + ";";
         if (imagePath) {
@@ -1443,11 +1688,88 @@
           '<button class="' + cardClass + '" type="button" data-action="open-recipe" data-recipe-id="' + escapeAttr(recipe.id) + '" style="' + escapeAttr(style) + '">' +
             '<span class="card-content">' +
               '<span class="card-title">' + escapeHtml(title) + '</span>' +
-              '<span class="card-time">' + escapeHtml(formatRecipeTime(recipe)) + '</span>' +
+              '<span class="card-cook-badge">' + escapeHtml(cookingInfo.label) + '</span>' +
               renderStars(getRating(recipe)) +
             '</span>' +
           '</button>'
         );
+      }
+
+      function renderQuickRecipeCard(recipe) {
+        var title = displayValue(recipe.title, "Untitled recipe");
+        var cookingInfo = getPrimaryCookingInfo(recipe);
+        var color = stableRecipeColor(recipe);
+        var imagePath = getRecipeImagePath(recipe);
+        var imageStyle = "background-color: " + color + ";";
+        if (imagePath) {
+          imageStyle += ' background-image: linear-gradient(180deg, rgba(0,0,0,0.04), rgba(0,0,0,0.22)), url("' + cssUrl(imagePath) + '");';
+        }
+        return (
+          '<button class="quick-recipe-card" type="button" data-action="open-recipe" data-recipe-id="' + escapeAttr(recipe.id) + '">' +
+            '<span class="quick-card-image" style="' + escapeAttr(imageStyle) + '"></span>' +
+            '<span class="quick-card-body">' +
+              '<span class="quick-card-title">' + escapeHtml(title) + '</span>' +
+              '<span class="quick-card-cook">' + escapeHtml(cookingInfo.label) + '</span>' +
+              '<span class="quick-card-ingredients">' + escapeHtml(formatIngredientPreview(recipe)) + '</span>' +
+            '</span>' +
+          '</button>'
+        );
+      }
+
+      function renderCookCard(panel) {
+        var recipe = getRecipeById(panel.recipeId);
+        if (!recipe) {
+          mainEl().innerHTML =
+            '<section class="cook-card-panel"><div class="back-row"><button class="ghost-button" type="button" data-action="back">Back</button></div><div class="empty-state">Recipe not found.</div></section>';
+          return;
+        }
+        var title = displayValue(recipe.title, "Untitled recipe");
+        var cookingInfo = getPrimaryCookingInfo(recipe);
+        mainEl().innerHTML =
+          '<section class="cook-card-panel">' +
+            '<div class="back-row"><button class="ghost-button" type="button" data-action="back">Back</button></div>' +
+            '<div class="cook-card">' +
+              renderDetailImage(recipe) +
+              '<div class="cook-card-body">' +
+                '<h1>' + escapeHtml(title) + '</h1>' +
+                '<div class="cook-card-label">' + escapeHtml(cookingInfo.label) + '</div>' +
+                renderCookSummary(cookingInfo) +
+                '<section><h2>Ingredients</h2>' + renderCookIngredientList(recipe) + '</section>' +
+                '<div class="cook-card-actions">' +
+                  '<button type="button" class="primary-button" data-action="expand-recipe" data-recipe-id="' + escapeAttr(recipe.id) + '">Expand</button>' +
+                '</div>' +
+              '</div>' +
+            '</div>' +
+          '</section>';
+      }
+
+      function renderCookSummary(info) {
+        var chips = [];
+        if (info.device) {
+          chips.push(info.device);
+        }
+        if (info.temperature) {
+          chips.push(info.temperature);
+        }
+        if (info.time) {
+          chips.push(info.time);
+        }
+        if (!chips.length) {
+          chips.push(info.label);
+        }
+        return '<div class="cook-summary">' + chips.map(function (chip) {
+          return '<span class="cook-chip">' + escapeHtml(chip) + '</span>';
+        }).join("") + '</div>';
+      }
+
+      function renderCookIngredientList(recipe) {
+        var ingredients = getIngredientLabels(recipe);
+        if (!ingredients.length) {
+          return '<p class="muted">Ingredients not listed.</p>';
+        }
+        return '<ul class="cook-ingredients">' + ingredients.map(function (ingredient) {
+          return '<li>' + escapeHtml(ingredient) + '</li>';
+        }).join("") + '</ul>';
       }
 
       // Recipe detail is the read-only cooking view; editing swaps in a form
@@ -2814,6 +3136,240 @@
 
       function searchableTruthy(recipe, key) {
         return recipe.searchable_values && recipe.searchable_values[key] === true;
+      }
+
+      function getPrimaryCookingInfo(recipe) {
+        var candidate =
+          getBestCookingCandidate(recipe, "air-fryer") ||
+          getBestCookingCandidate(recipe, "oven");
+        if (candidate) {
+          return cookingInfoFromCandidate(candidate);
+        }
+        var fallback = formatRecipeTime(recipe);
+        return {
+          device: null,
+          temperature: null,
+          time: fallback === "Time unknown" ? null : fallback,
+          label: fallback === "Time unknown" ? fallback : "Total \u00b7 " + fallback
+        };
+      }
+
+      function getBestCookingCandidate(recipe, deviceKey) {
+        var candidates = getCookingCandidates(recipe, deviceKey);
+        if (!candidates.length) {
+          return null;
+        }
+        candidates.sort(function (a, b) {
+          return (b.sortMinutes - a.sortMinutes) || (a.order - b.order);
+        });
+        return candidates[0];
+      }
+
+      function getCookingCandidates(recipe, deviceKey) {
+        var steps = Array.isArray(recipe.method_steps) ? recipe.method_steps : [];
+        return steps.map(function (step, index) {
+          if (deviceKey === "air-fryer") {
+            return makeAirFryerCandidate(recipe, step, index);
+          }
+          if (deviceKey === "oven") {
+            return makeOvenCandidate(recipe, step, index);
+          }
+          return null;
+        }).filter(Boolean);
+      }
+
+      function makeAirFryerCandidate(recipe, step, index) {
+        var airFryer = step && typeof step.air_fryer === "object" ? step.air_fryer : null;
+        var heat = normalizeSearch(step ? step.heat_level : "");
+        var hasAirFryer = heat.indexOf("air fryer") !== -1 || hasUsefulAirFryerStepInfo(airFryer);
+        if (!hasAirFryer) {
+          return null;
+        }
+        var timeInfo = getAirFryerTimeInfo(step, airFryer);
+        if (isPreheatOnlyStep(step) && !timeInfo.label) {
+          return null;
+        }
+        if (!timeInfo.label) {
+          timeInfo = recipeCookTimeInfo(recipe);
+        }
+        var temperature = firstFiniteNumber(airFryer && airFryer.recommended_temperature_c, step && step.temperature_c);
+        if (temperature == null && !timeInfo.label) {
+          return null;
+        }
+        return {
+          device: "Air Fryer",
+          temperature: temperature,
+          time: timeInfo.label,
+          sortMinutes: timeInfo.sortMinutes,
+          order: index
+        };
+      }
+
+      function makeOvenCandidate(recipe, step, index) {
+        var text = normalizeSearch([step && step.heat_level, step && step.instruction]);
+        var isOven = text.indexOf("oven") !== -1 || /\b(bake|baked|baking|roast|roasted|roasting|grill|grilled|grilling)\b/.test(text);
+        if (!isOven) {
+          return null;
+        }
+        var timeInfo = getStepTimeInfo(step);
+        if (isPreheatOnlyStep(step) && !timeInfo.label) {
+          return null;
+        }
+        if (!timeInfo.label) {
+          timeInfo = recipeCookTimeInfo(recipe);
+        }
+        var temperature = firstFiniteNumber(step && step.temperature_c);
+        if (temperature == null && !timeInfo.label) {
+          return null;
+        }
+        return {
+          device: "Oven",
+          temperature: temperature,
+          time: timeInfo.label,
+          sortMinutes: timeInfo.sortMinutes,
+          order: index
+        };
+      }
+
+      function hasUsefulAirFryerStepInfo(airFryer) {
+        if (!airFryer || typeof airFryer !== "object") {
+          return false;
+        }
+        return firstFiniteNumber(airFryer.recommended_temperature_c) != null ||
+          getMinuteRange(airFryer.estimated_time_range_minutes).length > 0 ||
+          firstPositiveNumber(airFryer.start_check_minutes) != null ||
+          airFryer.source_air_fryer_provided === true;
+      }
+
+      function getAirFryerTimeInfo(step, airFryer) {
+        var range = getMinuteRange(airFryer && airFryer.estimated_time_range_minutes);
+        if (range.length) {
+          return {
+            label: formatMinuteRange(range),
+            sortMinutes: range[range.length - 1]
+          };
+        }
+        var startCheck = firstPositiveNumber(airFryer && airFryer.start_check_minutes);
+        if (startCheck != null) {
+          return {
+            label: formatMinutes(startCheck),
+            sortMinutes: startCheck
+          };
+        }
+        return getStepTimeInfo(step);
+      }
+
+      function getStepTimeInfo(step) {
+        var minutes = firstPositiveNumber(step && step.time_minutes);
+        return minutes == null ? { label: null, sortMinutes: 0 } : {
+          label: formatMinutes(minutes),
+          sortMinutes: minutes
+        };
+      }
+
+      function recipeCookTimeInfo(recipe) {
+        var minutes = firstPositiveNumber(recipe && recipe.cook_time_minutes);
+        if (minutes == null) {
+          minutes = firstPositiveNumber(recipe && recipe.total_time_minutes);
+        }
+        if (minutes == null) {
+          return { label: null, sortMinutes: 0 };
+        }
+        return {
+          label: formatMinutes(minutes),
+          sortMinutes: minutes
+        };
+      }
+
+      function cookingInfoFromCandidate(candidate) {
+        var temperature = formatTemperature(candidate.temperature);
+        var parts = [candidate.device, temperature, candidate.time].filter(Boolean);
+        return {
+          device: candidate.device || null,
+          temperature: temperature,
+          time: candidate.time || null,
+          label: parts.length ? parts.join(" \u00b7 ") : "Time unknown"
+        };
+      }
+
+      function formatTemperature(value) {
+        var number = firstFiniteNumber(value);
+        if (number == null) {
+          return null;
+        }
+        return formatCompactNumber(number) + "\u00b0C";
+      }
+
+      function formatMinuteRange(range) {
+        if (!range.length) {
+          return null;
+        }
+        if (range.length === 1 || range[0] === range[range.length - 1]) {
+          return formatMinutes(range[0]);
+        }
+        return formatCompactNumber(range[0]) + "-" + formatCompactNumber(range[range.length - 1]) + " min";
+      }
+
+      function getMinuteRange(value) {
+        if (!Array.isArray(value)) {
+          return [];
+        }
+        return value.map(firstPositiveNumber).filter(function (number) {
+          return number != null;
+        }).sort(function (a, b) {
+          return a - b;
+        });
+      }
+
+      function firstFiniteNumber() {
+        for (var i = 0; i < arguments.length; i += 1) {
+          if (arguments[i] == null || String(arguments[i]).trim() === "") {
+            continue;
+          }
+          var number = Number(arguments[i]);
+          if (Number.isFinite(number)) {
+            return number;
+          }
+        }
+        return null;
+      }
+
+      function firstPositiveNumber() {
+        for (var i = 0; i < arguments.length; i += 1) {
+          var number = Number(arguments[i]);
+          if (Number.isFinite(number) && number > 0) {
+            return number;
+          }
+        }
+        return null;
+      }
+
+      function isPreheatOnlyStep(step) {
+        if (!step) {
+          return false;
+        }
+        return /\bpreheat\b/.test(normalizeSearch(step.instruction)) && firstPositiveNumber(step.time_minutes) == null;
+      }
+
+      function formatCompactNumber(value) {
+        var number = Number(value);
+        if (!Number.isFinite(number)) {
+          return "";
+        }
+        return Number.isInteger(number) ? String(number) : String(Math.round(number * 10) / 10);
+      }
+
+      function getRecipeImagePath(recipe) {
+        return typeof (recipe && recipe.image_path) === "string" ? recipe.image_path.trim() : "";
+      }
+
+      function getIngredientLabels(recipe) {
+        return asArray(recipe && recipe.ingredients);
+      }
+
+      function formatIngredientPreview(recipe) {
+        var ingredients = getIngredientLabels(recipe);
+        return ingredients.length ? ingredients.join(", ") : "Ingredients not listed";
       }
 
       function formatRecipeTime(recipe) {
