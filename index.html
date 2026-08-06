@@ -323,6 +323,26 @@
       font-size: clamp(1.1rem, 2vw, 1.45rem);
     }
 
+    /* Category titles double as links to the full category page. They keep the
+       heading's own type and colour so they still read as titles, and only pick
+       up an accent on hover/focus to show they are clickable. */
+    .row-heading-link {
+      display: block;
+      padding: 0;
+      color: inherit;
+      background: none;
+      font: inherit;
+      letter-spacing: inherit;
+      text-align: left;
+      transition: color 140ms ease;
+    }
+
+    .row-heading-link:hover {
+      color: var(--accent-strong);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
     .count-pill,
     .chip {
       display: inline-flex;
@@ -2178,7 +2198,13 @@
         }
         return (
           '<section class="category-row" aria-label="' + escapeAttr(category.name) + '">' +
-            '<div class="row-heading"><h2>' + escapeHtml(category.name) + '</h2><span class="count-pill">' + category.items.length + '</span></div>' +
+            '<div class="row-heading">' +
+              '<h2><button class="row-heading-link" type="button" data-action="view-category" data-category-id="' +
+              escapeAttr(category.id) + '" data-category-title="' + escapeAttr(category.name) + '">' +
+                escapeHtml(category.name) +
+              '</button></h2>' +
+              '<span class="count-pill">' + category.items.length + '</span>' +
+            '</div>' +
             rowInner +
           '</section>'
         );
