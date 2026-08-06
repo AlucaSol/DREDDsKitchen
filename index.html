@@ -1317,6 +1317,68 @@
       display: none !important;
     }
 
+    /* Full-page loader. Lives in the initial markup so it paints before the
+       script runs, and sits above every other layer (highest elsewhere is 70). */
+    .loading-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      background: var(--bg);
+      color: var(--text);
+      transition: opacity 260ms ease;
+    }
+
+    .loading-overlay[hidden] {
+      display: none;
+    }
+
+    .loading-overlay.is-dismissed {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .loading-spinner {
+      width: 42px;
+      height: 42px;
+      border: 3px solid rgba(255, 239, 218, 0.16);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: loading-spin 900ms linear infinite;
+    }
+
+    .loading-overlay.has-error .loading-spinner {
+      display: none;
+    }
+
+    .loading-text {
+      margin: 0;
+      max-width: min(520px, calc(100vw - 48px));
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.45;
+    }
+
+    @keyframes loading-spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .loading-spinner {
+        animation: none;
+      }
+
+      .loading-overlay {
+        transition: none;
+      }
+    }
+
     @media (max-width: 800px) {
       :root {
         --card-w: 178px;
@@ -1395,6 +1457,10 @@
   </style>
 </head>
 <body>
+  <div id="loadingOverlay" class="loading-overlay" role="status" aria-live="polite">
+    <div class="loading-spinner" aria-hidden="true"></div>
+    <p class="loading-text" id="loadingText">Loading recipes…</p>
+  </div>
   <div id="app"></div>
   <input id="jsonFileInput" class="hidden" type="file" accept="application/json,.json">
 
@@ -1516,12 +1582,74 @@
 
       var app = document.getElementById("app");
       var fileInput = document.getElementById("jsonFileInput");
+      var loadingOverlay = document.getElementById("loadingOverlay");
 
-      initShell();
-      setupFullscreenButton();
-      restoreTimerState();
-      attachGlobalEvents();
-      boot();
+      // Give the browser a chance to paint the loading overlay before startup
+      // begins: parsing the catalogue and rendering the first panel are
+      // synchronous and can block for a while on a large recipe list. The first
+      // frame callback runs before the overlay's initial paint, the second
+      // after it, so by then the loader is genuinely on screen.
+      // The timer is a fallback, not a delay: browsers suspend animation frames
+      // in background or occluded tabs, and the app must still start there.
+      // Whichever fires first wins; startApp only ever runs once.
+      var startScheduled = false;
+      requestAnimationFrame(function () {
+        requestAnimationFrame(scheduleStart);
+      });
+      setTimeout(scheduleStart, 250);
+
+      function scheduleStart() {
+        if (startScheduled) {
+          return;
+        }
+        startScheduled = true;
+        startApp();
+      }
+
+      async function startApp() {
+        try {
+          initShell();
+          setupFullscreenButton();
+          restoreTimerState();
+          attachGlobalEvents();
+          // boot() resolves only once the first panel exists: the home rows
+          // with their categories and recipe cards, or the import panel when
+          // there is no saved state and the seed file cannot be fetched.
+          await boot();
+          // Let that markup paint before fading, so the overlay never reveals
+          // a blank page. One frame, not a timed delay.
+          requestAnimationFrame(dismissLoadingOverlay);
+        } catch (error) {
+          console.error("Jonny's Kitchen could not finish loading.", error);
+          showLoadingOverlayError();
+        }
+      }
+
+      function dismissLoadingOverlay() {
+        if (!loadingOverlay || loadingOverlay.hidden) {
+          return;
+        }
+        loadingOverlay.classList.add("is-dismissed");
+        function removeOverlay() {
+          loadingOverlay.hidden = true;
+          loadingOverlay.setAttribute("aria-hidden", "true");
+        }
+        // Fallback covers reduced-motion and background tabs, where the
+        // transition may never fire. Both paths are safe to run twice.
+        loadingOverlay.addEventListener("transitionend", removeOverlay, { once: true });
+        setTimeout(removeOverlay, 600);
+      }
+
+      function showLoadingOverlayError() {
+        if (!loadingOverlay) {
+          return;
+        }
+        loadingOverlay.classList.add("has-error");
+        var text = document.getElementById("loadingText");
+        if (text) {
+          text.textContent = "Could not load recipes. Please refresh the page - the error details are in the browser console (F12).";
+        }
+      }
 
       function initShell() {
         app.innerHTML =
