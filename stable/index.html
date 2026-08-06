@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kitchen Master</title>
+  <title>Jonny's Kitchen</title>
   <style>
     :root {
       color-scheme: dark;
@@ -76,6 +76,46 @@
     }
 
     .app-shell {
+      min-height: 100vh;
+    }
+
+    :fullscreen {
+      overflow-y: auto;
+    }
+
+    :-webkit-full-screen {
+      overflow-y: auto;
+    }
+
+    html:fullscreen,
+    body:fullscreen,
+    #app:fullscreen {
+      width: 100%;
+      height: auto;
+      min-height: 100vh;
+      background: var(--bg);
+      overflow-y: auto;
+      overscroll-behavior-y: auto;
+      touch-action: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    html:-webkit-full-screen,
+    body:-webkit-full-screen,
+    #app:-webkit-full-screen {
+      width: 100%;
+      height: auto;
+      min-height: 100vh;
+      background: var(--bg);
+      overflow-y: auto;
+      overscroll-behavior-y: auto;
+      touch-action: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    #app:fullscreen .app-shell,
+    #app:-webkit-full-screen .app-shell {
+      height: auto;
       min-height: 100vh;
     }
 
@@ -160,6 +200,7 @@
 
     .topbar-actions {
       display: flex;
+      align-items: center;
       gap: 10px;
       margin-left: auto;
     }
@@ -204,9 +245,31 @@
       filter: brightness(1.08);
     }
 
+    .topbar-actions .icon-button {
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      border-radius: var(--radius);
+    }
+
+    .button-icon {
+      display: block;
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 2;
+    }
+
     .main-content {
       width: 100%;
       padding: 26px clamp(16px, 4vw, 44px) 56px;
+    }
+
+    .timer-visible .main-content {
+      padding-bottom: 170px;
     }
 
     .home-header,
@@ -346,6 +409,21 @@
       text-shadow: 0 2px 8px rgba(0, 0, 0, 0.75);
     }
 
+    .card-cook-badge {
+      display: inline-block;
+      max-width: 100%;
+      min-height: 24px;
+      padding: 3px 8px;
+      border-radius: 99px;
+      color: #fff6eb;
+      background: rgba(0, 0, 0, 0.58);
+      border: 1px solid rgba(255, 239, 218, 0.22);
+      font-size: 0.8rem;
+      font-weight: 700;
+      line-height: 1.15;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.75);
+    }
+
     .stars {
       display: inline-flex;
       align-items: center;
@@ -468,8 +546,14 @@
     .menu-list button:hover {
       background: rgba(255, 239, 218, 0.12);
     }
+    .menu-separator {
+     border: 0;
+     border-top: 1px solid rgba(255, 255, 255, 0.15);
+     margin: 10px 0;
+}
 
     .detail-panel,
+    .cook-card-panel,
     .category-panel,
     .search-panel,
     .kitchen-panel,
@@ -519,6 +603,128 @@
       padding: 18px;
       color: rgba(255, 255, 255, 0.75);
       font-weight: 700;
+    }
+
+    .cook-card {
+      display: grid;
+      grid-template-columns: minmax(240px, 360px) minmax(0, 1fr);
+      gap: clamp(18px, 4vw, 32px);
+      align-items: stretch;
+      padding: clamp(14px, 3vw, 20px);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(135deg, rgba(255, 239, 218, 0.08), rgba(0, 0, 0, 0.16)),
+        var(--panel);
+      border: 1px solid rgba(255, 239, 218, 0.14);
+      box-shadow: var(--shadow);
+    }
+
+    .cook-card-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .cook-card-title-block {
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .cook-card .detail-image-wrap,
+    .cook-card .detail-image-placeholder {
+      height: 100%;
+      min-height: 260px;
+      aspect-ratio: auto;
+      box-shadow: none;
+    }
+
+    .cook-card-body {
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .cook-card-body h1 {
+      margin-bottom: 0;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      line-height: 1;
+    }
+
+    .cook-card-label {
+      display: inline-flex;
+      align-self: flex-start;
+      padding: 6px 10px;
+      border-radius: 99px;
+      color: #fff6eb;
+      background: rgba(0, 0, 0, 0.42);
+      border: 1px solid rgba(255, 239, 218, 0.18);
+      font-weight: 700;
+    }
+
+    .cook-summary {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .cook-chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 4px 10px;
+      border-radius: 99px;
+      color: var(--text);
+      background: rgba(255, 239, 218, 0.08);
+      border: 1px solid var(--line);
+      font-size: 0.9rem;
+    }
+
+    .cook-ingredients {
+      display: grid;
+      gap: 6px;
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    .cook-card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: auto;
+      padding-top: 4px;
+    }
+
+    .timer-button {
+      color: var(--text);
+      background: var(--accent-dim);
+      border-color: rgba(217, 155, 87, 0.42);
+    }
+
+    .timer-button .button-icon {
+      width: 22px;
+      height: 22px;
+    }
+
+    .method-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .method-heading h2 {
+      margin: 0;
+    }
+
+    .detail-section .method-heading h2 {
+      margin: 0;
     }
 
     .title-line {
@@ -613,6 +819,29 @@
 
     .method-step {
       padding: 0 0 14px 4px;
+    }
+
+    .method-step-head {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .method-step-head p {
+      flex: 1 1 auto;
+      margin-bottom: 0;
+    }
+
+    .step-timer-button {
+      width: 30px;
+      height: 30px;
+      min-width: 30px;
+      margin-top: -2px;
+    }
+
+    .step-timer-button .button-icon {
+      width: 16px;
+      height: 16px;
     }
 
     .step-meta {
@@ -943,6 +1172,87 @@
       background: var(--danger-dim);
     }
 
+    .timer-panel {
+      position: fixed;
+      right: clamp(12px, 4vw, 44px);
+      bottom: 12px;
+      left: clamp(12px, 4vw, 44px);
+      z-index: 70;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 14px;
+      border: 1px solid rgba(255, 239, 218, 0.24);
+      border-radius: var(--radius);
+      color: var(--text);
+      background: rgba(32, 28, 25, 0.96);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    .timer-panel.is-expired {
+      border-color: #ffd65a;
+      box-shadow:
+        0 0 0 1px rgba(255, 214, 90, 0.55),
+        0 0 30px rgba(255, 214, 90, 0.58),
+        var(--shadow);
+    }
+
+    .timer-display-button {
+      display: flex;
+      min-width: 0;
+      flex: 1 1 auto;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      padding: 0;
+      color: var(--text);
+      background: transparent;
+      text-align: left;
+    }
+
+    .timer-time {
+      font-size: clamp(2.2rem, 8vw, 4rem);
+      font-weight: 800;
+      line-height: 0.95;
+    }
+
+    .timer-label {
+      overflow: hidden;
+      max-width: 100%;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.2;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .timer-control {
+      min-width: 112px;
+      min-height: 56px;
+      font-weight: 800;
+    }
+
+    .timer-edit-form {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto auto;
+      gap: 10px;
+      width: 100%;
+      align-items: center;
+    }
+
+    .timer-edit-input {
+      width: 100%;
+      min-height: 56px;
+      padding: 0 14px;
+      border-radius: var(--radius);
+      color: var(--text);
+      background: rgba(255, 239, 218, 0.08);
+      border: 1px solid var(--line);
+      font-size: clamp(1.5rem, 6vw, 2.4rem);
+      font-weight: 800;
+    }
+
     .hidden {
       display: none !important;
     }
@@ -964,6 +1274,7 @@
       }
 
       .detail-layout,
+      .cook-card,
       .edit-grid,
       .kitchen-builder,
       .kitchen-result {
@@ -975,11 +1286,43 @@
       .kitchen-result .recipe-card {
         flex-basis: 178px;
         width: 178px;
-        height: 122px;
+        height: 132px;
       }
 
       .kitchen-result .recipe-card {
         width: min(100%, 260px);
+      }
+
+      .cook-card .detail-image-wrap,
+      .cook-card .detail-image-placeholder {
+        min-height: 210px;
+        aspect-ratio: 4 / 3;
+      }
+
+      .cook-card-head {
+        align-items: flex-start;
+      }
+
+      .timer-panel {
+        right: 10px;
+        bottom: 10px;
+        left: 10px;
+        gap: 10px;
+        padding: 10px;
+      }
+
+      .timer-control {
+        min-width: 92px;
+        min-height: 52px;
+      }
+
+      .timer-edit-form {
+        grid-template-columns: 1fr;
+      }
+
+      .timer-edit-form .primary-button,
+      .timer-edit-form .ghost-button {
+        width: 100%;
       }
 
       .object-row {
@@ -998,6 +1341,8 @@
       "use strict";
 
       var STATE_KEY = "cookingJournalAppState_v1";
+      var TIMER_KEY = "dreddsKitchenTimerState_v1";
+      var COOKING_PREFERENCE_KEY = "dreddsKitchenPreferAirFryer_v1";
       var SEED_FILE = "recipe_seed.json";
       var EXPORT_PREFIX = "cooking_journal_export_";
       var DEFAULT_USER_FIELDS = {
@@ -1070,11 +1415,23 @@
       var kitchenSuggestionTimer = null;
       var toastTimer = null;
       var pendingResetConfirm = false;
+      var preferAirFryer = loadCookingPreference();
+      var timerState = createEmptyTimerState();
+      var timerInterval = null;
+      var timerEditing = false;
+      var timerEditWasRunning = false;
+      var timerAudioContext = null;
+      var alarmInterval = null;
+      var alarmTimeout = null;
+      var alarmNodes = [];
+      var wakeLock = null;
 
       var app = document.getElementById("app");
       var fileInput = document.getElementById("jsonFileInput");
 
       initShell();
+      setupFullscreenButton();
+      restoreTimerState();
       attachGlobalEvents();
       boot();
 
@@ -1083,10 +1440,11 @@
           '<div class="app-shell">' +
             '<header class="topbar">' +
               '<button class="icon-button" type="button" data-action="open-menu" aria-label="Open menu"><span class="burger-lines"></span></button>' +
-              '<div class="brand"><strong>Kitchen Master</strong><span> </span></div>' +
+              "<div class='brand'><strong>Jonny's Kitchen</strong><span> </span></div>" +
               '<div class="topbar-actions">' +
                 '<button class="text-button" type="button" data-action="open-search">Search</button>' +
                 '<button class="text-button" type="button" data-action="open-kitchen">My Kitchen</button>' +
+                '<button id="fullscreenButton" class="icon-button fullscreen-button hidden" type="button" data-action="toggle-fullscreen" aria-label="Enter fullscreen" title="Fullscreen">' + renderFullscreenIcon() + '</button>' +
               '</div>' +
             '</header>' +
             '<div id="sideBackdrop" class="side-backdrop" data-action="close-menu">' +
@@ -1097,13 +1455,19 @@
                   '<button type="button" data-action="open-search">Search</button>' +
                   '<button type="button" data-action="open-my-list">My List</button>' +
                   '<button type="button" data-action="open-kitchen">My Kitchen</button>' +
+                  renderCookingPreferenceButton() +
+                  '<hr class="menu-separator">' +
                   '<button type="button" data-action="import">Import Data</button>' +
                   '<button type="button" data-action="export">Export Data</button>' +
                   '<button type="button" data-action="reset-request">Clear Local Data / Reset App</button>' +
+                  '<hr class="menu-separator">' +
+                  '<div class="menu-head"><i>Enjoying Jonny\'s Kitchen?</i></div>' +
+                  '<a href="https://ko-fi.com/G2L623AJ3W" target="_blank"><img height="36" style="border:0px;height:36px;" src="https://storage.ko-fi.com/cdn/kofi6.png?v=6" border="0" alt="Buy Me a Coffee at ko-fi.com" /></a>' +
                 '</nav>' +
               '</aside>' +
             '</div>' +
             '<main id="mainContent" class="main-content" tabindex="-1"></main>' +
+            '<div id="timerMount"></div>' +
             '<div id="toast" class="toast" role="status" aria-live="polite"></div>' +
           '</div>';
       }
@@ -1134,7 +1498,7 @@
             "Press F11 to fullscreen this app, if viewing from a PC/laptop.\n\n" + 
 			"If this is your first time use, or you have changed browser, you must Import a JSON data file, to start.\n\n" +
 			"Use an Exported JSON file that you downloaded previously, or select the default " + SEED_FILE +
-			"\n\n Default seed file should be in the same folder as this AlucaCooks.html page. If you're viewing this page online, you can download the JSON file at:\n" +
+			"\n\n Default seed file should be in the same folder as this index.html page. If you're viewing this page online, you can download the JSON file at:\n" +
 			"https://aluca.neocities.org/recipe_seed.json"
           );
         }
@@ -1196,6 +1560,18 @@
             event.preventDefault();
             saveRecipeEdit();
           }
+          if (event.target.id === "timerEditForm") {
+            event.preventDefault();
+            confirmTimerEdit();
+          }
+        });
+
+        document.addEventListener("visibilitychange", function () {
+          syncTimerFromClock(true);
+          if (document.visibilityState === "visible" && timerState.running) {
+            requestTimerWakeLock();
+          }
+          renderTimerPanel();
         });
 
         document.addEventListener("error", function (event) {
@@ -1231,6 +1607,12 @@
             closeMenu();
             navigate({ type: "kitchen" });
             break;
+          case "toggle-fullscreen":
+            toggleFullscreen();
+            break;
+          case "toggle-cooking-preference":
+            toggleCookingPreference();
+            break;
           case "open-my-list":
             closeMenu();
             navigate({ type: "category", categoryId: "my-list", title: "My List" });
@@ -1262,7 +1644,25 @@
             navigate({ type: "category", categoryId: el.dataset.categoryId, title: el.dataset.categoryTitle });
             break;
           case "open-recipe":
+            navigate({ type: "cook-card", recipeId: el.dataset.recipeId });
+            break;
+          case "expand-recipe":
             navigate({ type: "detail", recipeId: el.dataset.recipeId });
+            break;
+          case "start-timer":
+            startRecipeTimer(el.dataset.recipeId);
+            break;
+          case "start-step-timer":
+            startStepTimer(el.dataset.recipeId, el.dataset.stepIndex);
+            break;
+          case "toggle-timer-pause":
+            toggleTimerPause();
+            break;
+          case "edit-timer":
+            beginTimerEdit();
+            break;
+          case "cancel-timer-edit":
+            cancelTimerEdit();
             break;
           case "toggle-list":
             toggleMyList(el.dataset.recipeId);
@@ -1311,6 +1711,115 @@
         document.getElementById("sideBackdrop").classList.remove("is-open");
       }
 
+      function renderCookingPreferenceButton() {
+        return '<button id="cookingPreferenceButton" type="button" data-action="toggle-cooking-preference" aria-pressed="' + escapeAttr(preferAirFryer ? "true" : "false") + '">' + escapeHtml(cookingPreferenceLabel()) + '</button>';
+      }
+
+      function cookingPreferenceLabel() {
+        return preferAirFryer ? "Preferring Air Fryer" : "Preferring Oven";
+      }
+
+      function loadCookingPreference() {
+        try {
+          var stored = localStorage.getItem(COOKING_PREFERENCE_KEY);
+          return stored == null ? true : stored !== "false";
+        } catch (error) {
+          return true;
+        }
+      }
+
+      function saveCookingPreference() {
+        try {
+          localStorage.setItem(COOKING_PREFERENCE_KEY, preferAirFryer ? "true" : "false");
+        } catch (error) {
+          // Preference persistence is best-effort; the current session still updates.
+        }
+      }
+
+      function toggleCookingPreference() {
+        preferAirFryer = !preferAirFryer;
+        saveCookingPreference();
+        updateCookingPreferenceButton();
+        refreshCookingPreferenceViews();
+      }
+
+      function updateCookingPreferenceButton() {
+        var button = document.getElementById("cookingPreferenceButton");
+        if (!button) {
+          return;
+        }
+        button.textContent = cookingPreferenceLabel();
+        button.setAttribute("aria-pressed", preferAirFryer ? "true" : "false");
+      }
+
+      function refreshCookingPreferenceViews() {
+        if (!state.data || currentPanel.type === "import" || (currentPanel.type === "detail" && currentPanel.editing)) {
+          return;
+        }
+        renderPanel(currentPanel);
+        updateCookingPreferenceButton();
+      }
+
+      function setupFullscreenButton() {
+        var button = document.getElementById("fullscreenButton");
+        if (!button) {
+          return;
+        }
+        if (!isFullscreenSupported()) {
+          button.classList.add("hidden");
+          button.disabled = true;
+          return;
+        }
+        button.classList.remove("hidden");
+        document.addEventListener("fullscreenchange", updateFullscreenButton);
+        document.addEventListener("webkitfullscreenchange", updateFullscreenButton);
+        updateFullscreenButton();
+      }
+
+      function isFullscreenSupported() {
+        var root = document.documentElement;
+        return Boolean(root && (root.requestFullscreen || root.webkitRequestFullscreen)) &&
+          Boolean(document.exitFullscreen || document.webkitExitFullscreen);
+      }
+
+      function fullscreenElement() {
+        return document.fullscreenElement || document.webkitFullscreenElement || null;
+      }
+
+      function updateFullscreenButton() {
+        var button = document.getElementById("fullscreenButton");
+        if (!button || button.disabled) {
+          return;
+        }
+        var isActive = Boolean(fullscreenElement());
+        button.setAttribute("aria-label", isActive ? "Exit fullscreen" : "Enter fullscreen");
+        button.title = isActive ? "Exit fullscreen" : "Fullscreen";
+      }
+
+      function toggleFullscreen() {
+        if (!isFullscreenSupported()) {
+          return;
+        }
+        try {
+          if (fullscreenElement()) {
+            var exit = document.exitFullscreen || document.webkitExitFullscreen;
+            var exitResult = exit.call(document);
+            if (exitResult && exitResult.catch) {
+              exitResult.catch(function () {});
+            }
+          } else {
+            var target = app || document.documentElement;
+            var request = target.requestFullscreen || target.webkitRequestFullscreen;
+            var requestResult = request.call(target);
+            if (requestResult && requestResult.catch) {
+              requestResult.catch(function () {});
+            }
+          }
+        } catch (error) {
+          // Fullscreen can be blocked by browser policy; fail without breaking the app.
+        }
+      }
+
       function navigate(panel) {
         navStack.push(Object.assign({}, currentPanel));
         renderPanel(panel, false);
@@ -1336,6 +1845,8 @@
           renderHome();
         } else if (currentPanel.type === "category") {
           renderCategoryView(currentPanel);
+        } else if (currentPanel.type === "cook-card") {
+          renderCookCard(currentPanel);
         } else if (currentPanel.type === "detail") {
           renderDetail(currentPanel);
         } else if (currentPanel.type === "search") {
@@ -1345,7 +1856,10 @@
         } else {
           renderHome();
         }
-        mainEl().focus({ preventScroll: true });
+        // Do not steal focus back from panels that intentionally focus an input.
+        if (currentPanel.type !== "search") {
+          mainEl().focus({ preventScroll: true });
+        }
       }
 
       function renderResetConfirm() {
@@ -1368,7 +1882,7 @@
         currentPanel = { type: "import" };
         mainEl().innerHTML =
           '<section class="import-panel">' +
-            '<h1>Kitchen Master</h1>' +
+            "<h1>Jonny's Kitchen</h1>" +
             '<p class="subtitle">Whats cookin?</p>' +
             '<p>' + escapeHtml(message || "Import your recipe JSON file to start.").replace(/\n/g, '<br>') + '</p>' +
             '<div class="import-actions">' +
@@ -1382,19 +1896,23 @@
       // require hard-coded recipe IDs.
       function renderHome() {
         var categories = buildCategories();
-        var rows = categories.map(renderCategoryRow).join("");
+        var shownRecipeKeys = new Set();
+        var rows = categories.map(function (category) {
+          return renderCategoryRow(category, shownRecipeKeys);
+        }).filter(Boolean).join("");
         mainEl().innerHTML =
           '<section class="home-panel">' +
             '<div class="home-header">' +
-              "<div><h1 class='home-title'>Kitchen Master</h1><p class='subtitle'>What's Cookin'?</p></div>" +
+              "<div><h1 class='home-title'>Jonny's Kitchen</h1><p class='subtitle'>What's Cookin'?</p></div>" +
               '<div class="count-pill">' + recipes().length + ' recipes</div>' +
             '</div>' +
             (rows || '<div class="empty-state">No recipes are loaded yet.</div>') +
           '</section>';
       }
 
-      function renderCategoryRow(category) {
-        var cards = category.items.slice(0, 5).map(renderRecipeCard).join("");
+      function renderCategoryRow(category, shownRecipeKeys) {
+        var visibleItems = selectHomepageCategoryItems(category, shownRecipeKeys);
+        var cards = visibleItems.map(renderRecipeCard).join("");
         var viewAll = "";
         if (category.items.length > 5) {
           viewAll =
@@ -1403,12 +1921,36 @@
               '<strong>View all</strong><span>' + escapeHtml(category.name) + '</span>' +
             '</button>';
         }
+        if (!cards) {
+          return "";
+        }
         return (
           '<section class="category-row" aria-label="' + escapeAttr(category.name) + '">' +
             '<div class="row-heading"><h2>' + escapeHtml(category.name) + '</h2><span class="count-pill">' + category.items.length + '</span></div>' +
             '<div class="recipe-row">' + cards + viewAll + '</div>' +
           '</section>'
         );
+      }
+
+      function selectHomepageCategoryItems(category, shownRecipeKeys) {
+        if (!shownRecipeKeys) {
+          return category.items.slice(0, 5);
+        }
+        var selected = [];
+        category.items.some(function (recipe) {
+          var key = recipeDedupeKey(recipe);
+          if (shownRecipeKeys.has(key)) {
+            return false;
+          }
+          selected.push(recipe);
+          shownRecipeKeys.add(key);
+          return selected.length >= 5;
+        });
+        return selected;
+      }
+
+      function recipeDedupeKey(recipe) {
+        return recipe && recipe.id != null ? "id:" + String(recipe.id) : recipe;
       }
 
       function renderCategoryView(panel) {
@@ -1429,8 +1971,9 @@
 
       function renderRecipeCard(recipe) {
         var title = displayValue(recipe.title, "Untitled recipe");
+        var cookingInfo = getPrimaryCookingInfo(recipe);
         var color = stableRecipeColor(recipe);
-        var imagePath = typeof recipe.image_path === "string" ? recipe.image_path.trim() : "";
+        var imagePath = getRecipeImagePath(recipe);
         var cardClass = imagePath ? "recipe-card has-image" : "recipe-card";
         var style = "background-color: " + color + ";";
         if (imagePath) {
@@ -1440,11 +1983,582 @@
           '<button class="' + cardClass + '" type="button" data-action="open-recipe" data-recipe-id="' + escapeAttr(recipe.id) + '" style="' + escapeAttr(style) + '">' +
             '<span class="card-content">' +
               '<span class="card-title">' + escapeHtml(title) + '</span>' +
-              '<span class="card-time">' + escapeHtml(formatRecipeTime(recipe)) + '</span>' +
+              '<span class="card-cook-badge">' + escapeHtml(cookingInfo.label) + '</span>' +
               renderStars(getRating(recipe)) +
             '</span>' +
           '</button>'
         );
+      }
+
+      function renderTimerButton(recipe) {
+        return (
+          '<button class="round-button timer-button" type="button" data-action="start-timer" data-recipe-id="' + escapeAttr(recipe.id) + '" aria-label="Start timer for ' + escapeAttr(displayValue(recipe.title, "recipe")) + '" title="Start timer">' +
+            renderTimerIcon() +
+          '</button>'
+        );
+      }
+
+      function renderTimerIcon() {
+        return '<svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v5l3 2"></path><path d="M9 2h6"></path><path d="M12 2v3"></path></svg>';
+      }
+
+      function renderFullscreenIcon() {
+        return '<svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5"></path><path d="M16 3h5v5"></path><path d="M21 16v5h-5"></path><path d="M8 21H3v-5"></path></svg>';
+      }
+
+      function renderCookCard(panel) {
+        var recipe = getRecipeById(panel.recipeId);
+        if (!recipe) {
+          mainEl().innerHTML =
+            '<section class="cook-card-panel"><div class="back-row"><button class="ghost-button" type="button" data-action="back">Back</button></div><div class="empty-state">Recipe not found.</div></section>';
+          return;
+        }
+        var title = displayValue(recipe.title, "Untitled recipe");
+        var cookingInfo = getPrimaryCookingInfo(recipe);
+        mainEl().innerHTML =
+          '<section class="cook-card-panel">' +
+            '<div class="back-row"><button class="ghost-button" type="button" data-action="back">Back</button></div>' +
+            '<div class="cook-card">' +
+              renderDetailImage(recipe) +
+              '<div class="cook-card-body">' +
+                '<div class="cook-card-head">' +
+                  '<div class="cook-card-title-block">' +
+                    '<h1>' + escapeHtml(title) + '</h1>' +
+                    '<div class="cook-card-label">' + escapeHtml(cookingInfo.label) + '</div>' +
+                  '</div>' +
+                  renderTimerButton(recipe) +
+                '</div>' +
+                renderCookSummary(cookingInfo) +
+                '<section><h2>Ingredients</h2>' + renderCookIngredientList(recipe) + '</section>' +
+                '<div class="cook-card-actions">' +
+                  '<button type="button" class="primary-button" data-action="expand-recipe" data-recipe-id="' + escapeAttr(recipe.id) + '">Expand</button>' +
+                '</div>' +
+              '</div>' +
+            '</div>' +
+          '</section>';
+      }
+
+      function renderCookSummary(info) {
+        var chips = [];
+        if (info.device) {
+          chips.push(info.device);
+        }
+        if (info.temperature) {
+          chips.push(info.temperature);
+        }
+        if (info.time) {
+          chips.push(info.time);
+        }
+        if (!chips.length) {
+          chips.push(info.label);
+        }
+        return '<div class="cook-summary">' + chips.map(function (chip) {
+          return '<span class="cook-chip">' + escapeHtml(chip) + '</span>';
+        }).join("") + '</div>';
+      }
+
+      function renderCookIngredientList(recipe) {
+        var ingredients = getIngredientLabels(recipe);
+        if (!ingredients.length) {
+          return '<p class="muted">Ingredients not listed.</p>';
+        }
+        return '<ul class="cook-ingredients">' + ingredients.map(function (ingredient) {
+          return '<li>' + escapeHtml(ingredient) + '</li>';
+        }).join("") + '</ul>';
+      }
+
+      function createEmptyTimerState() {
+        return {
+          visible: false,
+          running: false,
+          expired: false,
+          remainingSeconds: 0,
+          durationSeconds: 0,
+          endAt: null,
+          recipeId: null,
+          label: "Timer",
+          sourceLabel: ""
+        };
+      }
+
+      function timerMount() {
+        return document.getElementById("timerMount");
+      }
+
+      function startRecipeTimer(recipeId) {
+        var recipe = getRecipeById(recipeId);
+        if (!recipe) {
+          return;
+        }
+        unlockTimerAudio();
+        stopTimerAlarmSound();
+        releaseTimerWakeLock();
+        var cookingInfo = getPrimaryCookingInfo(recipe);
+        var seconds = parseTimerSeconds(cookingInfo.time || cookingInfo.label);
+        if (seconds == null) {
+          seconds = 0;
+        }
+        timerEditing = false;
+        timerEditWasRunning = false;
+        timerState = {
+          visible: true,
+          running: seconds > 0,
+          expired: false,
+          remainingSeconds: seconds,
+          durationSeconds: seconds,
+          endAt: seconds > 0 ? Date.now() + seconds * 1000 : null,
+          recipeId: recipe.id,
+          label: displayValue(recipe.title, "Timer"),
+          sourceLabel: cookingInfo.label || ""
+        };
+        saveTimerState();
+        renderTimerPanel();
+        if (timerState.running) {
+          ensureTimerTicker();
+          requestTimerWakeLock();
+        }
+      }
+
+      function startStepTimer(recipeId, stepIndex) {
+        var recipe = getRecipeById(recipeId);
+        var index = Number(stepIndex);
+        var steps = Array.isArray(recipe && recipe.method_steps) ? recipe.method_steps : [];
+        var step = Number.isInteger(index) ? steps[index] : null;
+        var minutes = toNumber(step && step.time_minutes);
+        if (!recipe || minutes <= 0) {
+          return;
+        }
+        var seconds = Math.max(1, Math.round(minutes * 60));
+        unlockTimerAudio();
+        stopTimerAlarmSound();
+        releaseTimerWakeLock();
+        timerEditing = false;
+        timerEditWasRunning = false;
+        timerState = {
+          visible: true,
+          running: true,
+          expired: false,
+          remainingSeconds: seconds,
+          durationSeconds: seconds,
+          endAt: Date.now() + seconds * 1000,
+          recipeId: recipe.id,
+          label: displayValue(recipe.title, "Timer"),
+          sourceLabel: "Step " + (index + 1) + " - " + formatStepTimerDuration(minutes)
+        };
+        saveTimerState();
+        renderTimerPanel();
+        ensureTimerTicker();
+        requestTimerWakeLock();
+      }
+
+      function restoreTimerState() {
+        try {
+          var raw = localStorage.getItem(TIMER_KEY);
+          if (!raw) {
+            renderTimerPanel();
+            return;
+          }
+          var parsed = JSON.parse(raw);
+          timerState = Object.assign(createEmptyTimerState(), parsed || {});
+          timerState.remainingSeconds = Math.max(0, Math.round(Number(timerState.remainingSeconds) || 0));
+          timerState.durationSeconds = Math.max(0, Math.round(Number(timerState.durationSeconds) || timerState.remainingSeconds));
+          timerState.endAt = timerState.endAt ? Number(timerState.endAt) : null;
+          if (timerState.running) {
+            syncTimerFromClock(false);
+          }
+          renderTimerPanel();
+          if (timerState.running) {
+            ensureTimerTicker();
+            requestTimerWakeLock();
+          }
+        } catch (error) {
+          timerState = createEmptyTimerState();
+          renderTimerPanel();
+        }
+      }
+
+      function saveTimerState() {
+        try {
+          if (!timerState.visible) {
+            localStorage.removeItem(TIMER_KEY);
+            return;
+          }
+          localStorage.setItem(TIMER_KEY, JSON.stringify(timerState));
+        } catch (error) {
+          // Timer persistence is best-effort; the timer still works in memory.
+        }
+      }
+
+      function renderTimerPanel() {
+        var mount = timerMount();
+        if (!mount) {
+          return;
+        }
+        setTimerVisibleClass(timerState.visible);
+        if (!timerState.visible) {
+          mount.innerHTML = "";
+          stopTimerTicker();
+          return;
+        }
+        if (timerEditing) {
+          mount.innerHTML =
+            '<form id="timerEditForm" class="timer-panel" autocomplete="off">' +
+              '<input id="timerEditInput" class="timer-edit-input" type="text" inputmode="numeric" aria-label="Timer time" value="' + escapeAttr(formatTimerClock(timerState.remainingSeconds)) + '">' +
+              '<button class="primary-button" type="submit">Set</button>' +
+              '<button class="ghost-button" type="button" data-action="cancel-timer-edit">Cancel</button>' +
+            '</form>';
+          return;
+        }
+        var controlLabel = timerState.expired ? "Stop" : (timerState.running ? "Pause" : (timerState.remainingSeconds > 0 ? "Resume" : "Stop"));
+        var controlClass = timerState.expired ? "danger-button" : "primary-button";
+        var label = timerState.expired ? "Time is up" : [timerState.label, timerState.sourceLabel].filter(Boolean).join(" - ");
+        mount.innerHTML =
+          '<div class="timer-panel' + (timerState.expired ? ' is-expired' : '') + '" role="timer" aria-live="polite">' +
+            '<button class="timer-display-button" type="button" data-action="edit-timer" aria-label="Edit timer">' +
+              '<span class="timer-time">' + escapeHtml(formatTimerClock(timerState.remainingSeconds)) + '</span>' +
+              '<span class="timer-label">' + escapeHtml(label || "Timer") + '</span>' +
+            '</button>' +
+            '<button class="' + controlClass + ' timer-control" type="button" data-action="toggle-timer-pause">' + controlLabel + '</button>' +
+          '</div>';
+        if (timerState.running) {
+          ensureTimerTicker();
+        }
+      }
+
+      function setTimerVisibleClass(isVisible) {
+        if (document.body && document.body.classList) {
+          document.body.classList.toggle("timer-visible", Boolean(isVisible));
+        }
+      }
+
+      function ensureTimerTicker() {
+        if (timerInterval) {
+          return;
+        }
+        timerInterval = setInterval(tickTimer, 1000);
+      }
+
+      function stopTimerTicker() {
+        if (timerInterval) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+        }
+      }
+
+      function tickTimer() {
+        if (!timerState.running) {
+          stopTimerTicker();
+          return;
+        }
+        syncTimerFromClock(true);
+        renderTimerPanel();
+      }
+
+      function syncTimerFromClock(playAlarm) {
+        if (!timerState.running || !timerState.endAt) {
+          return;
+        }
+        var seconds = Math.max(0, Math.ceil((timerState.endAt - Date.now()) / 1000));
+        timerState.remainingSeconds = seconds;
+        if (seconds <= 0) {
+          expireTimer(playAlarm);
+        }
+      }
+
+      function expireTimer(playAlarm) {
+        if (timerState.expired) {
+          return;
+        }
+        timerState.running = false;
+        timerState.expired = true;
+        timerState.remainingSeconds = 0;
+        timerState.endAt = null;
+        timerEditing = false;
+        releaseTimerWakeLock();
+        stopTimerTicker();
+        saveTimerState();
+        renderTimerPanel();
+        if (playAlarm) {
+          playTimerAlarm();
+        }
+      }
+
+      function toggleTimerPause() {
+        if (timerState.expired || timerState.remainingSeconds <= 0) {
+          clearTimer();
+          return;
+        }
+        if (timerState.running) {
+          pauseTimer(true);
+        } else {
+          resumeTimer();
+        }
+      }
+
+      function pauseTimer(shouldRender) {
+        syncTimerFromClock(false);
+        timerState.running = false;
+        timerState.endAt = null;
+        releaseTimerWakeLock();
+        stopTimerTicker();
+        saveTimerState();
+        if (shouldRender) {
+          renderTimerPanel();
+        }
+      }
+
+      function resumeTimer() {
+        if (!timerState.visible || timerState.remainingSeconds <= 0) {
+          renderTimerPanel();
+          return;
+        }
+        unlockTimerAudio();
+        timerState.running = true;
+        timerState.expired = false;
+        timerState.endAt = Date.now() + timerState.remainingSeconds * 1000;
+        saveTimerState();
+        renderTimerPanel();
+        ensureTimerTicker();
+        requestTimerWakeLock();
+      }
+
+      function beginTimerEdit() {
+        if (!timerState.visible || timerState.expired) {
+          return;
+        }
+        timerEditWasRunning = timerState.running;
+        pauseTimer(false);
+        timerEditing = true;
+        renderTimerPanel();
+        setTimeout(function () {
+          var input = document.getElementById("timerEditInput");
+          if (input) {
+            input.focus();
+            input.select();
+          }
+        }, 0);
+      }
+
+      function confirmTimerEdit() {
+        var input = document.getElementById("timerEditInput");
+        var seconds = parseTimerSeconds(input ? input.value : "");
+        if (seconds == null) {
+          showToast("Enter a timer like 16 min, 1:20, or 1 hr 20 min.");
+          return;
+        }
+        timerState.remainingSeconds = seconds;
+        timerState.durationSeconds = seconds;
+        timerState.expired = false;
+        timerState.endAt = null;
+        timerEditing = false;
+        if (timerEditWasRunning && seconds > 0) {
+          resumeTimer();
+        } else {
+          timerState.running = false;
+          saveTimerState();
+          renderTimerPanel();
+        }
+      }
+
+      function cancelTimerEdit() {
+        timerEditing = false;
+        if (timerEditWasRunning && timerState.remainingSeconds > 0) {
+          resumeTimer();
+        } else {
+          saveTimerState();
+          renderTimerPanel();
+        }
+      }
+
+      function clearTimer() {
+        timerEditing = false;
+        timerEditWasRunning = false;
+        stopTimerAlarmSound();
+        releaseTimerWakeLock();
+        stopTimerTicker();
+        timerState = createEmptyTimerState();
+        saveTimerState();
+        renderTimerPanel();
+      }
+
+      function parseTimerSeconds(value) {
+        var text = String(value == null ? "" : value).toLowerCase().trim();
+        if (!text) {
+          return null;
+        }
+        if (/^\d+(:\d{1,2}){1,2}$/.test(text)) {
+          var parts = text.split(":").map(function (part) { return Number(part); });
+          if (parts.some(function (part) { return !Number.isFinite(part); })) {
+            return null;
+          }
+          return parts.length === 3 ?
+            parts[0] * 3600 + parts[1] * 60 + parts[2] :
+            parts[0] * 60 + parts[1];
+        }
+        text = text.replace(/(\d+(?:\.\d+)?)\s*(?:-|to)\s*(\d+(?:\.\d+)?)\s*(hours?|hrs?|hr|minutes?|mins?|min|seconds?|secs?|sec)\b/g, "$2 $3");
+        var total = 0;
+        var matched = false;
+        var pattern = /(\d+(?:\.\d+)?)\s*(hours?|hrs?|hr|minutes?|mins?|min|seconds?|secs?|sec)\b/g;
+        var match;
+        while ((match = pattern.exec(text))) {
+          matched = true;
+          total += secondsForTimerUnit(Number(match[1]), match[2]);
+        }
+        if (matched) {
+          return Math.max(0, Math.round(total));
+        }
+        if (/^\d+(?:\.\d+)?$/.test(text)) {
+          return Math.round(Number(text) * 60);
+        }
+        return null;
+      }
+
+      function secondsForTimerUnit(value, unit) {
+        if (!Number.isFinite(value)) {
+          return 0;
+        }
+        if (/^h/.test(unit)) {
+          return value * 3600;
+        }
+        if (/^s/.test(unit)) {
+          return value;
+        }
+        return value * 60;
+      }
+
+      function formatTimerClock(seconds) {
+        seconds = Math.max(0, Math.round(Number(seconds) || 0));
+        var hours = Math.floor(seconds / 3600);
+        var minutes = Math.floor((seconds % 3600) / 60);
+        var secs = seconds % 60;
+        if (hours > 0) {
+          return hours + ":" + padTimerNumber(minutes) + ":" + padTimerNumber(secs);
+        }
+        return minutes + ":" + padTimerNumber(secs);
+      }
+
+      function padTimerNumber(value) {
+        return String(value).padStart(2, "0");
+      }
+
+      function unlockTimerAudio() {
+        if (typeof window === "undefined") {
+          return;
+        }
+        var AudioContextCtor = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextCtor) {
+          return;
+        }
+        try {
+          if (!timerAudioContext) {
+            timerAudioContext = new AudioContextCtor();
+          }
+          if (timerAudioContext.state === "suspended" && timerAudioContext.resume) {
+            timerAudioContext.resume().catch(function () {});
+          }
+        } catch (error) {
+          timerAudioContext = null;
+        }
+      }
+
+      function playTimerAlarm() {
+        if (alarmInterval || alarmTimeout) {
+          return;
+        }
+        unlockTimerAudio();
+        if (!timerAudioContext) {
+          return;
+        }
+        var startSound = function () {
+          var startedAt = Date.now();
+          var index = 0;
+          var tones = [880, 660, 990, 660];
+          var beep = function () {
+            if (Date.now() - startedAt >= 15000) {
+              stopTimerAlarmSound();
+              return;
+            }
+            playTimerTone(tones[index % tones.length], 0.18);
+            index += 1;
+          };
+          beep();
+          alarmInterval = setInterval(beep, 420);
+          alarmTimeout = setTimeout(stopTimerAlarmSound, 15000);
+        };
+        if (timerAudioContext.state === "suspended" && timerAudioContext.resume) {
+          timerAudioContext.resume().then(startSound).catch(function () {});
+        } else {
+          startSound();
+        }
+      }
+
+      function playTimerTone(frequency, durationSeconds) {
+        if (!timerAudioContext) {
+          return;
+        }
+        try {
+          var oscillator = timerAudioContext.createOscillator();
+          var gain = timerAudioContext.createGain();
+          var now = timerAudioContext.currentTime;
+          oscillator.type = "sine";
+          oscillator.frequency.setValueAtTime(frequency, now);
+          gain.gain.setValueAtTime(0.0001, now);
+          gain.gain.exponentialRampToValueAtTime(0.12, now + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + durationSeconds);
+          oscillator.connect(gain);
+          gain.connect(timerAudioContext.destination);
+          oscillator.start(now);
+          oscillator.stop(now + durationSeconds + 0.02);
+          alarmNodes.push(oscillator);
+          oscillator.onended = function () {
+            alarmNodes = alarmNodes.filter(function (node) { return node !== oscillator; });
+            gain.disconnect();
+          };
+        } catch (error) {
+          // Audio output is best-effort.
+        }
+      }
+
+      function stopTimerAlarmSound() {
+        if (alarmInterval) {
+          clearInterval(alarmInterval);
+          alarmInterval = null;
+        }
+        if (alarmTimeout) {
+          clearTimeout(alarmTimeout);
+          alarmTimeout = null;
+        }
+        alarmNodes.forEach(function (node) {
+          try {
+            node.stop();
+          } catch (error) {}
+        });
+        alarmNodes = [];
+      }
+
+      async function requestTimerWakeLock() {
+        if (!timerState.running || wakeLock || typeof navigator === "undefined" || !navigator.wakeLock || document.visibilityState === "hidden") {
+          return;
+        }
+        try {
+          wakeLock = await navigator.wakeLock.request("screen");
+          wakeLock.addEventListener("release", function () {
+            wakeLock = null;
+          });
+        } catch (error) {
+          wakeLock = null;
+        }
+      }
+
+      function releaseTimerWakeLock() {
+        if (!wakeLock) {
+          return;
+        }
+        var lock = wakeLock;
+        wakeLock = null;
+        try {
+          lock.release().catch(function () {});
+        } catch (error) {}
       }
 
       // Recipe detail is the read-only cooking view; editing swaps in a form
@@ -1483,7 +2597,7 @@
               renderListSection("Specialty / less common ingredients", recipe.specialty_or_less_common_ingredients) +
               renderValueSection("Australian shop notes", recipe.australian_shop_notes) +
               renderListSection("Equipment", recipe.equipment) +
-              renderMethodSteps(recipe.method_steps) +
+              renderMethodSteps(recipe) +
               renderValueSection("Make-ahead / storage", recipe.make_ahead_or_storage) +
               renderListSection("Beginner notes", recipe.beginner_notes) +
               renderUserNotes(recipe) +
@@ -1641,21 +2755,23 @@
         return '<section class="detail-section"><h2>Air fryer note</h2>' + renderObject(airFryer) + '</section>';
       }
 
-      function renderMethodSteps(steps) {
-        var items = Array.isArray(steps) ? steps : [];
+      function renderMethodSteps(recipe) {
+        var items = Array.isArray(recipe && recipe.method_steps) ? recipe.method_steps : [];
         if (!items.length) {
           return "";
         }
         return (
-          '<section class="detail-section"><h2>Method</h2>' +
-            '<ol class="method-list">' + items.map(function (step) {
-              return '<li class="method-step">' + renderMethodStep(step) + '</li>';
+          '<section class="detail-section method-section">' +
+            '<h2>Method</h2>' +
+            '<ol class="method-list">' + items.map(function (step, index) {
+              return '<li class="method-step">' + renderMethodStep(recipe, step, index) + '</li>';
             }).join("") + '</ol>' +
           '</section>'
         );
       }
 
-      function renderMethodStep(step) {
+      function renderMethodStep(recipe, step, index) {
+        step = step || {};
         var meta = [];
         if (toNumber(step.time_minutes) > 0) {
           meta.push('<span class="chip">Time: ' + escapeHtml(formatMinutes(toNumber(step.time_minutes))) + '</span>');
@@ -1666,7 +2782,11 @@
         if (hasContent(step.heat_level)) {
           meta.push('<span class="chip">Heat: ' + escapeHtml(step.heat_level) + '</span>');
         }
-        var out = '<p>' + escapeHtml(step.instruction || "Step") + '</p>';
+        var out =
+          '<div class="method-step-head">' +
+            '<p>' + escapeHtml(step.instruction || "Step") + '</p>' +
+            renderStepTimerButton(recipe, step, index) +
+          '</div>';
         if (meta.length) {
           out += '<div class="step-meta">' + meta.join("") + '</div>';
         }
@@ -1678,6 +2798,41 @@
         }
         out += renderStepAirFryer(step);
         return out;
+      }
+
+      function renderStepTimerButton(recipe, step, index) {
+        var minutes = toNumber(step && step.time_minutes);
+        if (minutes <= 0) {
+          return "";
+        }
+        return (
+          '<button class="round-button timer-button step-timer-button" type="button" data-action="start-step-timer" data-recipe-id="' + escapeAttr(recipe.id) + '" data-step-index="' + escapeAttr(index) + '" aria-label="Start timer for step ' + escapeAttr(index + 1) + ', ' + escapeAttr(formatStepTimerDuration(minutes)) + '" title="Start step timer">' +
+            renderTimerIcon() +
+          '</button>'
+        );
+      }
+
+      function formatStepTimerDuration(minutes) {
+        var seconds = Math.max(1, Math.round(toNumber(minutes) * 60));
+        if (seconds < 60) {
+          return seconds + " sec";
+        }
+        var wholeMinutes = Math.floor(seconds / 60);
+        var remainingSeconds = seconds % 60;
+        if (!remainingSeconds) {
+          return formatMinutes(wholeMinutes);
+        }
+        var hours = Math.floor(wholeMinutes / 60);
+        var minutePart = wholeMinutes % 60;
+        var parts = [];
+        if (hours) {
+          parts.push(hours + " hr");
+        }
+        if (minutePart) {
+          parts.push(minutePart + " min");
+        }
+        parts.push(remainingSeconds + " sec");
+        return parts.join(" ");
       }
 
       function renderStepAirFryer(step) {
@@ -2296,10 +3451,11 @@
         addKnown("lunch", "Lunch", function (recipe) { return fieldHas(recipe.meal_type, "lunch"); });
         addKnown("breakfast", "Breakfast", function (recipe) { return fieldHas(recipe.meal_type, "breakfast"); });
         addKnown("dessert", "Dessert", function (recipe) { return fieldHas(recipe.meal_type, "dessert") || fieldHas(recipe.tags, "dessert") || searchableTruthy(recipe, "dessert"); });
-        addKnown("snack", "Snack", function (recipe) { return fieldHas(recipe.meal_type, "snack") || fieldHas(recipe.tags, "snack"); });
+		addKnown("gluten-free", "Gluten Free", function (recipe) {  return fieldHas(recipe.tags, "gluten free") ||searchableTruthy(recipe, "gluten_free") ||searchableTruthy(recipe, "diet_gluten_free"); });
+		//addKnown("snack", "Snack", function (recipe) { return fieldHas(recipe.meal_type, "snack") || fieldHas(recipe.tags, "snack"); });
         addKnown("budget", "Budget", function (recipe) { return stringEquals(recipe.budget, "budget") || stringEquals(searchableValue(recipe, "budget_scale"), "budget"); });
         addKnown("easy", "Easy", function (recipe) { return stringEquals(recipe.difficulty, "easy") || stringEquals(searchableValue(recipe, "difficulty_scale"), "easy"); });
-        addKnown("quick", "Quick", function (recipe) { return stringEquals(recipe.speed, "quick") || fieldHas(recipe.tags, "quick") || stringEquals(searchableValue(recipe, "speed_scale"), "quick"); });
+        //addKnown("quick", "Quick", function (recipe) { return stringEquals(recipe.speed, "quick") || fieldHas(recipe.tags, "quick") || stringEquals(searchableValue(recipe, "speed_scale"), "quick"); });
         addKnown("healthy", "Healthy", function (recipe) { return fieldHas(recipe.tags, "healthy") || searchableTruthy(recipe, "healthy"); });
         addKnown("vegetarian", "Vegetarian", function (recipe) { return fieldHas(recipe.tags, "vegetarian") || searchableTruthy(recipe, "vegetarian"); });
         addKnown("vegan", "Vegan", function (recipe) { return searchableTruthy(recipe, "vegan") || fieldHas(recipe.tags, "vegan"); });
@@ -2308,11 +3464,11 @@
         addKnown("air-fryer", "Air Fryer", function (recipe) { return searchableTruthy(recipe, "air_fryer_candidate") || Boolean(recipe.air_fryer && recipe.air_fryer.applicable); });
         addKnown("freezer-friendly", "Freezer Friendly", function (recipe) { return searchableTruthy(recipe, "freezer_friendly"); });
         addKnown("make-ahead", "Make Ahead", function (recipe) { return searchableTruthy(recipe, "make_ahead") || fieldHas(recipe.tags, "make-ahead") || fieldHas(recipe.tags, "make ahead"); });
-        addKnown("pasta", "Pasta", function (recipe) { return recipeHasWord(recipe, "pasta"); });
-        addKnown("chicken", "Chicken", function (recipe) { return recipeHasWord(recipe, "chicken"); });
-        addKnown("rice", "Rice", function (recipe) { return recipeHasWord(recipe, "rice"); });
-        addKnown("noodles", "Noodles", function (recipe) { return recipeHasWord(recipe, "noodle") || recipeHasWord(recipe, "noodles"); });
-        addKnown("curry", "Curry", function (recipe) { return recipeHasWord(recipe, "curry"); });
+        //addKnown("pasta", "Pasta", function (recipe) { return recipeHasWord(recipe, "pasta"); });
+        //addKnown("chicken", "Chicken", function (recipe) { return recipeHasWord(recipe, "chicken"); });
+        //addKnown("rice", "Rice", function (recipe) { return recipeHasWord(recipe, "rice"); });
+        //addKnown("noodles", "Noodles", function (recipe) { return recipeHasWord(recipe, "noodle") || recipeHasWord(recipe, "noodles"); });
+        //addKnown("curry", "Curry", function (recipe) { return recipeHasWord(recipe, "curry"); });
 
         var dynamicMap = new Map();
         recipes().forEach(function (recipe) {
@@ -2811,6 +3967,246 @@
 
       function searchableTruthy(recipe, key) {
         return recipe.searchable_values && recipe.searchable_values[key] === true;
+      }
+
+      function getPrimaryCookingInfo(recipe) {
+        var candidate = preferAirFryer ?
+          (getBestCookingCandidate(recipe, "air-fryer") || getBestCookingCandidate(recipe, "oven")) :
+          (getBestCookingCandidate(recipe, "air-fryer", { sourceOnly: true }) || getBestCookingCandidate(recipe, "oven"));
+        if (candidate) {
+          return cookingInfoFromCandidate(candidate);
+        }
+        var fallback = formatRecipeTime(recipe);
+        return {
+          device: null,
+          temperature: null,
+          time: fallback === "Time unknown" ? null : fallback,
+          label: fallback === "Time unknown" ? fallback : "Total \u00b7 " + fallback
+        };
+      }
+
+      function getBestCookingCandidate(recipe, deviceKey, options) {
+        var candidates = getCookingCandidates(recipe, deviceKey, options);
+        if (!candidates.length) {
+          return null;
+        }
+        candidates.sort(function (a, b) {
+          return (b.sortMinutes - a.sortMinutes) || (a.order - b.order);
+        });
+        return candidates[0];
+      }
+
+      function getCookingCandidates(recipe, deviceKey, options) {
+        var steps = Array.isArray(recipe.method_steps) ? recipe.method_steps : [];
+        return steps.map(function (step, index) {
+          if (deviceKey === "air-fryer") {
+            return makeAirFryerCandidate(recipe, step, index, options);
+          }
+          if (deviceKey === "oven") {
+            return makeOvenCandidate(recipe, step, index);
+          }
+          return null;
+        }).filter(Boolean);
+      }
+
+      function makeAirFryerCandidate(recipe, step, index, options) {
+        var airFryer = step && typeof step.air_fryer === "object" ? step.air_fryer : null;
+        if (options && options.sourceOnly && !isSourceAirFryerStep(step, airFryer)) {
+          return null;
+        }
+        var heat = normalizeSearch(step ? step.heat_level : "");
+        var hasAirFryer = heat.indexOf("air fryer") !== -1 || hasUsefulAirFryerStepInfo(airFryer);
+        if (!hasAirFryer) {
+          return null;
+        }
+        var timeInfo = getAirFryerTimeInfo(step, airFryer);
+        if (isPreheatOnlyStep(step) && !timeInfo.label) {
+          return null;
+        }
+        if (!timeInfo.label) {
+          timeInfo = recipeCookTimeInfo(recipe);
+        }
+        var temperature = firstFiniteNumber(airFryer && airFryer.recommended_temperature_c, step && step.temperature_c);
+        if (temperature == null && !timeInfo.label) {
+          return null;
+        }
+        return {
+          device: "Air Fryer",
+          temperature: temperature,
+          time: timeInfo.label,
+          sortMinutes: timeInfo.sortMinutes,
+          order: index
+        };
+      }
+
+      function isSourceAirFryerStep(step, airFryer) {
+        if (airFryer && airFryer.source_air_fryer_provided === true) {
+          return true;
+        }
+        var text = normalizeSearch([step && step.heat_level, step && step.instruction]);
+        return text.indexOf("air fryer") !== -1 && step && step.source_timing_provided === true;
+      }
+
+      function makeOvenCandidate(recipe, step, index) {
+        var text = normalizeSearch([step && step.heat_level, step && step.instruction]);
+        var isOven = text.indexOf("oven") !== -1 || /\b(bake|baked|baking|roast|roasted|roasting|grill|grilled|grilling)\b/.test(text);
+        if (!isOven) {
+          return null;
+        }
+        var timeInfo = getStepTimeInfo(step);
+        if (isPreheatOnlyStep(step) && !timeInfo.label) {
+          return null;
+        }
+        if (!timeInfo.label) {
+          timeInfo = recipeCookTimeInfo(recipe);
+        }
+        var temperature = firstFiniteNumber(step && step.temperature_c);
+        if (temperature == null && !timeInfo.label) {
+          return null;
+        }
+        return {
+          device: "Oven",
+          temperature: temperature,
+          time: timeInfo.label,
+          sortMinutes: timeInfo.sortMinutes,
+          order: index
+        };
+      }
+
+      function hasUsefulAirFryerStepInfo(airFryer) {
+        if (!airFryer || typeof airFryer !== "object") {
+          return false;
+        }
+        return firstFiniteNumber(airFryer.recommended_temperature_c) != null ||
+          getMinuteRange(airFryer.estimated_time_range_minutes).length > 0 ||
+          firstPositiveNumber(airFryer.start_check_minutes) != null ||
+          airFryer.source_air_fryer_provided === true;
+      }
+
+      function getAirFryerTimeInfo(step, airFryer) {
+        var range = getMinuteRange(airFryer && airFryer.estimated_time_range_minutes);
+        if (range.length) {
+          return {
+            label: formatMinuteRange(range),
+            sortMinutes: range[range.length - 1]
+          };
+        }
+        var startCheck = firstPositiveNumber(airFryer && airFryer.start_check_minutes);
+        if (startCheck != null) {
+          return {
+            label: formatMinutes(startCheck),
+            sortMinutes: startCheck
+          };
+        }
+        return getStepTimeInfo(step);
+      }
+
+      function getStepTimeInfo(step) {
+        var minutes = firstPositiveNumber(step && step.time_minutes);
+        return minutes == null ? { label: null, sortMinutes: 0 } : {
+          label: formatMinutes(minutes),
+          sortMinutes: minutes
+        };
+      }
+
+      function recipeCookTimeInfo(recipe) {
+        var minutes = firstPositiveNumber(recipe && recipe.cook_time_minutes);
+        if (minutes == null) {
+          minutes = firstPositiveNumber(recipe && recipe.total_time_minutes);
+        }
+        if (minutes == null) {
+          return { label: null, sortMinutes: 0 };
+        }
+        return {
+          label: formatMinutes(minutes),
+          sortMinutes: minutes
+        };
+      }
+
+      function cookingInfoFromCandidate(candidate) {
+        var temperature = formatTemperature(candidate.temperature);
+        var parts = [candidate.device, temperature, candidate.time].filter(Boolean);
+        return {
+          device: candidate.device || null,
+          temperature: temperature,
+          time: candidate.time || null,
+          label: parts.length ? parts.join(" \u00b7 ") : "Time unknown"
+        };
+      }
+
+      function formatTemperature(value) {
+        var number = firstFiniteNumber(value);
+        if (number == null) {
+          return null;
+        }
+        return formatCompactNumber(number) + "\u00b0C";
+      }
+
+      function formatMinuteRange(range) {
+        if (!range.length) {
+          return null;
+        }
+        if (range.length === 1 || range[0] === range[range.length - 1]) {
+          return formatMinutes(range[0]);
+        }
+        return formatCompactNumber(range[0]) + "-" + formatCompactNumber(range[range.length - 1]) + " min";
+      }
+
+      function getMinuteRange(value) {
+        if (!Array.isArray(value)) {
+          return [];
+        }
+        return value.map(firstPositiveNumber).filter(function (number) {
+          return number != null;
+        }).sort(function (a, b) {
+          return a - b;
+        });
+      }
+
+      function firstFiniteNumber() {
+        for (var i = 0; i < arguments.length; i += 1) {
+          if (arguments[i] == null || String(arguments[i]).trim() === "") {
+            continue;
+          }
+          var number = Number(arguments[i]);
+          if (Number.isFinite(number)) {
+            return number;
+          }
+        }
+        return null;
+      }
+
+      function firstPositiveNumber() {
+        for (var i = 0; i < arguments.length; i += 1) {
+          var number = Number(arguments[i]);
+          if (Number.isFinite(number) && number > 0) {
+            return number;
+          }
+        }
+        return null;
+      }
+
+      function isPreheatOnlyStep(step) {
+        if (!step) {
+          return false;
+        }
+        return /\bpreheat\b/.test(normalizeSearch(step.instruction)) && firstPositiveNumber(step.time_minutes) == null;
+      }
+
+      function formatCompactNumber(value) {
+        var number = Number(value);
+        if (!Number.isFinite(number)) {
+          return "";
+        }
+        return Number.isInteger(number) ? String(number) : String(Math.round(number * 10) / 10);
+      }
+
+      function getRecipeImagePath(recipe) {
+        return typeof (recipe && recipe.image_path) === "string" ? recipe.image_path.trim() : "";
+      }
+
+      function getIngredientLabels(recipe) {
+        return asArray(recipe && recipe.ingredients);
       }
 
       function formatRecipeTime(recipe) {

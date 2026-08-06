@@ -1,18 +1,18 @@
 {
   "meta": {
-    "name": "Offline Cooking Journal Seed Recipes - Beginner Detailed with Desserts",
+    "name": "Offline Cooking Journal Seed Recipes - Beginner",
     "created": "2026-07-06",
     "intended_use": "Seed/import data for a single-file offline recipe journal/menu app. Written for a beginner cook who needs timings, temperatures and cues.",
     "copyright_note": "Do not republish as a commercial cookbook. Source links are retained. Method wording is paraphrased, with timing/temperature facts and ingredient facts from linked sources where available.",
     "important_note": "Where a source gives a visual cue but no exact time, the step uses time_minutes: null and source_timing_provided: false rather than inventing a time.",
-    "updated": "2026-07-07",
+    "updated": "2026-07-14",
     "dessert_update_note": "Appended 8 dessert/sweet baking recipes with beginner-friendly steps, timings, temperatures, visual cues, and source URLs.",
     "air_fryer_update_note": "Added 2026-07-07. Air-fryer fields were added alongside oven/bake steps. Where the saved source page did not include explicit air-fryer instructions, the fields are heuristic starting points only, not official recipe instructions.",
     "air_fryer_conversion_basis": "General conversion used where no source air-fryer instructions were available: reduce oven temperature by about 10-20°C and begin checking about 20-25% earlier; baking recipes need extra caution because the top can brown before the centre cooks.",
     "air_fryer_update_stats": {
-      "recipes_total": 51,
-      "recipes_with_air_fryer_applicable_or_note": 13,
-      "oven_or_bake_steps_with_air_fryer_fields": 26,
+      "recipes_total": 69,
+      "recipes_with_air_fryer_applicable_or_note": 17,
+      "oven_or_bake_steps_with_air_fryer_fields": 32,
       "not_recommended_count": 1
     },
     "user_fields_update_note": "Added 2026-07-07. Added rating default 0/5 and added_to_list default false to each recipe's user_fields and to empty_user_fields_template.",
@@ -20,15 +20,15 @@
     "ingredient_keywords_update_note": "Added 2026-07-07. Added curated ingredient_keywords arrays to each recipe for easier offline searching/filtering by ingredient, including common Australian/US synonym pairs such as capsicum/bell pepper, prawns/shrimp, coriander/cilantro, bi-carb soda/baking soda, and cornflour/cornstarch.",
     "ingredient_keywords_usage_note": "ingredient_keywords are lower-case search helpers, not a measured ingredient list. Use ingredients for display; use ingredient_keywords for ingredient filters and fall back to text search on ingredients where needed.",
     "ingredient_keywords_stats": {
-      "recipes_total": 51,
-      "recipes_with_ingredient_keywords": 51,
+      "recipes_total": 69,
+      "recipes_with_ingredient_keywords": 69,
       "min_keywords_per_recipe": 8,
       "max_keywords_per_recipe": 37
     },
     "image_path_update_note": "Added 2026-07-07. Added recipe-level image_path default null to each recipe for optional display/card images. Existing user_fields.photo_paths remains for user-added cooking photos.",
     "image_path_stats": {
-      "recipes_total": 51,
-      "recipes_with_image_path_field": 51,
+      "recipes_total": 53,
+      "recipes_with_image_path_field": 53,
       "default_value": null
     },
     "breakfast_smoothie_update_note": "Added 2026-07-07. Appended 6 beginner-friendly breakfast smoothies plus 6 breakfast bowls/oats/muesli-style recipes, with ingredient_keywords, image_path default null, user_fields defaults, and source URLs retained.",
@@ -36,31 +36,45 @@
       "recipes_added": 12,
       "smoothies_added": 6,
       "breakfast_bowls_oats_muesli_added": 6,
-      "recipes_total": 51
+      "recipes_total": 53
     },
-    "personal_blog_update_note": "Added 2026-07-07. Appended 7 recipes extracted from the user's personal Aluca Cooks Mataroa blog, with notes preserved in beginner_notes and note_to_future_me where useful.",
+    "personal_blog_update_note": "Added 2026-07-07; updated 2026-07-09. Appended recipes extracted from the user's personal Aluca Cooks Mataroa blog, with notes preserved in beginner_notes and note_to_future_me where useful.",
     "personal_blog_update_stats": {
-      "recipes_added": 7,
-      "recipes_total": 51,
+      "recipes_added": 9,
+      "recipes_total": 53,
       "source": "https://alucasol.mataroa.blog/"
     },
     "image_link_update_note": "Added 2026-07-07. Populated recipe-level image_path values with direct external image URLs where a reasonable direct image link could be found. Some image_path values remain null where no reliable direct image URL was available or where the source did not expose a stable image file. These URLs require internet access and may fail if a source blocks hotlinking, changes filenames, or returns a CORS/referrer error.",
     "image_link_update_stats": {
-      "recipes_total": 51,
-      "image_path_populated": 41,
-      "image_path_remaining_null": 10,
+      "recipes_total": 69,
+      "image_path_populated": 53,
+      "image_path_remaining_null": 16,
       "remaining_null_recipe_ids": [
-        "bbcgoodfood_best_apple_crumble_beginner",
-        "bbcgoodfood_super_berry_smoothie_beginner",
-        "bbcgoodfood_cinnamon_porridge_banana_berries_beginner",
-        "alucacooks_peri_chicken_salad_260609",
-        "alucacooks_banana_smoothie_260608",
-        "alucacooks_pappa_al_pomodoro_260604",
-        "alucacooks_slow_cooker_chicken_curry_260601",
-        "alucacooks_falafel_wrap_260527",
-        "alucacooks_fried_rice_and_chicken_260527",
-        "alucacooks_meatball_carbonara_260526"
+        "downshiftology_sheet_pan_chicken_fajitas_gluten_free",
+        "downshiftology_dijon_baked_salmon_gluten_free",
+        "cookieandkate_thai_red_curry_vegetables_gluten_free",
+        "wellplated_slow_cooker_turkey_quinoa_chili_gluten_free",
+        "downshiftology_greek_lemon_chicken_gluten_free",
+        "loveandlemons_vegetarian_stuffed_peppers_gluten_free",
+        "cookieandkate_roasted_veggie_enchilada_casserole_gluten_free",
+        "downshiftology_ultimate_chicken_salad_gluten_free",
+        "downshiftology_tuna_salad_gluten_free",
+        "cookieandkate_best_quinoa_salad_gluten_free",
+        "loveandlemons_chickpea_salad_gluten_free",
+        "downshiftology_mediterranean_chickpea_salad_gluten_free",
+        "kingarthur_gluten_free_brownies",
+        "kingarthur_gluten_free_chocolate_chip_cookies",
+        "kingarthur_gluten_free_banana_bread_coconut_flax",
+        "kingarthur_flourless_chocolate_cake_gluten_free"
       ]
+    },
+    "gluten_free_update_note": "Added 2026-07-14. Appended 16 gluten-free recipes from reputable cooking/baking sources, covering approximately 7 dinners, 5 lunches, and 4 baking/dessert recipes. Method wording is paraphrased; timings, temperatures and ingredient facts are derived from linked source pages where available.",
+    "gluten_free_update_stats": {
+      "recipes_added": 16,
+      "dinners_added": 7,
+      "lunches_added": 5,
+      "baking_or_dessert_added": 4,
+      "recipes_total": 69
     }
   },
   "scales": {
@@ -85,7 +99,7 @@
       "special"
     ]
   },
-  "recipe_count": 51,
+  "recipe_count": 69,
   "recipes": [
     {
       "id": "recipetineats_butter_chicken_beginner",
@@ -9811,6 +9825,3228 @@
         "general_conversion_reminder": "If testing an air-fryer variation: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier. Treat non-source air-fryer values as first-test estimates."
       },
       "image_path": "https://img.taste.com.au/WSSZNSZR/w643-h428-cfill-q90/taste/2020/03/5-ingredient-meatball-carbonara-159130-1.jpg"
+    },
+    {
+      "id": "alucacooks_steak_sandwich_260701",
+      "title": "Steak Sandwich",
+      "source_name": "Aluca Cooks",
+      "source_url": "https://alucasol.mataroa.blog/p/260701-steak-sandwich/",
+      "source_fidelity": "Extracted from the user's personal Aluca Cooks blog. Ingredient and timing facts are taken from the linked post; method wording is lightly normalized for the offline beginner recipe app.",
+      "cuisine": [
+        "Australian",
+        "home cooking"
+      ],
+      "meal_type": [
+        "lunch",
+        "dinner"
+      ],
+      "servings": "not specified",
+      "prep_time_minutes": null,
+      "cook_time_minutes": 16,
+      "total_time_minutes": null,
+      "inactive_time_minutes": 0,
+      "difficulty": "easy",
+      "speed": "quick",
+      "budget": "moderate",
+      "commonness": "common",
+      "beginner_confidence": "good",
+      "tags": [
+        "steak",
+        "sandwich",
+        "air fryer",
+        "chips",
+        "fry pan",
+        "quick",
+        "forgiving"
+      ],
+      "ingredients": [
+        "Thin cut steaks",
+        "Onion chutney",
+        "Burger sauce",
+        "Rustic bread",
+        "Olive oil",
+        "Butter",
+        "Pepper",
+        "Dijon mustard",
+        "Cheese",
+        "Lettuce",
+        "Egg",
+        "Chips",
+        "Optional: peri peri mayo or dipping sauce of choice"
+      ],
+      "ingredient_keywords": [
+        "steak",
+        "thin cut steak",
+        "thin steaks",
+        "onion chutney",
+        "chutney",
+        "burger sauce",
+        "rustic bread",
+        "bread",
+        "olive oil",
+        "butter",
+        "pepper",
+        "dijon mustard",
+        "mustard",
+        "cheese",
+        "lettuce",
+        "egg",
+        "chips",
+        "fries",
+        "peri peri mayo",
+        "dipping sauce"
+      ],
+      "specialty_or_less_common_ingredients": [
+        "onion chutney",
+        "burger sauce",
+        "rustic bread",
+        "peri peri mayo optional"
+      ],
+      "australian_shop_notes": "Most ingredients should be available from Coles, Woolworths or IGA unless marked as less common. Use the chip packet instructions if they differ from the blog's default air-fryer setting.",
+      "equipment": [
+        "air fryer",
+        "fry pan",
+        "knife",
+        "cutting board",
+        "spatula or tongs",
+        "fry pan lid optional"
+      ],
+      "method_steps": [
+        {
+          "order": 1,
+          "instruction": "Put the chips in the air fryer according to the bag instructions, using the blog's default setting if the packet is not specific.",
+          "time_minutes": 16,
+          "temperature_c": 200,
+          "heat_level": "air fryer",
+          "visual_or_texture_cue": "Chips are hot and crisp enough for serving.",
+          "source_timing_provided": true,
+          "beginner_tip": "Shake the basket about every 5 minutes so the chips do not clump together.",
+          "air_fryer": {
+            "source_air_fryer_provided": true,
+            "recommended_temperature_c": 200,
+            "estimated_time_range_minutes": [
+              16,
+              16
+            ],
+            "start_check_minutes": 16,
+            "confidence": "source_personal_blog",
+            "basis": "The Aluca Cooks post gives chips as air fryer 200°C for 16 minutes by default.",
+            "note": "Shake the basket every 5 minutes or so to stop the chips clumping."
+          }
+        },
+        {
+          "order": 2,
+          "instruction": "Warm a fry pan with a small drop of olive oil.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "fry pan",
+          "visual_or_texture_cue": "Pan is warm and lightly oiled.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 3,
+          "instruction": "Cut thick slices of rustic bread and butter the slices.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Bread slices are thick and buttered.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 4,
+          "instruction": "Place the thin steaks in the fry pan.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "fry pan",
+          "visual_or_texture_cue": "Steaks begin searing in the hot pan.",
+          "source_timing_provided": false,
+          "beginner_tip": "Thin steaks cook quickly, so keep the toppings ready."
+        },
+        {
+          "order": 5,
+          "instruction": "Spread burger sauce on one slice of bread and onion chutney on the other slice to form the top and bottom of the sandwich.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "assembly",
+          "visual_or_texture_cue": "One slice has burger sauce and one has onion chutney.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 6,
+          "instruction": "Flip the steaks, then place slices of cheese on top of the steaks.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "fry pan",
+          "visual_or_texture_cue": "Second side is cooking and cheese starts softening.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 7,
+          "instruction": "Crack the egg into the pan, add salt and pepper, and cover the pan with a lid if available.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "fry pan",
+          "visual_or_texture_cue": "Egg is cooking and the covered pan helps melt the cheese.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 8,
+          "instruction": "After a couple of minutes, remove the steaks from the pan and place them onto the onion chutney slice.",
+          "time_minutes": 2,
+          "temperature_c": null,
+          "heat_level": "fry pan",
+          "visual_or_texture_cue": "Thin steaks are cooked and cheese is melted or soft.",
+          "source_timing_provided": true,
+          "beginner_tip": "The blog notes the timing is not exact because thin steaks do not take long."
+        },
+        {
+          "order": 9,
+          "instruction": "Spread Dijon mustard onto the steaks, then add washed lettuce and the cooked egg.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "assembly",
+          "visual_or_texture_cue": "Steak, mustard, lettuce and egg are stacked on the sandwich.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 10,
+          "instruction": "Place the burger-sauce bread slice face-up in the pan briefly so it absorbs some pan juices, then put it onto the rest of the sandwich.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "fry pan",
+          "visual_or_texture_cue": "Sauce-side bread picks up some pan flavour without falling apart.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 11,
+          "instruction": "Move the chips to a bowl or plate, add peri peri mayo or another dipping sauce if wanted, and serve with the sandwich.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "serving",
+          "visual_or_texture_cue": "Hot sandwich served with chips.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        }
+      ],
+      "make_ahead_or_storage": "Best served fresh so the steak, egg and chips stay hot and the bread does not go soggy.",
+      "beginner_notes": [
+        "The blog describes this as forgiving.",
+        "Shake the air-fryer basket every 5 minutes or so when cooking the chips.",
+        "The steak timing is intentionally approximate because thin steaks cook quickly."
+      ],
+      "searchable_values": {
+        "difficulty_scale": "easy",
+        "speed_scale": "quick",
+        "budget_scale": "moderate",
+        "commonness_scale": "common",
+        "personal_blog": true,
+        "air_fryer": true,
+        "fry_pan": true,
+        "sandwich": true,
+        "chips": true,
+        "work_night": true,
+        "air_fryer_candidate": true,
+        "air_fryer_recommendation_type": "source_personal_blog"
+      },
+      "user_fields": {
+        "personal_rating": 0,
+        "cooked_count": 0,
+        "last_cooked": null,
+        "would_cook_again": null,
+        "my_notes": "",
+        "note_to_future_me": "Forgiving. Shake chips in the air fryer every 5 minutes or so so they do not clump. Thin steaks cook quickly, so do not overthink exact pan timing.",
+        "changes_to_try_next_time": [],
+        "photo_paths": [],
+        "is_favourite": false,
+        "is_reliable_work_night_meal": true,
+        "household_reaction": "",
+        "rating": 0,
+        "added_to_list": false
+      },
+      "air_fryer": {
+        "applicable": true,
+        "recommendation_type": "source_personal_blog",
+        "source_air_fryer_instructions_found": true,
+        "source_air_fryer_url": "https://alucasol.mataroa.blog/p/260701-steak-sandwich/",
+        "confidence": "source_personal_blog",
+        "note": "The chips are cooked in the air fryer at 200°C for 16 minutes by default. Shake the basket about every 5 minutes to reduce clumping.",
+        "general_conversion_reminder": "Use the chip packet instructions if they differ. If testing a different air-fryer component, start cautiously and check early."
+      },
+      "image_path": "https://alucasol.mataroa.blog/images/de800d8a.jpeg"
+    },
+    {
+      "id": "alucacooks_chicken_pesto_pocket_260702",
+      "title": "Chicken Pesto Pocket",
+      "source_name": "Aluca Cooks",
+      "source_url": "https://alucasol.mataroa.blog/p/260702-chicken-pesto-pocket/",
+      "source_fidelity": "Extracted from the user's personal Aluca Cooks blog. Ingredient and timing facts are taken from the linked post; method wording is lightly normalized for the offline beginner recipe app.",
+      "cuisine": [
+        "Australian",
+        "home cooking",
+        "Italian-inspired"
+      ],
+      "meal_type": [
+        "dinner"
+      ],
+      "servings": "2",
+      "prep_time_minutes": null,
+      "cook_time_minutes": 23,
+      "total_time_minutes": 23,
+      "inactive_time_minutes": 0,
+      "difficulty": "medium",
+      "speed": "medium",
+      "budget": "moderate",
+      "commonness": "common",
+      "beginner_confidence": "good_with_careful_handling",
+      "tags": [
+        "chicken mince",
+        "pesto",
+        "air fryer",
+        "bread crumbs",
+        "stuffed chicken",
+        "cheese",
+        "spinach"
+      ],
+      "ingredients": [
+        "Chicken mince",
+        "Pesto",
+        "Tomato or cherry tomatoes",
+        "Spinach, preferably baby spinach leaves",
+        "Cheese",
+        "Breadcrumbs",
+        "Pepper"
+      ],
+      "ingredient_keywords": [
+        "chicken mince",
+        "ground chicken",
+        "chicken",
+        "pesto",
+        "tomato",
+        "tomatoes",
+        "cherry tomatoes",
+        "spinach",
+        "baby spinach",
+        "baby spinach leaves",
+        "cheese",
+        "breadcrumbs",
+        "bread crumbs",
+        "pepper",
+        "baking paper"
+      ],
+      "specialty_or_less_common_ingredients": [
+        "chicken mince",
+        "pesto",
+        "breadcrumbs"
+      ],
+      "australian_shop_notes": "Most ingredients should be available from Coles, Woolworths or IGA unless marked as less common. Baby spinach leaves are preferred for the spinach.",
+      "equipment": [
+        "air fryer",
+        "baking paper",
+        "dinner plate",
+        "butter knife",
+        "knife",
+        "cutting board",
+        "grater optional"
+      ],
+      "method_steps": [
+        {
+          "order": 1,
+          "instruction": "Cover a dinner plate with baking paper.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "The plate is covered so the mince can be lifted and folded later.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 2,
+          "instruction": "Place about half a pack of chicken mince on the baking paper and press it into a thin rough circle covering the plate.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Thin circle of chicken mince spread across the plate.",
+          "source_timing_provided": false,
+          "beginner_tip": "The blog notes half a pack makes a small but sufficient meal for 2; a whole pack makes it heartier."
+        },
+        {
+          "order": 3,
+          "instruction": "Spread a thin layer of pesto over the full surface of the chicken mince.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Pesto is spread evenly and thinly.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 4,
+          "instruction": "Put chopped tomato, cheese and washed spinach leaves over one half of the chicken circle, then season with pepper.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Filling sits on only one half so the other half can fold over it.",
+          "source_timing_provided": false,
+          "beginner_tip": "Baby spinach leaves are easier to manage here."
+        },
+        {
+          "order": 5,
+          "instruction": "Carefully lift the baking paper on one side and fold the chicken circle in half to enclose the tomato, cheese and spinach.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Chicken mince forms a folded pocket around the filling.",
+          "source_timing_provided": false,
+          "beginner_tip": "Use a butter knife to hold the filling in place and help create the hinge/fold point."
+        },
+        {
+          "order": 6,
+          "instruction": "Gently press the edges to help seal the pocket, without pressing so hard that the mince tears.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Edges are pressed together but the pocket still holds its shape.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 7,
+          "instruction": "Peel back the baking paper and sprinkle breadcrumbs over the exposed surface.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Top surface is lightly covered in breadcrumbs.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 8,
+          "instruction": "Use the baking paper to carefully lift the chicken pocket into the air fryer, tearing away excess baking paper while leaving enough paper as handles.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "air fryer setup",
+          "visual_or_texture_cue": "Chicken pocket is supported by baking paper in the air fryer.",
+          "source_timing_provided": false,
+          "beginner_tip": "Do not leave loose paper flapping around the air fryer basket."
+        },
+        {
+          "order": 9,
+          "instruction": "Air fry the chicken pesto pocket.",
+          "time_minutes": 23,
+          "temperature_c": 180,
+          "heat_level": "air fryer",
+          "visual_or_texture_cue": "Chicken is cooked through and breadcrumbs are browned.",
+          "source_timing_provided": true,
+          "beginner_tip": "Check the thickest part if unsure; chicken mince must be cooked through.",
+          "air_fryer": {
+            "source_air_fryer_provided": true,
+            "recommended_temperature_c": 180,
+            "estimated_time_range_minutes": [
+              23,
+              23
+            ],
+            "start_check_minutes": 23,
+            "confidence": "source_personal_blog",
+            "basis": "The Aluca Cooks post specifies air fryer 180°C for 23 minutes.",
+            "note": "Use baking paper as support/handles, but trim excess paper so it does not interfere with airflow."
+          }
+        },
+        {
+          "order": 10,
+          "instruction": "Lift the cooked pocket out using the baking paper, move it to a cutting board, and cut into 2 serves.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "serving",
+          "visual_or_texture_cue": "Pocket holds together enough to portion into two serves.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        }
+      ],
+      "make_ahead_or_storage": "Best served fresh after air frying. If storing leftovers, cool promptly and refrigerate because the recipe uses chicken mince.",
+      "beginner_notes": [
+        "Serves 2.",
+        "Half a pack of chicken mince makes a small but sufficient meal; a whole pack makes it heartier.",
+        "Use baby spinach leaves if possible.",
+        "The fold is the fiddly part; baking paper and a butter knife help."
+      ],
+      "searchable_values": {
+        "difficulty_scale": "medium",
+        "speed_scale": "medium",
+        "budget_scale": "moderate",
+        "commonness_scale": "common",
+        "personal_blog": true,
+        "air_fryer": true,
+        "stuffed_chicken": true,
+        "chicken_mince": true,
+        "work_night": true,
+        "air_fryer_candidate": true,
+        "air_fryer_recommendation_type": "source_personal_blog"
+      },
+      "user_fields": {
+        "personal_rating": 0,
+        "cooked_count": 0,
+        "last_cooked": null,
+        "would_cook_again": null,
+        "my_notes": "",
+        "note_to_future_me": "Serves 2. Half a pack of chicken mince is small but sufficient; a whole pack makes it heartier. Baby spinach leaves are preferred. Baking paper and a butter knife make the folding step much easier.",
+        "changes_to_try_next_time": [],
+        "photo_paths": [],
+        "is_favourite": false,
+        "is_reliable_work_night_meal": true,
+        "household_reaction": "",
+        "rating": 0,
+        "added_to_list": false
+      },
+      "air_fryer": {
+        "applicable": true,
+        "recommendation_type": "source_personal_blog",
+        "source_air_fryer_instructions_found": true,
+        "source_air_fryer_url": "https://alucasol.mataroa.blog/p/260702-chicken-pesto-pocket/",
+        "confidence": "source_personal_blog",
+        "note": "The recipe is cooked in the air fryer at 180°C for 23 minutes. Baking paper is used to help shape, lift and remove the chicken pocket.",
+        "general_conversion_reminder": "Use this as the first test setting; adjust next time if your air fryer runs hotter or cooler. Keep excess baking paper trimmed so it does not block airflow."
+      },
+      "image_path": "https://alucasol.mataroa.blog/images/6db9ed40.png"
+    },
+    {
+      "id": "downshiftology_sheet_pan_chicken_fajitas_gluten_free",
+      "title": "Sheet Pan Chicken Fajitas",
+      "source_name": "Downshiftology",
+      "source_url": "https://downshiftology.com/recipes/sheet-pan-chicken-fajitas/",
+      "source_fidelity": "Ingredient lists and timing/temperature facts are taken from the linked source where available; method wording is paraphrased for offline beginner use.",
+      "cuisine": [
+        "Mexican-inspired"
+      ],
+      "meal_type": [
+        "dinner"
+      ],
+      "servings": "4",
+      "prep_time_minutes": 15,
+      "cook_time_minutes": 25,
+      "total_time_minutes": 40,
+      "inactive_time_minutes": 0,
+      "difficulty": "easy",
+      "speed": "medium",
+      "budget": "moderate",
+      "commonness": "common",
+      "beginner_confidence": "good",
+      "tags": [
+        "chicken",
+        "sheet pan",
+        "oven",
+        "fajitas",
+        "dairy-free",
+        "high-protein",
+        "low-carb",
+        "gluten free"
+      ],
+      "ingredients": [
+        "Chicken breasts, sliced into strips",
+        "Capsicum/bell peppers, sliced",
+        "Onion, sliced",
+        "Olive oil or avocado oil",
+        "Fajita seasoning such as chilli powder, cumin, garlic powder, paprika, oregano, salt and pepper",
+        "Lime juice",
+        "Corn tortillas, lettuce cups or rice bowls to serve"
+      ],
+      "ingredient_keywords": [
+        "chicken",
+        "chicken breast",
+        "capsicum",
+        "bell pepper",
+        "onion",
+        "olive oil",
+        "avocado oil",
+        "chilli powder",
+        "chili powder",
+        "cumin",
+        "garlic powder",
+        "paprika",
+        "oregano",
+        "salt",
+        "black pepper",
+        "lime",
+        "corn tortillas",
+        "lettuce",
+        "rice"
+      ],
+      "specialty_or_less_common_ingredients": [
+        "check seasoning blend and tortillas are gluten free"
+      ],
+      "australian_shop_notes": "Use corn tortillas, rice bowls, or lettuce cups rather than wheat tortillas. Check seasoning blends for gluten-containing fillers.",
+      "equipment": [
+        "large sheet pan",
+        "mixing bowl",
+        "oven"
+      ],
+      "method_steps": [
+        {
+          "order": 1,
+          "instruction": "Preheat the oven and line a large sheet pan if desired.",
+          "time_minutes": null,
+          "temperature_c": 200,
+          "heat_level": "oven",
+          "visual_or_texture_cue": "Oven is hot before the tray goes in.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        },
+        {
+          "order": 2,
+          "instruction": "Slice chicken, capsicum and onion into even strips, then toss with oil, lime and fajita seasoning.",
+          "time_minutes": 10,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Everything is evenly coated with seasoning.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 3,
+          "instruction": "Spread chicken and vegetables over the sheet pan in a single layer.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Pieces are not piled too deeply, so they roast instead of steam.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 4,
+          "instruction": "Bake until the chicken is cooked through and the vegetables are softened at the edges.",
+          "time_minutes": 25,
+          "temperature_c": 200,
+          "heat_level": "oven",
+          "visual_or_texture_cue": "Chicken is no longer pink and the vegetables have browned edges.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        },
+        {
+          "order": 5,
+          "instruction": "Serve with gluten-free sides such as corn tortillas, rice or lettuce cups.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "off",
+          "visual_or_texture_cue": "Hot chicken and vegetables are ready for bowls or wraps.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        }
+      ],
+      "make_ahead_or_storage": "Good for meal prep; store cooked chicken and vegetables separately from tortillas or salad greens.",
+      "beginner_notes": [
+        "Cut pieces evenly so they finish cooking together.",
+        "If the pan is crowded, use two trays.",
+        "Marked gluten free from the source or source dietary note; still check packaged ingredient labels such as stock, sauces, spices, seasoning blends, oats, baking mixes and chocolate."
+      ],
+      "searchable_values": {
+        "gluten_free": true,
+        "diet_gluten_free": true,
+        "difficulty_scale": "easy",
+        "speed_scale": "medium",
+        "budget_scale": "moderate",
+        "commonness_scale": "common",
+        "oven": true,
+        "sheet_pan": true,
+        "work_night": true,
+        "dairy_free": true,
+        "high_protein": true
+      },
+      "user_fields": {
+        "personal_rating": 0,
+        "cooked_count": 0,
+        "last_cooked": null,
+        "would_cook_again": null,
+        "my_notes": "",
+        "note_to_future_me": "",
+        "changes_to_try_next_time": [],
+        "photo_paths": [],
+        "is_favourite": false,
+        "is_reliable_work_night_meal": false,
+        "household_reaction": "",
+        "rating": 0,
+        "added_to_list": false
+      },
+      "air_fryer": {
+        "applicable": false,
+        "recommendation_type": "not_applicable",
+        "source_air_fryer_instructions_found": false,
+        "source_air_fryer_url": null,
+        "confidence": "not_applicable",
+        "note": "No explicit source-provided air-fryer instructions were recorded for this recipe. Use the written oven/stovetop/slow-cooker method as the source method.",
+        "general_conversion_reminder": "No appended gluten-free recipe in this update includes heuristic air-fryer conversion fields. Prefer the source method unless you later test and record a dedicated air-fryer version."
+      },
+      "image_path": "https://www.onelovelylife.com/wp-content/uploads/2020/02/Sheet-Pan-Chicken-Fajitas9B.jpg"
+    },
+    {
+      "id": "downshiftology_dijon_baked_salmon_gluten_free",
+      "title": "Dijon Baked Salmon",
+      "source_name": "Downshiftology",
+      "source_url": "https://downshiftology.com/recipes/dijon-baked-salmon/",
+      "source_fidelity": "Ingredient lists and timing/temperature facts are taken from the linked source where available; method wording is paraphrased for offline beginner use.",
+      "cuisine": [
+        "Western"
+      ],
+      "meal_type": [
+        "dinner"
+      ],
+      "servings": "5",
+      "prep_time_minutes": 5,
+      "cook_time_minutes": 20,
+      "total_time_minutes": 25,
+      "inactive_time_minutes": 0,
+      "difficulty": "easy",
+      "speed": "quick",
+      "budget": "pricey",
+      "commonness": "common",
+      "beginner_confidence": "good",
+      "tags": [
+        "salmon",
+        "seafood",
+        "oven",
+        "quick",
+        "healthy",
+        "gluten free"
+      ],
+      "ingredients": [
+        "Salmon fillet or portions",
+        "Dijon mustard",
+        "Fresh parsley",
+        "Lemon juice",
+        "Avocado oil or olive oil",
+        "Garlic",
+        "Salt and black pepper"
+      ],
+      "ingredient_keywords": [
+        "salmon",
+        "dijon mustard",
+        "mustard",
+        "parsley",
+        "lemon",
+        "lemon juice",
+        "avocado oil",
+        "olive oil",
+        "garlic",
+        "salt",
+        "black pepper"
+      ],
+      "specialty_or_less_common_ingredients": [
+        "Dijon mustard; check label for gluten free status"
+      ],
+      "australian_shop_notes": "Most ingredients are common at Australian supermarkets. Check mustard labels if cooking for coeliac-level gluten avoidance.",
+      "equipment": [
+        "baking tray",
+        "small bowl",
+        "oven"
+      ],
+      "method_steps": [
+        {
+          "order": 1,
+          "instruction": "Preheat the oven and place salmon on a lined baking tray.",
+          "time_minutes": null,
+          "temperature_c": 190,
+          "heat_level": "oven",
+          "visual_or_texture_cue": "Tray is ready before coating salmon.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        },
+        {
+          "order": 2,
+          "instruction": "Mix mustard, lemon, oil, garlic, parsley, salt and pepper into a thick topping.",
+          "time_minutes": 3,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Topping is spoonable and evenly mixed.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 3,
+          "instruction": "Spread the Dijon mixture over the salmon.",
+          "time_minutes": 2,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Salmon has an even coating.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 4,
+          "instruction": "Bake until moist, flaky and cooked through.",
+          "time_minutes": 20,
+          "temperature_c": 190,
+          "heat_level": "oven",
+          "visual_or_texture_cue": "Fish flakes easily with a fork and is opaque at the thickest point.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        },
+        {
+          "order": 5,
+          "instruction": "Rest briefly before serving.",
+          "time_minutes": 2,
+          "temperature_c": null,
+          "heat_level": "off",
+          "visual_or_texture_cue": "Salmon stays juicy rather than losing juices immediately.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        }
+      ],
+      "make_ahead_or_storage": "Best fresh. Refrigerate leftovers and use cold in salads or bowls.",
+      "beginner_notes": [
+        "Do not overbake salmon; start checking early if pieces are thin.",
+        "Serve with rice, potatoes or salad for a full dinner.",
+        "Marked gluten free from the source or source dietary note; still check packaged ingredient labels such as stock, sauces, spices, seasoning blends, oats, baking mixes and chocolate."
+      ],
+      "searchable_values": {
+        "gluten_free": true,
+        "diet_gluten_free": true,
+        "difficulty_scale": "easy",
+        "speed_scale": "quick",
+        "budget_scale": "pricey",
+        "commonness_scale": "common",
+        "oven": true,
+        "seafood": true,
+        "work_night": true
+      },
+      "user_fields": {
+        "personal_rating": 0,
+        "cooked_count": 0,
+        "last_cooked": null,
+        "would_cook_again": null,
+        "my_notes": "",
+        "note_to_future_me": "",
+        "changes_to_try_next_time": [],
+        "photo_paths": [],
+        "is_favourite": false,
+        "is_reliable_work_night_meal": false,
+        "household_reaction": "",
+        "rating": 0,
+        "added_to_list": false
+      },
+      "air_fryer": {
+        "applicable": false,
+        "recommendation_type": "not_applicable",
+        "source_air_fryer_instructions_found": false,
+        "source_air_fryer_url": null,
+        "confidence": "not_applicable",
+        "note": "No explicit source-provided air-fryer instructions were recorded for this recipe. Use the written oven/stovetop/slow-cooker method as the source method.",
+        "general_conversion_reminder": "No appended gluten-free recipe in this update includes heuristic air-fryer conversion fields. Prefer the source method unless you later test and record a dedicated air-fryer version."
+      },
+      "image_path": "https://www.tablefortwoblog.com/wp-content/uploads/2024/08/honey-dijon-salmon-recipe-photos-tablefortwoblog-3.jpg"
+    },
+    {
+      "id": "cookieandkate_thai_red_curry_vegetables_gluten_free",
+      "title": "Thai Red Curry with Vegetables",
+      "source_name": "Cookie and Kate",
+      "source_url": "https://cookieandkate.com/thai-red-curry-recipe/",
+      "source_fidelity": "Ingredient lists and timing/temperature facts are taken from the linked source where available; method wording is paraphrased for offline beginner use.",
+      "cuisine": [
+        "Thai",
+        "Vegetarian"
+      ],
+      "meal_type": [
+        "dinner"
+      ],
+      "servings": "4",
+      "prep_time_minutes": 10,
+      "cook_time_minutes": 30,
+      "total_time_minutes": 40,
+      "inactive_time_minutes": 0,
+      "difficulty": "easy",
+      "speed": "medium",
+      "budget": "moderate",
+      "commonness": "less_common",
+      "beginner_confidence": "good",
+      "tags": [
+        "thai",
+        "curry",
+        "vegetarian",
+        "vegan",
+        "coconut",
+        "rice",
+        "healthy",
+        "gluten free"
+      ],
+      "ingredients": [
+        "Thai red curry paste, gluten-free if needed",
+        "Coconut milk",
+        "Mixed vegetables such as capsicum/bell pepper, carrot and onion",
+        "Kale or other greens",
+        "Water",
+        "Sugar",
+        "Soy sauce alternative/tamari or salt, as required by dietary needs",
+        "Rice and fresh herbs to serve"
+      ],
+      "ingredient_keywords": [
+        "thai red curry paste",
+        "red curry paste",
+        "coconut milk",
+        "capsicum",
+        "bell pepper",
+        "carrot",
+        "onion",
+        "kale",
+        "greens",
+        "water",
+        "sugar",
+        "tamari",
+        "soy sauce",
+        "salt",
+        "rice",
+        "basil",
+        "coriander",
+        "cilantro"
+      ],
+      "specialty_or_less_common_ingredients": [
+        "Thai red curry paste; check for shrimp paste/gluten ingredients",
+        "gluten-free tamari if using soy-style seasoning"
+      ],
+      "australian_shop_notes": "Check curry paste and soy/tamari labels carefully. Coconut milk, vegetables and rice are generally easy to find at Coles/Woolworths/IGA.",
+      "equipment": [
+        "large skillet or pot",
+        "rice cooker/pot optional"
+      ],
+      "method_steps": [
+        {
+          "order": 1,
+          "instruction": "Prepare vegetables and start rice if serving with rice.",
+          "time_minutes": 10,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Vegetables are sliced and ready before heat starts.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 2,
+          "instruction": "Cook onion and firm vegetables in oil over medium heat until starting to soften.",
+          "time_minutes": 5,
+          "temperature_c": null,
+          "heat_level": "medium",
+          "visual_or_texture_cue": "Onion softens and vegetables brighten.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        },
+        {
+          "order": 3,
+          "instruction": "Add curry paste and stir briefly to wake up the flavour.",
+          "time_minutes": 2,
+          "temperature_c": null,
+          "heat_level": "medium",
+          "visual_or_texture_cue": "Paste smells fragrant and coats the vegetables.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        },
+        {
+          "order": 4,
+          "instruction": "Add coconut milk, water, kale/greens and sugar, then bring to a simmer.",
+          "time_minutes": 5,
+          "temperature_c": null,
+          "heat_level": "medium simmer",
+          "visual_or_texture_cue": "Sauce bubbles gently and greens begin to wilt.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        },
+        {
+          "order": 5,
+          "instruction": "Simmer until vegetables are tender but not mushy.",
+          "time_minutes": 10,
+          "temperature_c": null,
+          "heat_level": "medium-low simmer",
+          "visual_or_texture_cue": "Vegetables are cooked through and sauce is creamy.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        },
+        {
+          "order": 6,
+          "instruction": "Season with gluten-free tamari/salt and serve with rice.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "off",
+          "visual_or_texture_cue": "Curry tastes balanced and savoury.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        }
+      ],
+      "make_ahead_or_storage": "Good as leftovers; keep rice and curry refrigerated separately where possible.",
+      "beginner_notes": [
+        "Use a curry paste labelled gluten free if required.",
+        "Adjust vegetables based on what you have; aim for roughly 3 cups total.",
+        "Marked gluten free from the source or source dietary note; still check packaged ingredient labels such as stock, sauces, spices, seasoning blends, oats, baking mixes and chocolate."
+      ],
+      "searchable_values": {
+        "gluten_free": true,
+        "diet_gluten_free": true,
+        "difficulty_scale": "easy",
+        "speed_scale": "medium",
+        "budget_scale": "moderate",
+        "commonness_scale": "less_common",
+        "vegetarian": true,
+        "vegan": true,
+        "dairy_free": true,
+        "work_night": true,
+        "asian_grocer_helpful": true
+      },
+      "user_fields": {
+        "personal_rating": 0,
+        "cooked_count": 0,
+        "last_cooked": null,
+        "would_cook_again": null,
+        "my_notes": "",
+        "note_to_future_me": "",
+        "changes_to_try_next_time": [],
+        "photo_paths": [],
+        "is_favourite": false,
+        "is_reliable_work_night_meal": false,
+        "household_reaction": "",
+        "rating": 0,
+        "added_to_list": false
+      },
+      "air_fryer": {
+        "applicable": false,
+        "recommendation_type": "not_applicable",
+        "source_air_fryer_instructions_found": false,
+        "source_air_fryer_url": null,
+        "confidence": "not_applicable",
+        "note": "No explicit source-provided air-fryer instructions were recorded for this recipe. Use the written oven/stovetop/slow-cooker method as the source method.",
+        "general_conversion_reminder": "No appended gluten-free recipe in this update includes heuristic air-fryer conversion fields. Prefer the source method unless you later test and record a dedicated air-fryer version."
+      },
+      "image_path": "https://www.bayskitchen.com/cdn/shop/articles/Thai-Red-Curry-Dish.jpg?v=1646664869&width=800"
+    },
+    {
+      "id": "wellplated_slow_cooker_turkey_quinoa_chili_gluten_free",
+      "title": "Slow Cooker Turkey Quinoa Chili",
+      "source_name": "Well Plated",
+      "source_url": "https://www.wellplated.com/slow-cooker-turkey-quinoa-chili/",
+      "source_fidelity": "Ingredient lists and timing/temperature facts are taken from the linked source where available; method wording is paraphrased for offline beginner use.",
+      "cuisine": [
+        "American",
+        "Mexican-inspired"
+      ],
+      "meal_type": [
+        "dinner"
+      ],
+      "servings": "6",
+      "prep_time_minutes": 10,
+      "cook_time_minutes": 305,
+      "total_time_minutes": 315,
+      "inactive_time_minutes": 0,
+      "difficulty": "easy",
+      "speed": "slow",
+      "budget": "moderate",
+      "commonness": "common",
+      "beginner_confidence": "good_if_you_start_early",
+      "tags": [
+        "turkey",
+        "chili",
+        "slow cooker",
+        "quinoa",
+        "sweet potato",
+        "freezer-friendly",
+        "gluten free"
+      ],
+      "ingredients": [
+        "Turkey mince/ground turkey",
+        "Quinoa, rinsed",
+        "Sweet potato, diced",
+        "Black beans",
+        "Tomatoes",
+        "Onion and garlic",
+        "Capsicum/bell pepper",
+        "Chilli powder, cumin and warm spices",
+        "Chicken stock or broth, gluten-free",
+        "Toppings such as avocado, coriander/cilantro or cheese"
+      ],
+      "ingredient_keywords": [
+        "turkey mince",
+        "ground turkey",
+        "turkey",
+        "quinoa",
+        "sweet potato",
+        "black beans",
+        "beans",
+        "tomatoes",
+        "onion",
+        "garlic",
+        "capsicum",
+        "bell pepper",
+        "chilli powder",
+        "chili powder",
+        "cumin",
+        "chicken stock",
+        "stock",
+        "avocado",
+        "coriander",
+        "cilantro",
+        "cheese"
+      ],
+      "specialty_or_less_common_ingredients": [
+        "quinoa",
+        "gluten-free stock/broth"
+      ],
+      "australian_shop_notes": "Turkey mince and quinoa may vary by store. Use gluten-free stock and check spice blends.",
+      "equipment": [
+        "large skillet optional",
+        "slow cooker"
+      ],
+      "method_steps": [
+        {
+          "order": 1,
+          "instruction": "Brown the turkey mince with onion/garlic if your slow cooker method or preference includes browning.",
+          "time_minutes": 5,
+          "temperature_c": null,
+          "heat_level": "medium-high skillet",
+          "visual_or_texture_cue": "Turkey is no longer pink and broken into small pieces.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 2,
+          "instruction": "Add turkey, rinsed quinoa, sweet potato, beans, tomatoes, vegetables, spices and stock to the slow cooker.",
+          "time_minutes": 5,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Ingredients are evenly distributed in the slow cooker.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        },
+        {
+          "order": 3,
+          "instruction": "Cook until the quinoa opens and the sweet potato is tender.",
+          "time_minutes": 305,
+          "temperature_c": null,
+          "heat_level": "slow cooker",
+          "visual_or_texture_cue": "Source total slow-cooker time is about 5 hr 5 min; chili is thick and hearty.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        },
+        {
+          "order": 4,
+          "instruction": "Taste, adjust salt/spice, and serve with gluten-free toppings.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "warm/off",
+          "visual_or_texture_cue": "Chili tastes rounded and not watery.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        }
+      ],
+      "make_ahead_or_storage": "Excellent for leftovers and freezing; chill promptly before storing.",
+      "beginner_notes": [
+        "This is a start-early meal, not a quick dinner.",
+        "Rinse quinoa to avoid bitterness.",
+        "Marked gluten free from the source or source dietary note; still check packaged ingredient labels such as stock, sauces, spices, seasoning blends, oats, baking mixes and chocolate."
+      ],
+      "searchable_values": {
+        "gluten_free": true,
+        "diet_gluten_free": true,
+        "difficulty_scale": "easy",
+        "speed_scale": "slow",
+        "budget_scale": "moderate",
+        "commonness_scale": "common",
+        "slow_cooker": true,
+        "freezer_friendly": true,
+        "high_protein": true
+      },
+      "user_fields": {
+        "personal_rating": 0,
+        "cooked_count": 0,
+        "last_cooked": null,
+        "would_cook_again": null,
+        "my_notes": "",
+        "note_to_future_me": "",
+        "changes_to_try_next_time": [],
+        "photo_paths": [],
+        "is_favourite": false,
+        "is_reliable_work_night_meal": false,
+        "household_reaction": "",
+        "rating": 0,
+        "added_to_list": false
+      },
+      "air_fryer": {
+        "applicable": false,
+        "recommendation_type": "not_applicable",
+        "source_air_fryer_instructions_found": false,
+        "source_air_fryer_url": null,
+        "confidence": "not_applicable",
+        "note": "No explicit source-provided air-fryer instructions were recorded for this recipe. Use the written oven/stovetop/slow-cooker method as the source method.",
+        "general_conversion_reminder": "No appended gluten-free recipe in this update includes heuristic air-fryer conversion fields. Prefer the source method unless you later test and record a dedicated air-fryer version."
+      },
+      "image_path": "https://vitaclaychef.com/cdn/shop/articles/Slow_Cooker_Turkey_Quinoa_Chili_with_Sweet_Potatoes_and_Black_Beans_600x.jpg?v=1579819286"
+    },
+    {
+      "id": "downshiftology_greek_lemon_chicken_gluten_free",
+      "title": "Greek Lemon Chicken",
+      "source_name": "Downshiftology",
+      "source_url": "https://downshiftology.com/recipes/greek-lemon-chicken/",
+      "source_fidelity": "Ingredient lists and timing/temperature facts are taken from the linked source where available; method wording is paraphrased for offline beginner use.",
+      "cuisine": [
+        "Greek",
+        "Mediterranean"
+      ],
+      "meal_type": [
+        "dinner"
+      ],
+      "servings": "4",
+      "prep_time_minutes": 10,
+      "cook_time_minutes": 45,
+      "total_time_minutes": 55,
+      "inactive_time_minutes": 0,
+      "difficulty": "easy",
+      "speed": "medium",
+      "budget": "moderate",
+      "commonness": "common",
+      "beginner_confidence": "good",
+      "tags": [
+        "chicken",
+        "oven",
+        "lemon",
+        "greek",
+        "high-protein",
+        "gluten free"
+      ],
+      "ingredients": [
+        "Chicken thighs",
+        "Lemon juice and lemon zest",
+        "Olive oil",
+        "Garlic",
+        "Dried oregano",
+        "Dried thyme or other herbs",
+        "Salt and black pepper",
+        "Lemon slices and herbs to serve optional"
+      ],
+      "ingredient_keywords": [
+        "chicken",
+        "chicken thighs",
+        "lemon",
+        "lemon juice",
+        "lemon zest",
+        "olive oil",
+        "garlic",
+        "oregano",
+        "dried oregano",
+        "thyme",
+        "salt",
+        "black pepper",
+        "parsley"
+      ],
+      "specialty_or_less_common_ingredients": [],
+      "australian_shop_notes": "Simple supermarket ingredients. Serve with potatoes, rice, salad or gluten-free flatbread if desired.",
+      "equipment": [
+        "baking dish",
+        "mixing bowl",
+        "oven",
+        "meat thermometer optional"
+      ],
+      "method_steps": [
+        {
+          "order": 1,
+          "instruction": "Preheat the oven and prepare a lemon-herb marinade.",
+          "time_minutes": null,
+          "temperature_c": 220,
+          "heat_level": "oven",
+          "visual_or_texture_cue": "Oven is hot and marinade is mixed.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        },
+        {
+          "order": 2,
+          "instruction": "Coat chicken thighs with lemon, oil, garlic, herbs, salt and pepper.",
+          "time_minutes": 10,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Chicken is evenly coated.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 3,
+          "instruction": "Arrange chicken in a baking dish with space around the pieces.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Skin side is up if using skin-on thighs.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 4,
+          "instruction": "Bake until fully cooked.",
+          "time_minutes": 45,
+          "temperature_c": 220,
+          "heat_level": "oven",
+          "visual_or_texture_cue": "Source range is 40-45 min; chicken reaches about 80°C/175°F for thighs.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        },
+        {
+          "order": 5,
+          "instruction": "Optional: broil briefly for crisp skin, then rest before serving.",
+          "time_minutes": 3,
+          "temperature_c": null,
+          "heat_level": "broiler/oven grill",
+          "visual_or_texture_cue": "Skin crisps without burning.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        }
+      ],
+      "make_ahead_or_storage": "Leftovers keep well for salads, bowls or wraps.",
+      "beginner_notes": [
+        "Chicken thighs are forgiving and stay juicier than breast.",
+        "Use a thermometer if unsure; bone-in pieces need longer than boneless.",
+        "Marked gluten free from the source or source dietary note; still check packaged ingredient labels such as stock, sauces, spices, seasoning blends, oats, baking mixes and chocolate."
+      ],
+      "searchable_values": {
+        "gluten_free": true,
+        "diet_gluten_free": true,
+        "difficulty_scale": "easy",
+        "speed_scale": "medium",
+        "budget_scale": "moderate",
+        "commonness_scale": "common",
+        "oven": true,
+        "high_protein": true,
+        "work_night": true
+      },
+      "user_fields": {
+        "personal_rating": 0,
+        "cooked_count": 0,
+        "last_cooked": null,
+        "would_cook_again": null,
+        "my_notes": "",
+        "note_to_future_me": "",
+        "changes_to_try_next_time": [],
+        "photo_paths": [],
+        "is_favourite": false,
+        "is_reliable_work_night_meal": false,
+        "household_reaction": "",
+        "rating": 0,
+        "added_to_list": false
+      },
+      "air_fryer": {
+        "applicable": false,
+        "recommendation_type": "not_applicable",
+        "source_air_fryer_instructions_found": false,
+        "source_air_fryer_url": null,
+        "confidence": "not_applicable",
+        "note": "No explicit source-provided air-fryer instructions were recorded for this recipe. Use the written oven/stovetop/slow-cooker method as the source method.",
+        "general_conversion_reminder": "No appended gluten-free recipe in this update includes heuristic air-fryer conversion fields. Prefer the source method unless you later test and record a dedicated air-fryer version."
+      },
+      "image_path": "https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2023/06/Greek-Lemon-Chicken-5.jpg"
+    },
+    {
+      "id": "loveandlemons_vegetarian_stuffed_peppers_gluten_free",
+      "title": "Vegetarian Stuffed Peppers",
+      "source_name": "Love and Lemons",
+      "source_url": "https://www.loveandlemons.com/vegetarian-stuffed-peppers/",
+      "source_fidelity": "Ingredient lists and timing/temperature facts are taken from the linked source where available; method wording is paraphrased for offline beginner use.",
+      "cuisine": [
+        "Mexican-inspired",
+        "Vegetarian"
+      ],
+      "meal_type": [
+        "dinner"
+      ],
+      "servings": "4",
+      "prep_time_minutes": 30,
+      "cook_time_minutes": 30,
+      "total_time_minutes": 60,
+      "inactive_time_minutes": 0,
+      "difficulty": "medium",
+      "speed": "medium",
+      "budget": "budget",
+      "commonness": "common",
+      "beginner_confidence": "good",
+      "tags": [
+        "stuffed peppers",
+        "vegetarian",
+        "rice",
+        "beans",
+        "oven",
+        "meal prep",
+        "gluten free"
+      ],
+      "ingredients": [
+        "4 red capsicums/bell peppers, halved and seeded",
+        "Extra-virgin olive oil",
+        "1 medium yellow onion, chopped",
+        "1 jalapeño, finely chopped",
+        "4 garlic cloves, chopped",
+        "2 tbsp tomato paste",
+        "Chilli powder and ground cumin",
+        "Salt and black pepper",
+        "1 1/2 cups cooked brown rice",
+        "1 1/2 cups cooked black beans, drained/rinsed",
+        "1 cup corn kernels, fresh or frozen",
+        "Fresh lime juice and zest",
+        "1 cup shredded pepper jack or other cheese",
+        "Fresh coriander/cilantro, salsa and avocado to serve"
+      ],
+      "ingredient_keywords": [
+        "red capsicum",
+        "bell pepper",
+        "olive oil",
+        "yellow onion",
+        "onion",
+        "jalapeño",
+        "jalapeno",
+        "garlic",
+        "tomato paste",
+        "chilli powder",
+        "chili powder",
+        "cumin",
+        "salt",
+        "black pepper",
+        "brown rice",
+        "rice",
+        "black beans",
+        "beans",
+        "corn",
+        "lime",
+        "lime juice",
+        "lime zest",
+        "pepper jack cheese",
+        "cheese",
+        "coriander",
+        "cilantro",
+        "salsa",
+        "avocado"
+      ],
+      "specialty_or_less_common_ingredients": [
+        "pepper jack cheese; any gluten-free melting cheese works"
+      ],
+      "australian_shop_notes": "Capsicum is the Australian term for bell pepper. Check salsa labels if using packaged salsa.",
+      "equipment": [
+        "baking sheet",
+        "large baking dish",
+        "large skillet",
+        "oven"
+      ],
+      "method_steps": [
+        {
+          "order": 1,
+          "instruction": "Preheat oven and line a baking sheet.",
+          "time_minutes": null,
+          "temperature_c": 230,
+          "heat_level": "oven",
+          "visual_or_texture_cue": "Source uses 450°F, about 230°C.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        },
+        {
+          "order": 2,
+          "instruction": "Roast halved capsicums cut-side up with oil, salt and pepper.",
+          "time_minutes": 10,
+          "temperature_c": 230,
+          "heat_level": "oven",
+          "visual_or_texture_cue": "Peppers soften and may release some liquid.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        },
+        {
+          "order": 3,
+          "instruction": "Cook onion, jalapeño and garlic in oil.",
+          "time_minutes": 5,
+          "temperature_c": null,
+          "heat_level": "medium skillet",
+          "visual_or_texture_cue": "Vegetables soften.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        },
+        {
+          "order": 4,
+          "instruction": "Add tomato paste, chilli powder, cumin, salt and pepper; cook briefly.",
+          "time_minutes": 3,
+          "temperature_c": null,
+          "heat_level": "medium skillet",
+          "visual_or_texture_cue": "Tomato paste darkens and spices smell fragrant.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        },
+        {
+          "order": 5,
+          "instruction": "Remove from heat and stir in cooked rice, black beans, corn, lime juice and zest.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "off",
+          "visual_or_texture_cue": "Filling is combined and seasoned to taste.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 6,
+          "instruction": "Fill peppers, top with cheese, and broil/bake until cheese melts and browns.",
+          "time_minutes": 10,
+          "temperature_c": null,
+          "heat_level": "broiler/oven grill",
+          "visual_or_texture_cue": "Source range is 5-10 min; cheese is melted and browned.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        },
+        {
+          "order": 7,
+          "instruction": "Top with coriander/cilantro and serve with salsa or avocado.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "off",
+          "visual_or_texture_cue": "Peppers are hot and filling holds together.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        }
+      ],
+      "make_ahead_or_storage": "Filling can be made ahead. Leftover stuffed peppers keep refrigerated for about 3 days.",
+      "beginner_notes": [
+        "Cook the rice ahead to make this much quicker.",
+        "Tip liquid out of roasted peppers before filling.",
+        "Marked gluten free from the source or source dietary note; still check packaged ingredient labels such as stock, sauces, spices, seasoning blends, oats, baking mixes and chocolate."
+      ],
+      "searchable_values": {
+        "gluten_free": true,
+        "diet_gluten_free": true,
+        "difficulty_scale": "medium",
+        "speed_scale": "medium",
+        "budget_scale": "budget",
+        "commonness_scale": "common",
+        "vegetarian": true,
+        "oven": true,
+        "meal_prep": true
+      },
+      "user_fields": {
+        "personal_rating": 0,
+        "cooked_count": 0,
+        "last_cooked": null,
+        "would_cook_again": null,
+        "my_notes": "",
+        "note_to_future_me": "",
+        "changes_to_try_next_time": [],
+        "photo_paths": [],
+        "is_favourite": false,
+        "is_reliable_work_night_meal": false,
+        "household_reaction": "",
+        "rating": 0,
+        "added_to_list": false
+      },
+      "air_fryer": {
+        "applicable": false,
+        "recommendation_type": "not_applicable",
+        "source_air_fryer_instructions_found": false,
+        "source_air_fryer_url": null,
+        "confidence": "not_applicable",
+        "note": "No explicit source-provided air-fryer instructions were recorded for this recipe. Use the written oven/stovetop/slow-cooker method as the source method.",
+        "general_conversion_reminder": "No appended gluten-free recipe in this update includes heuristic air-fryer conversion fields. Prefer the source method unless you later test and record a dedicated air-fryer version."
+      },
+      "image_path": "https://cdn.loveandlemons.com/wp-content/uploads/2023/08/vegetarian-stuffed-peppers-580x580.jpg"
+    },
+    {
+      "id": "cookieandkate_roasted_veggie_enchilada_casserole_gluten_free",
+      "title": "Roasted Veggie Enchilada Casserole",
+      "source_name": "Cookie and Kate",
+      "source_url": "https://cookieandkate.com/vegetarian-enchilada-casserole-recipe/",
+      "source_fidelity": "Ingredient lists and timing/temperature facts are taken from the linked source where available; method wording is paraphrased for offline beginner use.",
+      "cuisine": [
+        "Mexican-inspired",
+        "Vegetarian"
+      ],
+      "meal_type": [
+        "dinner"
+      ],
+      "servings": "6-8",
+      "prep_time_minutes": 45,
+      "cook_time_minutes": 60,
+      "total_time_minutes": 105,
+      "inactive_time_minutes": 0,
+      "difficulty": "medium",
+      "speed": "slow",
+      "budget": "moderate",
+      "commonness": "less_common",
+      "beginner_confidence": "good_if_you_have_time",
+      "tags": [
+        "enchilada casserole",
+        "vegetarian",
+        "oven",
+        "beans",
+        "meal prep",
+        "gluten free"
+      ],
+      "ingredients": [
+        "Mixed vegetables for roasting such as cauliflower, capsicum/bell pepper, zucchini or onion",
+        "Olive oil",
+        "Corn tortillas",
+        "Black beans",
+        "Enchilada sauce, gluten-free",
+        "Cheese",
+        "Spices such as cumin and chilli powder",
+        "Fresh coriander/cilantro, avocado or lime to serve"
+      ],
+      "ingredient_keywords": [
+        "cauliflower",
+        "capsicum",
+        "bell pepper",
+        "zucchini",
+        "onion",
+        "olive oil",
+        "corn tortillas",
+        "black beans",
+        "beans",
+        "enchilada sauce",
+        "cheese",
+        "cumin",
+        "chilli powder",
+        "chili powder",
+        "coriander",
+        "cilantro",
+        "avocado",
+        "lime"
+      ],
+      "specialty_or_less_common_ingredients": [
+        "gluten-free enchilada sauce",
+        "corn tortillas"
+      ],
+      "australian_shop_notes": "Use corn tortillas and a gluten-free enchilada sauce. Check spice blends and canned sauce labels.",
+      "equipment": [
+        "large sheet pan",
+        "baking dish",
+        "oven"
+      ],
+      "method_steps": [
+        {
+          "order": 1,
+          "instruction": "Preheat oven and prepare chopped vegetables for roasting.",
+          "time_minutes": null,
+          "temperature_c": 200,
+          "heat_level": "oven",
+          "visual_or_texture_cue": "Vegetables are cut into similar-sized pieces.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        },
+        {
+          "order": 2,
+          "instruction": "Roast vegetables with oil and seasoning until tender and browned at the edges.",
+          "time_minutes": 30,
+          "temperature_c": 200,
+          "heat_level": "oven",
+          "visual_or_texture_cue": "Vegetables shrink slightly and develop browned spots.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        },
+        {
+          "order": 3,
+          "instruction": "Reduce oven if needed, then layer sauce, corn tortillas, beans, roasted vegetables and cheese in a baking dish.",
+          "time_minutes": 15,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Layers are spread evenly.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 4,
+          "instruction": "Bake the casserole until hot through and bubbling.",
+          "time_minutes": 25,
+          "temperature_c": 190,
+          "heat_level": "oven",
+          "visual_or_texture_cue": "Sauce bubbles around edges and cheese is melted.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        },
+        {
+          "order": 5,
+          "instruction": "Rest briefly before slicing and serving with fresh toppings.",
+          "time_minutes": 5,
+          "temperature_c": null,
+          "heat_level": "off",
+          "visual_or_texture_cue": "Casserole sets slightly so portions lift more neatly.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        }
+      ],
+      "make_ahead_or_storage": "Good make-ahead casserole; refrigerate leftovers and reheat covered so tortillas do not dry out.",
+      "beginner_notes": [
+        "This is a longer dinner, but most time is roasting/baking.",
+        "Corn tortillas are naturally gluten free only if labelled/handled safely.",
+        "Marked gluten free from the source or source dietary note; still check packaged ingredient labels such as stock, sauces, spices, seasoning blends, oats, baking mixes and chocolate."
+      ],
+      "searchable_values": {
+        "gluten_free": true,
+        "diet_gluten_free": true,
+        "difficulty_scale": "medium",
+        "speed_scale": "slow",
+        "budget_scale": "moderate",
+        "commonness_scale": "less_common",
+        "vegetarian": true,
+        "oven": true,
+        "make_ahead": true
+      },
+      "user_fields": {
+        "personal_rating": 0,
+        "cooked_count": 0,
+        "last_cooked": null,
+        "would_cook_again": null,
+        "my_notes": "",
+        "note_to_future_me": "",
+        "changes_to_try_next_time": [],
+        "photo_paths": [],
+        "is_favourite": false,
+        "is_reliable_work_night_meal": false,
+        "household_reaction": "",
+        "rating": 0,
+        "added_to_list": false
+      },
+      "air_fryer": {
+        "applicable": false,
+        "recommendation_type": "not_applicable",
+        "source_air_fryer_instructions_found": false,
+        "source_air_fryer_url": null,
+        "confidence": "not_applicable",
+        "note": "No explicit source-provided air-fryer instructions were recorded for this recipe. Use the written oven/stovetop/slow-cooker method as the source method.",
+        "general_conversion_reminder": "No appended gluten-free recipe in this update includes heuristic air-fryer conversion fields. Prefer the source method unless you later test and record a dedicated air-fryer version."
+      },
+      "image_path": "https://cookieandkate.com/images/2016/11/mexican-casserole-recipe.jpg"
+    },
+    {
+      "id": "downshiftology_ultimate_chicken_salad_gluten_free",
+      "title": "Ultimate Chicken Salad",
+      "source_name": "Downshiftology",
+      "source_url": "https://downshiftology.com/recipes/chicken-salad/",
+      "source_fidelity": "Ingredient lists and timing/temperature facts are taken from the linked source where available; method wording is paraphrased for offline beginner use.",
+      "cuisine": [
+        "Western"
+      ],
+      "meal_type": [
+        "lunch"
+      ],
+      "servings": "6",
+      "prep_time_minutes": 10,
+      "cook_time_minutes": 15,
+      "total_time_minutes": 25,
+      "inactive_time_minutes": 0,
+      "difficulty": "easy",
+      "speed": "quick",
+      "budget": "moderate",
+      "commonness": "common",
+      "beginner_confidence": "good",
+      "tags": [
+        "chicken",
+        "salad",
+        "meal prep",
+        "high-protein",
+        "cold lunch",
+        "gluten free"
+      ],
+      "ingredients": [
+        "2 lb boneless skinless chicken breasts",
+        "1 cup red grapes, quartered",
+        "2 celery ribs, diced",
+        "3 green onions/spring onions, sliced",
+        "1 cup mayonnaise",
+        "1 tbsp Dijon mustard",
+        "1/2 cup sliced raw almonds",
+        "Parsley and tarragon",
+        "1 lemon, juiced",
+        "Salt and black pepper"
+      ],
+      "ingredient_keywords": [
+        "chicken breast",
+        "chicken",
+        "red grapes",
+        "grapes",
+        "celery",
+        "green onions",
+        "spring onions",
+        "scallions",
+        "mayonnaise",
+        "mayo",
+        "dijon mustard",
+        "mustard",
+        "almonds",
+        "parsley",
+        "tarragon",
+        "lemon",
+        "lemon juice",
+        "salt",
+        "black pepper"
+      ],
+      "specialty_or_less_common_ingredients": [
+        "fresh tarragon optional",
+        "Dijon mustard; check gluten-free label"
+      ],
+      "australian_shop_notes": "Serve in lettuce cups, on salad greens, with rice crackers or with gluten-free bread if desired.",
+      "equipment": [
+        "wide pan for poaching",
+        "mixing bowl",
+        "knife"
+      ],
+      "method_steps": [
+        {
+          "order": 1,
+          "instruction": "Poach chicken gently in salted water until cooked through.",
+          "time_minutes": 12,
+          "temperature_c": null,
+          "heat_level": "low simmer",
+          "visual_or_texture_cue": "Source range is 8-12 min; chicken reaches about 71-74°C/160-165°F before resting.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        },
+        {
+          "order": 2,
+          "instruction": "Rest chicken briefly, then chill until cool enough for salad.",
+          "time_minutes": 3,
+          "temperature_c": null,
+          "heat_level": "off/fridge",
+          "visual_or_texture_cue": "Chicken is cool and easier to dice.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        },
+        {
+          "order": 3,
+          "instruction": "Dice cooled chicken into bite-size pieces.",
+          "time_minutes": 5,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Pieces are chunky rather than shredded to mush.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 4,
+          "instruction": "Mix chicken with grapes, celery, spring onion, mayonnaise, mustard, almonds, herbs, lemon juice, salt and pepper.",
+          "time_minutes": 5,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Everything is evenly coated in creamy dressing.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 5,
+          "instruction": "Chill until ready to serve.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "fridge",
+          "visual_or_texture_cue": "Salad is cold and flavours have settled.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        }
+      ],
+      "make_ahead_or_storage": "Store covered in the fridge for 4-5 days; do not leave mayo-based salad out at room temperature for long.",
+      "beginner_notes": [
+        "Use leftover roast/rotisserie chicken only if you can verify it is gluten free.",
+        "Good lunch option for lettuce cups or gluten-free crackers.",
+        "Marked gluten free from the source or source dietary note; still check packaged ingredient labels such as stock, sauces, spices, seasoning blends, oats, baking mixes and chocolate."
+      ],
+      "searchable_values": {
+        "gluten_free": true,
+        "diet_gluten_free": true,
+        "difficulty_scale": "easy",
+        "speed_scale": "quick",
+        "budget_scale": "moderate",
+        "commonness_scale": "common",
+        "meal_prep": true,
+        "high_protein": true,
+        "low_carb": true
+      },
+      "user_fields": {
+        "personal_rating": 0,
+        "cooked_count": 0,
+        "last_cooked": null,
+        "would_cook_again": null,
+        "my_notes": "",
+        "note_to_future_me": "",
+        "changes_to_try_next_time": [],
+        "photo_paths": [],
+        "is_favourite": false,
+        "is_reliable_work_night_meal": false,
+        "household_reaction": "",
+        "rating": 0,
+        "added_to_list": false
+      },
+      "air_fryer": {
+        "applicable": false,
+        "recommendation_type": "not_applicable",
+        "source_air_fryer_instructions_found": false,
+        "source_air_fryer_url": null,
+        "confidence": "not_applicable",
+        "note": "No explicit source-provided air-fryer instructions were recorded for this recipe. Use the written oven/stovetop/slow-cooker method as the source method.",
+        "general_conversion_reminder": "No appended gluten-free recipe in this update includes heuristic air-fryer conversion fields. Prefer the source method unless you later test and record a dedicated air-fryer version."
+      },
+      "image_path": "https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2023/10/Chicken-Salad-7-1024x1536.jpg"
+    },
+    {
+      "id": "downshiftology_tuna_salad_gluten_free",
+      "title": "Tuna Salad",
+      "source_name": "Downshiftology",
+      "source_url": "https://downshiftology.com/recipes/tuna-salad/",
+      "source_fidelity": "Ingredient lists and timing/temperature facts are taken from the linked source where available; method wording is paraphrased for offline beginner use.",
+      "cuisine": [
+        "Western"
+      ],
+      "meal_type": [
+        "lunch"
+      ],
+      "servings": "4",
+      "prep_time_minutes": 15,
+      "cook_time_minutes": 0,
+      "total_time_minutes": 15,
+      "inactive_time_minutes": 0,
+      "difficulty": "easy",
+      "speed": "quick",
+      "budget": "budget",
+      "commonness": "common",
+      "beginner_confidence": "good",
+      "tags": [
+        "tuna",
+        "salad",
+        "no-cook",
+        "pantry",
+        "meal prep",
+        "gluten free"
+      ],
+      "ingredients": [
+        "Canned tuna, drained",
+        "Mayonnaise",
+        "Celery, finely diced",
+        "Red onion, finely diced",
+        "Fresh parsley or other herbs",
+        "Dijon mustard",
+        "Lemon juice",
+        "Salt and black pepper"
+      ],
+      "ingredient_keywords": [
+        "canned tuna",
+        "tuna",
+        "mayonnaise",
+        "mayo",
+        "celery",
+        "red onion",
+        "onion",
+        "parsley",
+        "dijon mustard",
+        "mustard",
+        "lemon",
+        "lemon juice",
+        "salt",
+        "black pepper",
+        "lettuce",
+        "gluten-free bread",
+        "rice crackers"
+      ],
+      "specialty_or_less_common_ingredients": [
+        "Dijon mustard; check label"
+      ],
+      "australian_shop_notes": "Serve in lettuce cups, with rice crackers, over salad greens, or with gluten-free bread.",
+      "equipment": [
+        "mixing bowl",
+        "fork",
+        "knife"
+      ],
+      "method_steps": [
+        {
+          "order": 1,
+          "instruction": "Drain tuna well and flake it into a mixing bowl.",
+          "time_minutes": 3,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Tuna is broken into small flakes but not mashed into paste.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 2,
+          "instruction": "Dice celery, onion and herbs.",
+          "time_minutes": 7,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Vegetables are small enough to mix evenly.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 3,
+          "instruction": "Stir tuna with mayonnaise, mustard, lemon, celery, onion, herbs, salt and pepper.",
+          "time_minutes": 5,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Mixture is creamy and evenly combined.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 4,
+          "instruction": "Serve as a salad, lettuce wrap or gluten-free sandwich filling.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Cold tuna salad is ready to eat.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        }
+      ],
+      "make_ahead_or_storage": "Keeps in the fridge for about 3-4 days in an airtight container.",
+      "beginner_notes": [
+        "Drain tuna thoroughly so the salad is not watery.",
+        "Taste before adding extra salt; canned tuna may already be salty.",
+        "Marked gluten free from the source or source dietary note; still check packaged ingredient labels such as stock, sauces, spices, seasoning blends, oats, baking mixes and chocolate."
+      ],
+      "searchable_values": {
+        "gluten_free": true,
+        "diet_gluten_free": true,
+        "difficulty_scale": "easy",
+        "speed_scale": "quick",
+        "budget_scale": "budget",
+        "commonness_scale": "common",
+        "no_cook": true,
+        "pantry_meal": true,
+        "meal_prep": true
+      },
+      "user_fields": {
+        "personal_rating": 0,
+        "cooked_count": 0,
+        "last_cooked": null,
+        "would_cook_again": null,
+        "my_notes": "",
+        "note_to_future_me": "",
+        "changes_to_try_next_time": [],
+        "photo_paths": [],
+        "is_favourite": false,
+        "is_reliable_work_night_meal": false,
+        "household_reaction": "",
+        "rating": 0,
+        "added_to_list": false
+      },
+      "air_fryer": {
+        "applicable": false,
+        "recommendation_type": "not_applicable",
+        "source_air_fryer_instructions_found": false,
+        "source_air_fryer_url": null,
+        "confidence": "not_applicable",
+        "note": "No explicit source-provided air-fryer instructions were recorded for this recipe. Use the written oven/stovetop/slow-cooker method as the source method.",
+        "general_conversion_reminder": "No appended gluten-free recipe in this update includes heuristic air-fryer conversion fields. Prefer the source method unless you later test and record a dedicated air-fryer version."
+      },
+      "image_path": "https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2020/04/Tuna-Salad-6-1024x1536.jpg"
+    },
+    {
+      "id": "cookieandkate_best_quinoa_salad_gluten_free",
+      "title": "Best Quinoa Salad",
+      "source_name": "Cookie and Kate",
+      "source_url": "https://cookieandkate.com/best-quinoa-salad-recipe/",
+      "source_fidelity": "Ingredient lists and timing/temperature facts are taken from the linked source where available; method wording is paraphrased for offline beginner use.",
+      "cuisine": [
+        "Mediterranean-inspired",
+        "Vegetarian"
+      ],
+      "meal_type": [
+        "lunch"
+      ],
+      "servings": "4",
+      "prep_time_minutes": 20,
+      "cook_time_minutes": 20,
+      "total_time_minutes": 40,
+      "inactive_time_minutes": 0,
+      "difficulty": "easy",
+      "speed": "medium",
+      "budget": "budget",
+      "commonness": "common",
+      "beginner_confidence": "good",
+      "tags": [
+        "quinoa",
+        "salad",
+        "vegan",
+        "dairy-free",
+        "meal prep",
+        "healthy",
+        "gluten free"
+      ],
+      "ingredients": [
+        "Quinoa, rinsed",
+        "Water",
+        "Cucumber",
+        "Capsicum/bell pepper",
+        "Red onion",
+        "Chickpeas or other beans",
+        "Fresh parsley",
+        "Olive oil",
+        "Lemon juice",
+        "Vinegar",
+        "Garlic",
+        "Salt and black pepper"
+      ],
+      "ingredient_keywords": [
+        "quinoa",
+        "water",
+        "cucumber",
+        "capsicum",
+        "bell pepper",
+        "red onion",
+        "onion",
+        "chickpeas",
+        "beans",
+        "parsley",
+        "olive oil",
+        "lemon",
+        "lemon juice",
+        "vinegar",
+        "garlic",
+        "salt",
+        "black pepper"
+      ],
+      "specialty_or_less_common_ingredients": [
+        "quinoa"
+      ],
+      "australian_shop_notes": "Quinoa is usually in the rice/grain or health-food aisle. Rinse it unless the packet says pre-rinsed.",
+      "equipment": [
+        "medium saucepan",
+        "mixing bowl",
+        "knife"
+      ],
+      "method_steps": [
+        {
+          "order": 1,
+          "instruction": "Rinse quinoa and cook with water until fluffy.",
+          "time_minutes": 20,
+          "temperature_c": null,
+          "heat_level": "simmer",
+          "visual_or_texture_cue": "Quinoa absorbs water and tiny spirals separate from the grains.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        },
+        {
+          "order": 2,
+          "instruction": "Let quinoa cool while chopping vegetables and herbs.",
+          "time_minutes": 10,
+          "temperature_c": null,
+          "heat_level": "cooling/no heat",
+          "visual_or_texture_cue": "Quinoa is warm or room temperature, not steaming hot.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 3,
+          "instruction": "Whisk olive oil, lemon, vinegar, garlic, salt and pepper into a dressing.",
+          "time_minutes": 3,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Dressing is combined and bright-tasting.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 4,
+          "instruction": "Toss quinoa with vegetables, chickpeas, herbs and dressing.",
+          "time_minutes": 7,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Salad is evenly dressed.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 5,
+          "instruction": "Chill or serve immediately.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "fridge/off",
+          "visual_or_texture_cue": "Flavours settle as it rests.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        }
+      ],
+      "make_ahead_or_storage": "Packs well for lunches and picnics; refrigerate in airtight containers.",
+      "beginner_notes": [
+        "Use leftover quinoa to make this faster.",
+        "Add protein such as chicken, tuna or egg if you want a more filling lunch.",
+        "Marked gluten free from the source or source dietary note; still check packaged ingredient labels such as stock, sauces, spices, seasoning blends, oats, baking mixes and chocolate."
+      ],
+      "searchable_values": {
+        "gluten_free": true,
+        "diet_gluten_free": true,
+        "difficulty_scale": "easy",
+        "speed_scale": "medium",
+        "budget_scale": "budget",
+        "commonness_scale": "common",
+        "vegetarian": true,
+        "vegan": true,
+        "dairy_free": true,
+        "meal_prep": true
+      },
+      "user_fields": {
+        "personal_rating": 0,
+        "cooked_count": 0,
+        "last_cooked": null,
+        "would_cook_again": null,
+        "my_notes": "",
+        "note_to_future_me": "",
+        "changes_to_try_next_time": [],
+        "photo_paths": [],
+        "is_favourite": false,
+        "is_reliable_work_night_meal": false,
+        "household_reaction": "",
+        "rating": 0,
+        "added_to_list": false
+      },
+      "air_fryer": {
+        "applicable": false,
+        "recommendation_type": "not_applicable",
+        "source_air_fryer_instructions_found": false,
+        "source_air_fryer_url": null,
+        "confidence": "not_applicable",
+        "note": "No explicit source-provided air-fryer instructions were recorded for this recipe. Use the written oven/stovetop/slow-cooker method as the source method.",
+        "general_conversion_reminder": "No appended gluten-free recipe in this update includes heuristic air-fryer conversion fields. Prefer the source method unless you later test and record a dedicated air-fryer version."
+      },
+      "image_path": "https://cookieandkate.com/images/2017/08/best-quinoa-salad-recipe-3.jpg"
+    },
+    {
+      "id": "loveandlemons_chickpea_salad_gluten_free",
+      "title": "Mediterranean Chickpea Salad",
+      "source_name": "Love and Lemons",
+      "source_url": "https://www.loveandlemons.com/chickpea-salad/",
+      "source_fidelity": "Ingredient lists and timing/temperature facts are taken from the linked source where available; method wording is paraphrased for offline beginner use.",
+      "cuisine": [
+        "Mediterranean",
+        "Vegetarian"
+      ],
+      "meal_type": [
+        "lunch"
+      ],
+      "servings": "4-6",
+      "prep_time_minutes": 20,
+      "cook_time_minutes": 0,
+      "total_time_minutes": 20,
+      "inactive_time_minutes": 0,
+      "difficulty": "easy",
+      "speed": "quick",
+      "budget": "budget",
+      "commonness": "common",
+      "beginner_confidence": "good",
+      "tags": [
+        "chickpeas",
+        "salad",
+        "no-cook",
+        "vegan",
+        "picnic",
+        "healthy",
+        "gluten free"
+      ],
+      "ingredients": [
+        "Canned chickpeas/garbanzo beans, drained and rinsed",
+        "Cucumber",
+        "Tomatoes",
+        "Olives",
+        "Fresh herbs",
+        "Pickled onion or red onion",
+        "Olive oil",
+        "Lemon juice",
+        "Garlic",
+        "Salt and black pepper"
+      ],
+      "ingredient_keywords": [
+        "chickpeas",
+        "garbanzo beans",
+        "beans",
+        "cucumber",
+        "tomatoes",
+        "tomato",
+        "olives",
+        "fresh herbs",
+        "parsley",
+        "mint",
+        "basil",
+        "pickled onion",
+        "red onion",
+        "onion",
+        "olive oil",
+        "lemon",
+        "lemon juice",
+        "garlic",
+        "salt",
+        "black pepper"
+      ],
+      "specialty_or_less_common_ingredients": [
+        "olives",
+        "pickled onion optional"
+      ],
+      "australian_shop_notes": "Most ingredients are supermarket common. Check jarred olives/pickles for gluten-free status if required.",
+      "equipment": [
+        "mixing bowl",
+        "knife",
+        "jar or whisk for dressing"
+      ],
+      "method_steps": [
+        {
+          "order": 1,
+          "instruction": "Drain and rinse chickpeas.",
+          "time_minutes": 2,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Chickpeas are drained well.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 2,
+          "instruction": "Chop cucumber, tomatoes, olives, herbs and onion.",
+          "time_minutes": 10,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Vegetables are bite-size.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 3,
+          "instruction": "Whisk olive oil, lemon, garlic, salt and pepper into a dressing.",
+          "time_minutes": 3,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Dressing tastes bright and zesty.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 4,
+          "instruction": "Toss chickpeas, vegetables, herbs and dressing together.",
+          "time_minutes": 5,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Everything is evenly coated.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 5,
+          "instruction": "Serve immediately or chill for packed lunches.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "fridge/off",
+          "visual_or_texture_cue": "Salad is fresh, crunchy and not watery.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        }
+      ],
+      "make_ahead_or_storage": "Good packed lunch; store refrigerated and stir before serving.",
+      "beginner_notes": [
+        "Drain chickpeas well so the dressing is not diluted.",
+        "Add feta only if you want it non-vegan.",
+        "Marked gluten free from the source or source dietary note; still check packaged ingredient labels such as stock, sauces, spices, seasoning blends, oats, baking mixes and chocolate."
+      ],
+      "searchable_values": {
+        "gluten_free": true,
+        "diet_gluten_free": true,
+        "difficulty_scale": "easy",
+        "speed_scale": "quick",
+        "budget_scale": "budget",
+        "commonness_scale": "common",
+        "vegetarian": true,
+        "vegan": true,
+        "no_cook": true,
+        "meal_prep": true
+      },
+      "user_fields": {
+        "personal_rating": 0,
+        "cooked_count": 0,
+        "last_cooked": null,
+        "would_cook_again": null,
+        "my_notes": "",
+        "note_to_future_me": "",
+        "changes_to_try_next_time": [],
+        "photo_paths": [],
+        "is_favourite": false,
+        "is_reliable_work_night_meal": false,
+        "household_reaction": "",
+        "rating": 0,
+        "added_to_list": false
+      },
+      "air_fryer": {
+        "applicable": false,
+        "recommendation_type": "not_applicable",
+        "source_air_fryer_instructions_found": false,
+        "source_air_fryer_url": null,
+        "confidence": "not_applicable",
+        "note": "No explicit source-provided air-fryer instructions were recorded for this recipe. Use the written oven/stovetop/slow-cooker method as the source method.",
+        "general_conversion_reminder": "No appended gluten-free recipe in this update includes heuristic air-fryer conversion fields. Prefer the source method unless you later test and record a dedicated air-fryer version."
+      },
+      "image_path": "https://cdn.loveandlemons.com/wp-content/uploads/2023/05/chickpea-salad-580x580.jpg"
+    },
+    {
+      "id": "downshiftology_mediterranean_chickpea_salad_gluten_free",
+      "title": "Mediterranean Chickpea Salad with Feta",
+      "source_name": "Downshiftology",
+      "source_url": "https://downshiftology.com/recipes/mediterranean-chickpea-salad/",
+      "source_fidelity": "Ingredient lists and timing/temperature facts are taken from the linked source where available; method wording is paraphrased for offline beginner use.",
+      "cuisine": [
+        "Mediterranean",
+        "Vegetarian"
+      ],
+      "meal_type": [
+        "lunch"
+      ],
+      "servings": "8",
+      "prep_time_minutes": 10,
+      "cook_time_minutes": 0,
+      "total_time_minutes": 10,
+      "inactive_time_minutes": 0,
+      "difficulty": "easy",
+      "speed": "quick",
+      "budget": "budget",
+      "commonness": "common",
+      "beginner_confidence": "good",
+      "tags": [
+        "chickpeas",
+        "salad",
+        "feta",
+        "no-cook",
+        "summer",
+        "meal prep",
+        "gluten free"
+      ],
+      "ingredients": [
+        "Canned chickpeas, drained/rinsed",
+        "Tomatoes",
+        "Cucumber",
+        "Capsicum/bell pepper",
+        "Red onion",
+        "Feta cheese",
+        "Fresh parsley",
+        "Olive oil",
+        "Lemon juice or vinegar",
+        "Garlic",
+        "Salt and black pepper"
+      ],
+      "ingredient_keywords": [
+        "chickpeas",
+        "beans",
+        "tomatoes",
+        "tomato",
+        "cucumber",
+        "capsicum",
+        "bell pepper",
+        "red onion",
+        "onion",
+        "feta",
+        "feta cheese",
+        "parsley",
+        "olive oil",
+        "lemon",
+        "lemon juice",
+        "vinegar",
+        "garlic",
+        "salt",
+        "black pepper"
+      ],
+      "specialty_or_less_common_ingredients": [
+        "feta cheese"
+      ],
+      "australian_shop_notes": "Use plain chickpeas and standard fresh vegetables. Check any pre-made dressing if substituting.",
+      "equipment": [
+        "large mixing bowl",
+        "knife",
+        "small bowl for dressing"
+      ],
+      "method_steps": [
+        {
+          "order": 1,
+          "instruction": "Drain and rinse chickpeas.",
+          "time_minutes": 2,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Chickpeas are clean and well-drained.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 2,
+          "instruction": "Dice tomatoes, cucumber, capsicum and red onion; chop parsley.",
+          "time_minutes": 6,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Vegetables are small enough to spoon easily.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 3,
+          "instruction": "Whisk olive oil, lemon/vinegar, garlic, salt and pepper.",
+          "time_minutes": 2,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Dressing is combined.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 4,
+          "instruction": "Toss chickpeas, vegetables, parsley, feta and dressing.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Salad is colourful and evenly dressed.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        }
+      ],
+      "make_ahead_or_storage": "Good in the fridge for several days, though vegetables soften over time.",
+      "beginner_notes": [
+        "This makes a large batch; halve it if cooking for one or two.",
+        "Add chicken or tuna if you want extra protein.",
+        "Marked gluten free from the source or source dietary note; still check packaged ingredient labels such as stock, sauces, spices, seasoning blends, oats, baking mixes and chocolate."
+      ],
+      "searchable_values": {
+        "gluten_free": true,
+        "diet_gluten_free": true,
+        "difficulty_scale": "easy",
+        "speed_scale": "quick",
+        "budget_scale": "budget",
+        "commonness_scale": "common",
+        "vegetarian": true,
+        "no_cook": true,
+        "meal_prep": true
+      },
+      "user_fields": {
+        "personal_rating": 0,
+        "cooked_count": 0,
+        "last_cooked": null,
+        "would_cook_again": null,
+        "my_notes": "",
+        "note_to_future_me": "",
+        "changes_to_try_next_time": [],
+        "photo_paths": [],
+        "is_favourite": false,
+        "is_reliable_work_night_meal": false,
+        "household_reaction": "",
+        "rating": 0,
+        "added_to_list": false
+      },
+      "air_fryer": {
+        "applicable": false,
+        "recommendation_type": "not_applicable",
+        "source_air_fryer_instructions_found": false,
+        "source_air_fryer_url": null,
+        "confidence": "not_applicable",
+        "note": "No explicit source-provided air-fryer instructions were recorded for this recipe. Use the written oven/stovetop/slow-cooker method as the source method.",
+        "general_conversion_reminder": "No appended gluten-free recipe in this update includes heuristic air-fryer conversion fields. Prefer the source method unless you later test and record a dedicated air-fryer version."
+      },
+      "image_path": "https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2020/08/Mediterranean-Chickpea-Salad-7.jpg"
+    },
+    {
+      "id": "kingarthur_gluten_free_brownies",
+      "title": "Gluten-Free Brownies",
+      "source_name": "King Arthur Baking",
+      "source_url": "https://www.kingarthurbaking.com/recipes/gluten-free-brownies-recipe",
+      "source_fidelity": "Ingredient lists and timing/temperature facts are taken from the linked source where available; method wording is paraphrased for offline beginner use.",
+      "cuisine": [
+        "Western"
+      ],
+      "meal_type": [
+        "dessert",
+        "sweet baking"
+      ],
+      "servings": "one 8-inch square pan",
+      "prep_time_minutes": 15,
+      "cook_time_minutes": 38,
+      "total_time_minutes": 53,
+      "inactive_time_minutes": 15,
+      "difficulty": "easy",
+      "speed": "medium",
+      "budget": "moderate",
+      "commonness": "common",
+      "beginner_confidence": "good",
+      "tags": [
+        "dessert",
+        "baking",
+        "brownies",
+        "chocolate",
+        "oven",
+        "gluten free"
+      ],
+      "ingredients": [
+        "Sugar",
+        "Butter",
+        "Salt",
+        "Vanilla",
+        "Cocoa powder",
+        "Eggs",
+        "King Arthur gluten-free flour or similar gluten-free baking flour",
+        "Baking powder",
+        "Chocolate chips and/or nuts optional"
+      ],
+      "ingredient_keywords": [
+        "sugar",
+        "butter",
+        "salt",
+        "vanilla",
+        "vanilla extract",
+        "cocoa powder",
+        "cocoa",
+        "eggs",
+        "egg",
+        "gluten-free flour",
+        "gluten free flour",
+        "baking powder",
+        "chocolate chips",
+        "nuts"
+      ],
+      "specialty_or_less_common_ingredients": [
+        "gluten-free baking flour",
+        "cocoa powder"
+      ],
+      "australian_shop_notes": "Use a labelled gluten-free flour blend and check chocolate chips, cocoa and baking powder labels.",
+      "equipment": [
+        "8-inch square pan or 9-inch round pan",
+        "microwave-safe bowl or saucepan",
+        "spatula",
+        "oven"
+      ],
+      "method_steps": [
+        {
+          "order": 1,
+          "instruction": "Preheat oven and grease an 8-inch square pan or 9-inch round pan.",
+          "time_minutes": null,
+          "temperature_c": 175,
+          "heat_level": "oven",
+          "visual_or_texture_cue": "Source uses 350°F, about 175°C.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        },
+        {
+          "order": 2,
+          "instruction": "Warm sugar, butter and salt until butter melts and the mixture lightens slightly.",
+          "time_minutes": 5,
+          "temperature_c": null,
+          "heat_level": "microwave or medium heat",
+          "visual_or_texture_cue": "Butter is melted and mixture looks glossy.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        },
+        {
+          "order": 3,
+          "instruction": "Mix in vanilla and cocoa, then eggs until shiny.",
+          "time_minutes": 5,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Batter looks glossy and smooth.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 4,
+          "instruction": "Stir in gluten-free flour, baking powder and optional chips/nuts.",
+          "time_minutes": 5,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "No dry flour remains.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 5,
+          "instruction": "Spread batter into pan and bake.",
+          "time_minutes": 38,
+          "temperature_c": 175,
+          "heat_level": "oven",
+          "visual_or_texture_cue": "Source range 33-38 min; top set and tester has no wet batter, only crumbs.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        },
+        {
+          "order": 6,
+          "instruction": "Cool before cutting.",
+          "time_minutes": 15,
+          "temperature_c": null,
+          "heat_level": "cooling rack",
+          "visual_or_texture_cue": "Brownies firm enough to slice.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        }
+      ],
+      "make_ahead_or_storage": "Cover tightly once cool. Best cut after cooling; can be made ahead.",
+      "beginner_notes": [
+        "For coeliac needs, use certified gluten-free baking ingredients.",
+        "The centre should not be wet batter, but a few moist crumbs are fine.",
+        "Marked gluten free from the source or source dietary note; still check packaged ingredient labels such as stock, sauces, spices, seasoning blends, oats, baking mixes and chocolate."
+      ],
+      "searchable_values": {
+        "gluten_free": true,
+        "diet_gluten_free": true,
+        "difficulty_scale": "easy",
+        "speed_scale": "medium",
+        "budget_scale": "moderate",
+        "commonness_scale": "common",
+        "dessert": true,
+        "baking": true,
+        "oven": true,
+        "chocolate": true
+      },
+      "user_fields": {
+        "personal_rating": 0,
+        "cooked_count": 0,
+        "last_cooked": null,
+        "would_cook_again": null,
+        "my_notes": "",
+        "note_to_future_me": "",
+        "changes_to_try_next_time": [],
+        "photo_paths": [],
+        "is_favourite": false,
+        "is_reliable_work_night_meal": false,
+        "household_reaction": "",
+        "rating": 0,
+        "added_to_list": false
+      },
+      "air_fryer": {
+        "applicable": false,
+        "recommendation_type": "not_applicable",
+        "source_air_fryer_instructions_found": false,
+        "source_air_fryer_url": null,
+        "confidence": "not_applicable",
+        "note": "No explicit source-provided air-fryer instructions were recorded for this recipe. Use the written oven/stovetop/slow-cooker method as the source method.",
+        "general_conversion_reminder": "No appended gluten-free recipe in this update includes heuristic air-fryer conversion fields. Prefer the source method unless you later test and record a dedicated air-fryer version."
+      },
+      "image_path": "https://www.kingarthurbaking.com/sites/default/files/styles/teaser_2x/public/2025-05/Gluten-Free-Brownies.jpg?itok=ACFf6m6I"
+    },
+    {
+      "id": "kingarthur_gluten_free_chocolate_chip_cookies",
+      "title": "Gluten-Free Chocolate Chip Cookies",
+      "source_name": "King Arthur Baking",
+      "source_url": "https://www.kingarthurbaking.com/recipes/gluten-free-chocolate-chip-cookies-recipe",
+      "source_fidelity": "Ingredient lists and timing/temperature facts are taken from the linked source where available; method wording is paraphrased for offline beginner use.",
+      "cuisine": [
+        "Western"
+      ],
+      "meal_type": [
+        "dessert",
+        "sweet baking"
+      ],
+      "servings": "about 3 dozen cookies",
+      "prep_time_minutes": 20,
+      "cook_time_minutes": 11,
+      "total_time_minutes": 95,
+      "inactive_time_minutes": 60,
+      "difficulty": "medium",
+      "speed": "slow",
+      "budget": "moderate",
+      "commonness": "common",
+      "beginner_confidence": "good_if_you_chill_dough",
+      "tags": [
+        "dessert",
+        "baking",
+        "cookies",
+        "chocolate",
+        "make-ahead",
+        "chill",
+        "gluten free"
+      ],
+      "ingredients": [
+        "Butter",
+        "Brown sugar",
+        "Granulated sugar",
+        "Eggs",
+        "Vanilla",
+        "Gluten-free flour blend",
+        "Baking soda",
+        "Salt",
+        "Chocolate chips"
+      ],
+      "ingredient_keywords": [
+        "butter",
+        "brown sugar",
+        "sugar",
+        "granulated sugar",
+        "eggs",
+        "egg",
+        "vanilla",
+        "vanilla extract",
+        "gluten-free flour",
+        "gluten free flour",
+        "baking soda",
+        "bi-carb soda",
+        "bicarb soda",
+        "salt",
+        "chocolate chips",
+        "chocolate"
+      ],
+      "specialty_or_less_common_ingredients": [
+        "gluten-free flour blend",
+        "gluten-free chocolate chips"
+      ],
+      "australian_shop_notes": "Check chocolate chips, flour blend and baking soda labels. Use baking paper/parchment for easier clean-up.",
+      "equipment": [
+        "mixing bowl",
+        "baking sheets",
+        "baking paper",
+        "oven"
+      ],
+      "method_steps": [
+        {
+          "order": 1,
+          "instruction": "Mix butter and sugars until combined, then add eggs and vanilla.",
+          "time_minutes": 10,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Mixture is smooth and evenly combined.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 2,
+          "instruction": "Add gluten-free flour, baking soda and salt, then stir in chocolate chips.",
+          "time_minutes": 10,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Cookie dough has no dry patches.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 3,
+          "instruction": "Chill dough before baking if following the source texture guidance.",
+          "time_minutes": 60,
+          "temperature_c": null,
+          "heat_level": "fridge",
+          "visual_or_texture_cue": "Dough firms up and is easier to scoop.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 4,
+          "instruction": "Preheat oven and line baking sheets.",
+          "time_minutes": null,
+          "temperature_c": 175,
+          "heat_level": "oven",
+          "visual_or_texture_cue": "Source uses 350°F, about 175°C.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        },
+        {
+          "order": 5,
+          "instruction": "Bake one tray at a time until cookies are golden.",
+          "time_minutes": 11,
+          "temperature_c": 175,
+          "heat_level": "oven",
+          "visual_or_texture_cue": "Source range 9-11 min; edges are golden.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        },
+        {
+          "order": 6,
+          "instruction": "Rest cookies on the baking sheet before moving to racks.",
+          "time_minutes": 5,
+          "temperature_c": null,
+          "heat_level": "cooling on tray",
+          "visual_or_texture_cue": "Cookies firm enough to transfer.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        }
+      ],
+      "make_ahead_or_storage": "Store airtight after cooling. Dough can usually be baked in batches.",
+      "beginner_notes": [
+        "Gluten-free cookies can be fragile when hot; let them rest on the tray.",
+        "Keep raw dough chilled between batches if the kitchen is warm.",
+        "Marked gluten free from the source or source dietary note; still check packaged ingredient labels such as stock, sauces, spices, seasoning blends, oats, baking mixes and chocolate."
+      ],
+      "searchable_values": {
+        "gluten_free": true,
+        "diet_gluten_free": true,
+        "difficulty_scale": "medium",
+        "speed_scale": "slow_due_to_chill",
+        "budget_scale": "moderate",
+        "commonness_scale": "common",
+        "dessert": true,
+        "baking": true,
+        "oven": true,
+        "chocolate": true,
+        "make_ahead": true,
+        "requires_chill": true
+      },
+      "user_fields": {
+        "personal_rating": 0,
+        "cooked_count": 0,
+        "last_cooked": null,
+        "would_cook_again": null,
+        "my_notes": "",
+        "note_to_future_me": "",
+        "changes_to_try_next_time": [],
+        "photo_paths": [],
+        "is_favourite": false,
+        "is_reliable_work_night_meal": false,
+        "household_reaction": "",
+        "rating": 0,
+        "added_to_list": false
+      },
+      "air_fryer": {
+        "applicable": false,
+        "recommendation_type": "not_applicable",
+        "source_air_fryer_instructions_found": false,
+        "source_air_fryer_url": null,
+        "confidence": "not_applicable",
+        "note": "No explicit source-provided air-fryer instructions were recorded for this recipe. Use the written oven/stovetop/slow-cooker method as the source method.",
+        "general_conversion_reminder": "No appended gluten-free recipe in this update includes heuristic air-fryer conversion fields. Prefer the source method unless you later test and record a dedicated air-fryer version."
+      },
+      "image_path": "https://www.kingarthurbaking.com/sites/default/files/styles/teaser_2x/public/2024-01/GF-Chocolate-Chip-Cookies-2.jpg?itok=FhEx9iJZ"
+    },
+    {
+      "id": "kingarthur_gluten_free_banana_bread_coconut_flax",
+      "title": "Gluten-Free Banana Bread with Coconut and Flax",
+      "source_name": "King Arthur Baking",
+      "source_url": "https://www.kingarthurbaking.com/blog/2013/01/21/gluten-free-banana-bread-with-coconut-and-flax-nutty-monkey-business",
+      "source_fidelity": "Ingredient lists and timing/temperature facts are taken from the linked source where available; method wording is paraphrased for offline beginner use.",
+      "cuisine": [
+        "Western"
+      ],
+      "meal_type": [
+        "dessert",
+        "snack",
+        "sweet baking"
+      ],
+      "servings": "1 loaf",
+      "prep_time_minutes": 20,
+      "cook_time_minutes": 55,
+      "total_time_minutes": 85,
+      "inactive_time_minutes": 10,
+      "difficulty": "medium",
+      "speed": "slow",
+      "budget": "moderate",
+      "commonness": "less_common",
+      "beginner_confidence": "good",
+      "tags": [
+        "banana",
+        "baking",
+        "loaf",
+        "snack",
+        "make-ahead",
+        "gluten free"
+      ],
+      "ingredients": [
+        "King Arthur gluten-free multi-purpose flour or similar gluten-free flour",
+        "Whole flax meal",
+        "Baking soda",
+        "Salt",
+        "Xanthan gum if required by your flour blend",
+        "Cinnamon and nutmeg",
+        "Brown sugar",
+        "Vegetable oil",
+        "Eggs",
+        "Mashed ripe bananas",
+        "Unsweetened shredded coconut",
+        "Vanilla"
+      ],
+      "ingredient_keywords": [
+        "gluten-free flour",
+        "gluten free flour",
+        "flax meal",
+        "whole flax meal",
+        "baking soda",
+        "bi-carb soda",
+        "bicarb soda",
+        "salt",
+        "xanthan gum",
+        "cinnamon",
+        "nutmeg",
+        "brown sugar",
+        "vegetable oil",
+        "oil",
+        "eggs",
+        "egg",
+        "banana",
+        "bananas",
+        "ripe bananas",
+        "shredded coconut",
+        "coconut",
+        "vanilla"
+      ],
+      "specialty_or_less_common_ingredients": [
+        "gluten-free flour blend",
+        "xanthan gum",
+        "flax meal",
+        "unsweetened shredded coconut"
+      ],
+      "australian_shop_notes": "Gluten-free flour blend, xanthan gum and flax meal may be in the health-food/baking aisle or a larger supermarket. Some flour blends already contain xanthan.",
+      "equipment": [
+        "9 x 5 inch loaf pan",
+        "mixing bowls",
+        "oven",
+        "cooling rack"
+      ],
+      "method_steps": [
+        {
+          "order": 1,
+          "instruction": "Preheat oven and grease a 9 x 5 inch loaf pan.",
+          "time_minutes": null,
+          "temperature_c": 175,
+          "heat_level": "oven",
+          "visual_or_texture_cue": "Source uses 350°F, about 175°C.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        },
+        {
+          "order": 2,
+          "instruction": "Whisk gluten-free flour, flax meal, baking soda, salt, xanthan if needed, cinnamon and nutmeg.",
+          "time_minutes": 5,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Dry mix is evenly combined.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 3,
+          "instruction": "Mix brown sugar and oil, then beat in eggs.",
+          "time_minutes": 5,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Wet mix is smooth.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 4,
+          "instruction": "Add dry mix, mashed banana, coconut and vanilla; mix just until combined.",
+          "time_minutes": 10,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "No dry flour remains; batter is thick.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 5,
+          "instruction": "Pour batter into loaf pan and bake.",
+          "time_minutes": 55,
+          "temperature_c": 175,
+          "heat_level": "oven",
+          "visual_or_texture_cue": "Source range 45-55 min; loaf tests done and centre reaches about 99°C/210°F if using thermometer.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        },
+        {
+          "order": 6,
+          "instruction": "Cool in pan briefly, then remove and cool completely before slicing.",
+          "time_minutes": 10,
+          "temperature_c": null,
+          "heat_level": "cooling rack",
+          "visual_or_texture_cue": "Loaf firms up and slices cleanly.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        }
+      ],
+      "make_ahead_or_storage": "Cool fully before wrapping. Good make-ahead snack loaf.",
+      "beginner_notes": [
+        "Check whether your flour blend already includes xanthan gum.",
+        "Do not slice while very hot; gluten-free loaves can crumble if cut early.",
+        "Marked gluten free from the source or source dietary note; still check packaged ingredient labels such as stock, sauces, spices, seasoning blends, oats, baking mixes and chocolate."
+      ],
+      "searchable_values": {
+        "gluten_free": true,
+        "diet_gluten_free": true,
+        "difficulty_scale": "medium",
+        "speed_scale": "slow",
+        "budget_scale": "moderate",
+        "commonness_scale": "less_common",
+        "dessert": true,
+        "baking": true,
+        "oven": true,
+        "make_ahead": true
+      },
+      "user_fields": {
+        "personal_rating": 0,
+        "cooked_count": 0,
+        "last_cooked": null,
+        "would_cook_again": null,
+        "my_notes": "",
+        "note_to_future_me": "",
+        "changes_to_try_next_time": [],
+        "photo_paths": [],
+        "is_favourite": false,
+        "is_reliable_work_night_meal": false,
+        "household_reaction": "",
+        "rating": 0,
+        "added_to_list": false
+      },
+      "air_fryer": {
+        "applicable": false,
+        "recommendation_type": "not_applicable",
+        "source_air_fryer_instructions_found": false,
+        "source_air_fryer_url": null,
+        "confidence": "not_applicable",
+        "note": "No explicit source-provided air-fryer instructions were recorded for this recipe. Use the written oven/stovetop/slow-cooker method as the source method.",
+        "general_conversion_reminder": "No appended gluten-free recipe in this update includes heuristic air-fryer conversion fields. Prefer the source method unless you later test and record a dedicated air-fryer version."
+      },
+      "image_path": "https://www.kingarthurbaking.com/sites/default/files/blog-images/2013/01/IMG_73381-450x372.jpg"
+    },
+    {
+      "id": "kingarthur_flourless_chocolate_cake_gluten_free",
+      "title": "Flourless Chocolate Cake",
+      "source_name": "King Arthur Baking",
+      "source_url": "https://www.kingarthurbaking.com/recipes/flourless-chocolate-cake-recipe",
+      "source_fidelity": "Ingredient lists and timing/temperature facts are taken from the linked source where available; method wording is paraphrased for offline beginner use.",
+      "cuisine": [
+        "Western"
+      ],
+      "meal_type": [
+        "dessert",
+        "sweet baking"
+      ],
+      "servings": "one 8-inch cake",
+      "prep_time_minutes": 15,
+      "cook_time_minutes": 25,
+      "total_time_minutes": 45,
+      "inactive_time_minutes": 5,
+      "difficulty": "medium",
+      "speed": "medium",
+      "budget": "moderate",
+      "commonness": "special",
+      "beginner_confidence": "good",
+      "tags": [
+        "dessert",
+        "baking",
+        "chocolate",
+        "flourless",
+        "special occasion",
+        "gluten free"
+      ],
+      "ingredients": [
+        "Chocolate",
+        "Butter",
+        "Sugar",
+        "Salt",
+        "Vanilla",
+        "Eggs",
+        "Cocoa powder",
+        "Optional chocolate glaze ingredients"
+      ],
+      "ingredient_keywords": [
+        "chocolate",
+        "butter",
+        "sugar",
+        "salt",
+        "vanilla",
+        "vanilla extract",
+        "eggs",
+        "egg",
+        "cocoa powder",
+        "cocoa",
+        "cream",
+        "glaze"
+      ],
+      "specialty_or_less_common_ingredients": [
+        "good-quality chocolate",
+        "cocoa powder"
+      ],
+      "australian_shop_notes": "Check chocolate and cocoa labels. This recipe is naturally flourless, but cross-contamination matters for strict gluten-free needs.",
+      "equipment": [
+        "8 inch round pan",
+        "mixing bowl",
+        "saucepan or microwave",
+        "oven",
+        "thermometer optional"
+      ],
+      "method_steps": [
+        {
+          "order": 1,
+          "instruction": "Preheat oven and prepare the cake pan.",
+          "time_minutes": null,
+          "temperature_c": 190,
+          "heat_level": "oven",
+          "visual_or_texture_cue": "Source uses 375°F, about 190°C.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        },
+        {
+          "order": 2,
+          "instruction": "Melt chocolate and butter until smooth.",
+          "time_minutes": 5,
+          "temperature_c": null,
+          "heat_level": "low heat/microwave",
+          "visual_or_texture_cue": "Chocolate mixture is glossy with no lumps.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 3,
+          "instruction": "Mix in sugar, salt, vanilla, eggs and cocoa to form the batter.",
+          "time_minutes": 10,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Batter is smooth and chocolatey.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 4,
+          "instruction": "Spoon batter into prepared pan and bake.",
+          "time_minutes": 25,
+          "temperature_c": 190,
+          "heat_level": "oven",
+          "visual_or_texture_cue": "Top forms a thin crust and centre reaches at least about 93°C/200°F.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        },
+        {
+          "order": 5,
+          "instruction": "Cool briefly in pan, loosen edges and turn out carefully.",
+          "time_minutes": 5,
+          "temperature_c": null,
+          "heat_level": "cooling rack",
+          "visual_or_texture_cue": "Edges may crumble a little; cake holds together.",
+          "source_timing_provided": true,
+          "beginner_tip": ""
+        },
+        {
+          "order": 6,
+          "instruction": "Cool completely before glazing or serving.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "cooling rack",
+          "visual_or_texture_cue": "Cake is set and ready to decorate.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        }
+      ],
+      "make_ahead_or_storage": "Best cooled completely before glazing. Store covered according to your chosen topping.",
+      "beginner_notes": [
+        "Naturally flourless does not automatically mean coeliac-safe; check chocolate/cocoa packaging.",
+        "This is rich, so small slices are usually enough.",
+        "Marked gluten free from the source or source dietary note; still check packaged ingredient labels such as stock, sauces, spices, seasoning blends, oats, baking mixes and chocolate."
+      ],
+      "searchable_values": {
+        "gluten_free": true,
+        "diet_gluten_free": true,
+        "difficulty_scale": "medium",
+        "speed_scale": "medium",
+        "budget_scale": "moderate",
+        "commonness_scale": "special",
+        "dessert": true,
+        "baking": true,
+        "oven": true,
+        "chocolate": true,
+        "special_occasion": true
+      },
+      "user_fields": {
+        "personal_rating": 0,
+        "cooked_count": 0,
+        "last_cooked": null,
+        "would_cook_again": null,
+        "my_notes": "",
+        "note_to_future_me": "",
+        "changes_to_try_next_time": [],
+        "photo_paths": [],
+        "is_favourite": false,
+        "is_reliable_work_night_meal": false,
+        "household_reaction": "",
+        "rating": 0,
+        "added_to_list": false
+      },
+      "air_fryer": {
+        "applicable": false,
+        "recommendation_type": "not_applicable",
+        "source_air_fryer_instructions_found": false,
+        "source_air_fryer_url": null,
+        "confidence": "not_applicable",
+        "note": "No explicit source-provided air-fryer instructions were recorded for this recipe. Use the written oven/stovetop/slow-cooker method as the source method.",
+        "general_conversion_reminder": "No appended gluten-free recipe in this update includes heuristic air-fryer conversion fields. Prefer the source method unless you later test and record a dedicated air-fryer version."
+      },
+      "image_path": "https://www.kingarthurbaking.com/sites/default/files/styles/teaser_2x/public/2023-07/flourless-chocolate-cake-2_0623.jpg?itok=RwMXd2KY"
     }
   ],
   "empty_user_fields_template": {

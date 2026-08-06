@@ -5,14 +5,14 @@
     "intended_use": "Seed/import data for a single-file offline recipe journal/menu app. Written for a beginner cook who needs timings, temperatures and cues.",
     "copyright_note": "Do not republish as a commercial cookbook. Source links are retained. Method wording is paraphrased, with timing/temperature facts and ingredient facts from linked sources where available.",
     "important_note": "Where a source gives a visual cue but no exact time, the step uses time_minutes: null and source_timing_provided: false rather than inventing a time.",
-    "updated": "2026-07-07",
+    "updated": "2026-07-09",
     "dessert_update_note": "Appended 8 dessert/sweet baking recipes with beginner-friendly steps, timings, temperatures, visual cues, and source URLs.",
     "air_fryer_update_note": "Added 2026-07-07. Air-fryer fields were added alongside oven/bake steps. Where the saved source page did not include explicit air-fryer instructions, the fields are heuristic starting points only, not official recipe instructions.",
     "air_fryer_conversion_basis": "General conversion used where no source air-fryer instructions were available: reduce oven temperature by about 10-20°C and begin checking about 20-25% earlier; baking recipes need extra caution because the top can brown before the centre cooks.",
     "air_fryer_update_stats": {
-      "recipes_total": 51,
-      "recipes_with_air_fryer_applicable_or_note": 13,
-      "oven_or_bake_steps_with_air_fryer_fields": 26,
+      "recipes_total": 53,
+      "recipes_with_air_fryer_applicable_or_note": 17,
+      "oven_or_bake_steps_with_air_fryer_fields": 32,
       "not_recommended_count": 1
     },
     "user_fields_update_note": "Added 2026-07-07. Added rating default 0/5 and added_to_list default false to each recipe's user_fields and to empty_user_fields_template.",
@@ -20,15 +20,15 @@
     "ingredient_keywords_update_note": "Added 2026-07-07. Added curated ingredient_keywords arrays to each recipe for easier offline searching/filtering by ingredient, including common Australian/US synonym pairs such as capsicum/bell pepper, prawns/shrimp, coriander/cilantro, bi-carb soda/baking soda, and cornflour/cornstarch.",
     "ingredient_keywords_usage_note": "ingredient_keywords are lower-case search helpers, not a measured ingredient list. Use ingredients for display; use ingredient_keywords for ingredient filters and fall back to text search on ingredients where needed.",
     "ingredient_keywords_stats": {
-      "recipes_total": 51,
-      "recipes_with_ingredient_keywords": 51,
+      "recipes_total": 53,
+      "recipes_with_ingredient_keywords": 53,
       "min_keywords_per_recipe": 8,
       "max_keywords_per_recipe": 37
     },
     "image_path_update_note": "Added 2026-07-07. Added recipe-level image_path default null to each recipe for optional display/card images. Existing user_fields.photo_paths remains for user-added cooking photos.",
     "image_path_stats": {
-      "recipes_total": 51,
-      "recipes_with_image_path_field": 51,
+      "recipes_total": 53,
+      "recipes_with_image_path_field": 53,
       "default_value": null
     },
     "breakfast_smoothie_update_note": "Added 2026-07-07. Appended 6 beginner-friendly breakfast smoothies plus 6 breakfast bowls/oats/muesli-style recipes, with ingredient_keywords, image_path default null, user_fields defaults, and source URLs retained.",
@@ -36,13 +36,20 @@
       "recipes_added": 12,
       "smoothies_added": 6,
       "breakfast_bowls_oats_muesli_added": 6,
-      "recipes_total": 51
+      "recipes_total": 53
     },
-    "personal_blog_update_note": "Added 2026-07-07. Appended 7 recipes extracted from the user's personal Aluca Cooks Mataroa blog, with notes preserved in beginner_notes and note_to_future_me where useful.",
+    "personal_blog_update_note": "Added 2026-07-07; updated 2026-07-09. Appended recipes extracted from the user's personal Aluca Cooks Mataroa blog, with notes preserved in beginner_notes and note_to_future_me where useful.",
     "personal_blog_update_stats": {
-      "recipes_added": 7,
-      "recipes_total": 51,
+      "recipes_added": 9,
+      "recipes_total": 53,
       "source": "https://alucasol.mataroa.blog/"
+    },
+    "image_link_update_note": "Added 2026-07-07. Populated recipe-level image_path values with direct external image URLs where a reasonable direct image link could be found. Some image_path values remain null where no reliable direct image URL was available or where the source did not expose a stable image file. These URLs require internet access and may fail if a source blocks hotlinking, changes filenames, or returns a CORS/referrer error.",
+    "image_link_update_stats": {
+      "recipes_total": 53,
+      "image_path_populated": 53,
+      "image_path_remaining_null": 0,
+      "remaining_null_recipe_ids": []
     }
   },
   "scales": {
@@ -67,7 +74,7 @@
       "special"
     ]
   },
-  "recipe_count": 51,
+  "recipe_count": 53,
   "recipes": [
     {
       "id": "recipetineats_butter_chicken_beginner",
@@ -267,7 +274,7 @@
         "note": "This recipe has no oven/bake step in the current method. Air fryer is not needed for the main cooking method; use it only for reheating or separately testing components.",
         "general_conversion_reminder": "If testing: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier, unless the step-level note says not recommended. Treat all non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://www.recipetineats.com/tachyon/2015/07/Butter-Chicken_5.jpg"
     },
     {
       "id": "recipetineats_fried_rice_beginner",
@@ -469,7 +476,7 @@
         "note": "This recipe has no oven/bake step in the current method. Air fryer is not needed for the main cooking method; use it only for reheating or separately testing components.",
         "general_conversion_reminder": "If testing: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier, unless the step-level note says not recommended. Treat all non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://www.recipetineats.com/tachyon/2018/03/Egg-Fried-Rice_5-1.jpg"
     },
     {
       "id": "recipetineats_spaghetti_bolognese_beginner",
@@ -682,7 +689,7 @@
         "note": "This recipe has no oven/bake step in the current method. Air fryer is not needed for the main cooking method; use it only for reheating or separately testing components.",
         "general_conversion_reminder": "If testing: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier, unless the step-level note says not recommended. Treat all non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://www.recipetineats.com/tachyon/2018/07/Spaghetti-Bolognese.jpg"
     },
     {
       "id": "recipetineats_beef_broccoli_noodles_beginner",
@@ -877,7 +884,7 @@
         "note": "This recipe has no oven/bake step in the current method. Air fryer is not needed for the main cooking method; use it only for reheating or separately testing components.",
         "general_conversion_reminder": "If testing: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier, unless the step-level note says not recommended. Treat all non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://www.recipetineats.com/tachyon/2017/10/Beef-and-Broccoli-Noodles-3.jpg"
     },
     {
       "id": "recipetineats_hokkien_noodles_beginner",
@@ -1078,7 +1085,7 @@
         "note": "This recipe has no oven/bake step in the current method. Air fryer is not needed for the main cooking method; use it only for reheating or separately testing components.",
         "general_conversion_reminder": "If testing: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier, unless the step-level note says not recommended. Treat all non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://www.recipetineats.com/tachyon/2024/08/Hokkien-noodles-with-chicken_2.jpg"
     },
     {
       "id": "recipetineats_coconut_chicken_curry_beginner",
@@ -1289,7 +1296,7 @@
         "note": "This recipe has no oven/bake step in the current method. Air fryer is not needed for the main cooking method; use it only for reheating or separately testing components.",
         "general_conversion_reminder": "If testing: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier, unless the step-level note says not recommended. Treat all non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://www.recipetineats.com/tachyon/2026/04/Coconut-chicken-curry-quick-easy_7.jpg"
     },
     {
       "id": "recipetineats_tuna_mornay_beginner",
@@ -1521,7 +1528,7 @@
         "note": "Saved source page was checked/sampled and did not provide explicit air-fryer instructions. Use the air-fryer step notes as starting points only. Use an air-fryer-safe dish/tin, avoid overcrowding, check early, and continue in small increments.",
         "general_conversion_reminder": "If testing: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier, unless the step-level note says not recommended. Treat all non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://www.recipetineats.com/tachyon/2019/11/Tuna-Mornay_6.jpg"
     },
     {
       "id": "recipetineats_creamy_tomato_chicken_pasta_bake_beginner",
@@ -1781,7 +1788,7 @@
         "note": "Saved source page was checked/sampled and did not provide explicit air-fryer instructions. Use the air-fryer step notes as starting points only. Use an air-fryer-safe dish/tin, avoid overcrowding, check early, and continue in small increments.",
         "general_conversion_reminder": "If testing: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier, unless the step-level note says not recommended. Treat all non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://www.recipetineats.com/tachyon/2015/04/One-Pot-Creamy-Tomato-Pasta-Bake_action_680px1.jpg"
     },
     {
       "id": "recipetineats_lamb_koftas_beginner",
@@ -2001,7 +2008,7 @@
         "note": "Saved source page includes user comment references to air frying, but no explicit source-provided air-fryer time/temperature was found. Use the air-fryer step notes as starting points only. Use an air-fryer-safe dish/tin, avoid overcrowding, check early, and continue in small increments.",
         "general_conversion_reminder": "If testing: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier, unless the step-level note says not recommended. Treat all non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://www.recipetineats.com/tachyon/2014/11/Lamb-Koftas_7.jpg"
     },
     {
       "id": "recipetineats_thai_red_curry_beginner",
@@ -2195,7 +2202,7 @@
         "note": "This recipe has no oven/bake step in the current method. Air fryer is not needed for the main cooking method; use it only for reheating or separately testing components.",
         "general_conversion_reminder": "If testing: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier, unless the step-level note says not recommended. Treat all non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://www.recipetineats.com/tachyon/2018/02/Thai-Red-Curry-Chicken-1.jpg"
     },
     {
       "id": "recipetineats_curried_sausages_beginner",
@@ -2396,7 +2403,7 @@
         "note": "This recipe has no oven/bake step in the current method. Air fryer is not needed for the main cooking method; use it only for reheating or separately testing components.",
         "general_conversion_reminder": "If testing: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier, unless the step-level note says not recommended. Treat all non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://www.recipetineats.com/tachyon/2019/04/Curried-Sausages_0.jpg"
     },
     {
       "id": "recipetineats_canned_tuna_pasta_beginner",
@@ -2574,7 +2581,7 @@
         "note": "This recipe has no oven/bake step in the current method. Air fryer is not needed for the main cooking method; use it only for reheating or separately testing components.",
         "general_conversion_reminder": "If testing: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier, unless the step-level note says not recommended. Treat all non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://www.recipetineats.com/tachyon/2023/04/Canned-tuna-pasta_0-copy.jpg"
     },
     {
       "id": "budgetbytes_chickpea_curry_beginner",
@@ -2762,7 +2769,7 @@
         "note": "This recipe has no oven/bake step in the current method. Air fryer is not needed for the main cooking method; use it only for reheating or separately testing components.",
         "general_conversion_reminder": "If testing: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier, unless the step-level note says not recommended. Treat all non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://www.budgetbytes.com/wp-content/uploads/2023/08/Coconut-Curry-Chickpeas-Vertical-2.jpg"
     },
     {
       "id": "budgetbytes_beef_cabbage_stir_fry_beginner",
@@ -2922,7 +2929,7 @@
         "note": "This recipe has no oven/bake step in the current method. Air fryer is not needed for the main cooking method; use it only for reheating or separately testing components.",
         "general_conversion_reminder": "If testing: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier, unless the step-level note says not recommended. Treat all non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://www.budgetbytes.com/wp-content/uploads/2016/08/Beef-and-Cabbage-Stir-Fry-V1.jpg"
     },
     {
       "id": "budgetbytes_creamy_tomato_spinach_pasta_beginner",
@@ -3109,7 +3116,7 @@
         "note": "This recipe has no oven/bake step in the current method. Air fryer is not needed for the main cooking method; use it only for reheating or separately testing components.",
         "general_conversion_reminder": "If testing: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier, unless the step-level note says not recommended. Treat all non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://www.budgetbytes.com/wp-content/uploads/2020/05/CreamyTomatoSpinachPasta_Vertical-1.jpg"
     },
     {
       "id": "budgetbytes_black_bean_quesadillas_beginner",
@@ -3282,7 +3289,7 @@
         "note": "This recipe has no oven/bake step in the current method. Air fryer is not needed for the main cooking method; use it only for reheating or separately testing components.",
         "general_conversion_reminder": "If testing: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier, unless the step-level note says not recommended. Treat all non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://www.budgetbytes.com/wp-content/uploads/2012/02/Hearty-Black-Bean-Quesadillas-V3.jpg"
     },
     {
       "id": "budgetbytes_tomato_spinach_one_pot_pasta_beginner",
@@ -3444,7 +3451,7 @@
         "note": "This recipe has no oven/bake step in the current method. Air fryer is not needed for the main cooking method; use it only for reheating or separately testing components.",
         "general_conversion_reminder": "If testing: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier, unless the step-level note says not recommended. Treat all non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://www.budgetbytes.com/wp-content/uploads/2013/05/Italian-Wonderpot-close.jpg"
     },
     {
       "id": "cookieandkate_lentil_soup_beginner",
@@ -3645,7 +3652,7 @@
         "note": "This recipe has no oven/bake step in the current method. Air fryer is not needed for the main cooking method; use it only for reheating or separately testing components.",
         "general_conversion_reminder": "If testing: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier, unless the step-level note says not recommended. Treat all non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://cookieandkate.com/images/2019/01/best-lentil-soup-recipe-4.jpg"
     },
     {
       "id": "cookieandkate_shakshuka_beginner",
@@ -3865,7 +3872,7 @@
         "note": "Saved source page was checked/sampled and did not provide explicit air-fryer instructions. Use the air-fryer step notes as starting points only. Use an air-fryer-safe dish/tin, avoid overcrowding, check early, and continue in small increments.",
         "general_conversion_reminder": "If testing: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier, unless the step-level note says not recommended. Treat all non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://cookieandkate.com/images/2019/02/best-shakshuka-recipe-3.jpg"
     },
     {
       "id": "recipetineats_chicken_breast_beginner",
@@ -4039,7 +4046,7 @@
         "note": "This recipe has no oven/bake step in the current method. Air fryer is not needed for the main cooking method; use it only for reheating or separately testing components.",
         "general_conversion_reminder": "If testing: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier, unless the step-level note says not recommended. Treat all non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://www.recipetineats.com/tachyon/2025/07/Anytime-Chicken-Breast-in-white-wine-sauce_5.jpg"
     },
     {
       "id": "woksoflife_chicken_lo_mein_beginner",
@@ -4251,7 +4258,7 @@
         "note": "This recipe has no oven/bake step in the current method. Air fryer is not needed for the main cooking method; use it only for reheating or separately testing components.",
         "general_conversion_reminder": "If testing: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier, unless the step-level note says not recommended. Treat all non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://thewoksoflife.com/wp-content/uploads/2016/08/chicken-lo-mein-7.jpg"
     },
     {
       "id": "woksoflife_5_ingredient_lo_mein_beginner",
@@ -4413,7 +4420,7 @@
         "note": "This recipe has no oven/bake step in the current method. Air fryer is not needed for the main cooking method; use it only for reheating or separately testing components.",
         "general_conversion_reminder": "If testing: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier, unless the step-level note says not recommended. Treat all non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://thewoksoflife.com/wp-content/uploads/2025/04/5-minute-lo-mein-11-200x200.jpg"
     },
     {
       "id": "damndelicious_garlic_parmesan_pasta_beginner",
@@ -4570,7 +4577,7 @@
         "note": "This recipe has no oven/bake step in the current method. Air fryer is not needed for the main cooking method; use it only for reheating or separately testing components.",
         "general_conversion_reminder": "If testing: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier, unless the step-level note says not recommended. Treat all non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://damndelicious.net/wp-content/uploads/2014/10/IMG_0689edit.jpg"
     },
     {
       "id": "damndelicious_sheet_pan_shrimp_boil_beginner",
@@ -4775,7 +4782,7 @@
         "note": "Saved source page was checked/sampled and did not provide explicit air-fryer instructions. Use the air-fryer step notes as starting points only. Use an air-fryer-safe dish/tin, avoid overcrowding, check early, and continue in small increments.",
         "general_conversion_reminder": "If testing: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier, unless the step-level note says not recommended. Treat all non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://damndelicious.net/wp-content/uploads/2017/02/Sheet-Pan-Shrimp-BoilIMG_6306.jpg"
     },
     {
       "id": "recipetineats_easy_chocolate_brownies_beginner",
@@ -5005,7 +5012,7 @@
         "note": "Saved source page was checked/sampled and did not provide explicit air-fryer instructions. Use the air-fryer step notes as starting points only. Use an air-fryer-safe dish/tin, avoid overcrowding, check early, and continue in small increments.",
         "general_conversion_reminder": "If testing: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier, unless the step-level note says not recommended. Treat all non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://www.recipetineats.com/tachyon/2016/08/Brownies_0.jpg"
     },
     {
       "id": "recipetineats_chocolate_chip_cookies_dreams_beginner",
@@ -5258,7 +5265,7 @@
         "note": "No explicit source-provided air-fryer instructions recorded for this recipe. Use the air-fryer step notes as starting points only. Use an air-fryer-safe dish/tin, avoid overcrowding, check early, and continue in small increments.",
         "general_conversion_reminder": "If testing: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier, unless the step-level note says not recommended. Treat all non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://www.recipetineats.com/tachyon/2025/03/The-Chocolate-Chip-Cookie-of-my-dreams-_2.jpg"
     },
     {
       "id": "recipetineats_jbs_banana_bread_beginner",
@@ -5507,7 +5514,7 @@
         "note": "Saved source page was checked/sampled and did not provide explicit air-fryer instructions. Use the air-fryer step notes as starting points only. Use an air-fryer-safe dish/tin, avoid overcrowding, check early, and continue in small increments.",
         "general_conversion_reminder": "If testing: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier, unless the step-level note says not recommended. Treat all non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://www.recipetineats.com/tachyon/2026/03/Banana-bread-19Mar2026_2.jpg"
     },
     {
       "id": "recipetineats_carrot_cake_beginner",
@@ -5792,7 +5799,7 @@
         "note": "Saved source page was checked/sampled and did not provide explicit air-fryer instructions. Use the air-fryer step notes as starting points only. Use an air-fryer-safe dish/tin, avoid overcrowding, check early, and continue in small increments.",
         "general_conversion_reminder": "If testing: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier, unless the step-level note says not recommended. Treat all non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://www.recipetineats.com/tachyon/2016/04/Carrot-Cake_4.jpg"
     },
     {
       "id": "recipetineats_glazed_lemon_loaf_beginner",
@@ -6060,7 +6067,7 @@
         "note": "Saved source page was checked/sampled and did not provide explicit air-fryer instructions. Use the air-fryer step notes as starting points only. Use an air-fryer-safe dish/tin, avoid overcrowding, check early, and continue in small increments.",
         "general_conversion_reminder": "If testing: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier, unless the step-level note says not recommended. Treat all non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://www.recipetineats.com/tachyon/2023/06/Glazed-lemon-loaf_4.jpg"
     },
     {
       "id": "bbcgoodfood_best_apple_crumble_beginner",
@@ -6281,7 +6288,7 @@
         "note": "Saved source page was checked/sampled and did not provide explicit air-fryer instructions. Use the air-fryer step notes as starting points only. Use an air-fryer-safe dish/tin, avoid overcrowding, check early, and continue in small increments.",
         "general_conversion_reminder": "If testing: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier, unless the step-level note says not recommended. Treat all non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/the-best-apple-crumble-1-0c6d99f.jpg?quality=90&webp=true&resize=440,400"
     },
     {
       "id": "taste_pavlova_beginner",
@@ -6531,7 +6538,7 @@
         "note": "Air fryer not recommended for this beginner dataset unless using an air-fryer-specific pavlova recipe. This recipe relies on very stable low heat and slow cooling in the oven; use the oven where possible.",
         "general_conversion_reminder": "If testing: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier, unless the step-level note says not recommended. Treat all non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://img.taste.com.au/Ew02MISG/w720-h480-cfill-q80/taste/2010/01/pavlova-118984-2.jpg"
     },
     {
       "id": "guardian_charlotte_ree_anzac_biscuits_beginner",
@@ -6753,7 +6760,7 @@
         "note": "Saved source page was checked/sampled and did not provide explicit air-fryer instructions. Use the air-fryer step notes as starting points only. Use an air-fryer-safe dish/tin, avoid overcrowding, check early, and continue in small increments.",
         "general_conversion_reminder": "If testing: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier, unless the step-level note says not recommended. Treat all non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://i.guim.co.uk/img/media/8e32baef9db69cfec4fea08d75e13d9bbfbb5779/0_413_800_480/master/800.jpg?crop=none&dpr=1&s=none&width=465"
     },
     {
       "id": "bbcgoodfood_two_minute_breakfast_smoothie_beginner",
@@ -6882,7 +6889,7 @@
         "note": "This recipe has no oven/bake step in the current method. Air fryer is not needed.",
         "general_conversion_reminder": "If testing an oven-style variation: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier unless a step-level note says not recommended."
       },
-      "image_path": null
+      "image_path": "https://www.bbcgoodfoodme.com/assets/legacy/recipe/recipe-image/2018/02/two-minute-breakfast-smoothie.jpg"
     },
     {
       "id": "bbcgoodfood_super_berry_smoothie_beginner",
@@ -7008,7 +7015,7 @@
         "note": "This recipe has no oven/bake step in the current method. Air fryer is not needed.",
         "general_conversion_reminder": "If testing an oven-style variation: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier unless a step-level note says not recommended."
       },
-      "image_path": null
+      "image_path": "https://pulses.org/us/wp-content/uploads/2015/12/Super-berry-protein-smoothie.jpg"
     },
     {
       "id": "eatingwell_peanut_butter_banana_flaxseed_smoothie_beginner",
@@ -7145,7 +7152,7 @@
         "note": "This recipe has no oven/bake step in the current method. Air fryer is not needed.",
         "general_conversion_reminder": "If testing an oven-style variation: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier unless a step-level note says not recommended."
       },
-      "image_path": null
+      "image_path": "https://www.eatingwell.com/thmb/knhSUqKHm426dBebSROFL391bp0%3D/1500x0/filters%3Ano_upscale%28%29%3Amax_bytes%28150000%29%3Astrip_icc%28%29%3Aformat%28webp%29/peanut-butter-banana-flaxseed-smoothie-step-02-063_preview_maxWidth_4000_maxHeight_4000_ppi_300_quality_100-a3f76272bb47414e93376277039943ec.jpg"
     },
     {
       "id": "eatingwell_green_smoothie_spinach_mango_pineapple_beginner",
@@ -7277,7 +7284,7 @@
         "note": "This recipe has no oven/bake step in the current method. Air fryer is not needed.",
         "general_conversion_reminder": "If testing an oven-style variation: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier unless a step-level note says not recommended."
       },
-      "image_path": null
+      "image_path": "https://www.eatingwell.com/thmb/KpLmYQ1nElRTHR8z_mDjsz5ojiE%3D/1500x0/filters%3Ano_upscale%28%29%3Amax_bytes%28150000%29%3Astrip_icc%28%29%3Aformat%28webp%29/Green-Smoothie-beauty-173_preview_maxWidth_4000_maxHeight_4000_ppi_300_quality_100-df3fe24e86bf4643af4a6e1d6f4a5d7d.jpg"
     },
     {
       "id": "eatingwell_spinach_avocado_smoothie_beginner",
@@ -7405,7 +7412,7 @@
         "note": "This recipe has no oven/bake step in the current method. Air fryer is not needed.",
         "general_conversion_reminder": "If testing an oven-style variation: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier unless a step-level note says not recommended."
       },
-      "image_path": null
+      "image_path": "https://www.eatingwell.com/thmb/jwvPzlz_UXaUVMMGK2dDPRGW09c%3D/1500x0/filters%3Ano_upscale%28%29%3Amax_bytes%28150000%29%3Astrip_icc%28%29%3Aformat%28webp%29/Spinach-Avocado-Smoothie-a5fe07ab45344de8a847ce2c73303351.jpg"
     },
     {
       "id": "eatingwell_brain_healthy_smoothie_beginner",
@@ -7540,7 +7547,7 @@
         "note": "This recipe has no oven/bake step in the current method. Air fryer is not needed.",
         "general_conversion_reminder": "If testing an oven-style variation: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier unless a step-level note says not recommended."
       },
-      "image_path": null
+      "image_path": "https://www.eatingwell.com/thmb/HPeV4t2HnKH7tjlq7VVy_XEoZ4A%3D/1500x0/filters%3Ano_upscale%28%29%3Amax_bytes%28150000%29%3Astrip_icc%28%29%3Aformat%28webp%29/The-Best-Brain-Booster-Smoothie-117_preview_maxWidth_4000_maxHeight_4000_ppi_300_quality_100-0ddb1eb2f53a4596bd44b3a215394906.jpg"
     },
     {
       "id": "downshiftology_acai_bowl_beginner",
@@ -7690,7 +7697,7 @@
         "note": "This recipe has no oven/bake step in the current method. Air fryer is not needed.",
         "general_conversion_reminder": "If testing an oven-style variation: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier unless a step-level note says not recommended."
       },
-      "image_path": null
+      "image_path": "https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2019/04/Acai-Bowl-4-2.jpg"
     },
     {
       "id": "cookieandkate_bircher_muesli_beginner",
@@ -7856,7 +7863,7 @@
         "note": "This recipe has no oven/bake step in the current method. Air fryer is not needed.",
         "general_conversion_reminder": "If testing an oven-style variation: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier unless a step-level note says not recommended."
       },
-      "image_path": null
+      "image_path": "https://cookieandkate.com/images/2017/11/bircher-muesli-with-homemade-applesauce.jpg"
     },
     {
       "id": "recipetineats_homemade_granola_muesli_beginner",
@@ -8063,7 +8070,7 @@
         "note": "Light oats can blow around in some air fryers. Use an air-fryer-safe solid tray or dish and check very often; oven is safer for the first attempt.",
         "general_conversion_reminder": "If testing: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier. Treat all non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://www.recipetineats.com/tachyon/2014/05/Homemade-Granola-Clumpy-1.jpg"
     },
     {
       "id": "bbcgoodfood_overnight_oats_berries_beginner",
@@ -8208,7 +8215,7 @@
         "note": "This recipe has no oven/bake step in the current method. Air fryer is not needed.",
         "general_conversion_reminder": "If testing an oven-style variation: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier unless a step-level note says not recommended."
       },
-      "image_path": null
+      "image_path": "https://www.bbcgoodfoodme.com/assets/legacy/recipe/recipe-image/2018/06/overnight-oats.jpg"
     },
     {
       "id": "bbcgoodfood_banana_overnight_oats_beginner",
@@ -8360,7 +8367,7 @@
         "note": "This recipe has no oven/bake step in the current method. Air fryer is not needed.",
         "general_conversion_reminder": "If testing an oven-style variation: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier unless a step-level note says not recommended."
       },
-      "image_path": null
+      "image_path": "https://images.immediate.co.uk/production/volatile/sites/30/2022/01/Banana-Overnight-Oats-16f2208.jpg"
     },
     {
       "id": "bbcgoodfood_cinnamon_porridge_banana_berries_beginner",
@@ -8503,7 +8510,7 @@
         "note": "This recipe has no oven/bake step in the current method. Air fryer is not needed.",
         "general_conversion_reminder": "If testing an oven-style variation: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier unless a step-level note says not recommended."
       },
-      "image_path": null
+      "image_path": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/recipe-image-legacy-id-1071551_11-583c548.jpg?quality=90&webp=true&resize=440,400"
     },
     {
       "id": "alucacooks_peri_chicken_salad_260609",
@@ -8543,7 +8550,7 @@
         "Baby spinach leaves",
         "1 cucumber",
         "1/2 capsicum",
-        "Nando's Peri Peri Mayonnaise",
+        "Peri Peri Mayonnaise",
         "2 cups rice",
         "2 cups filtered water for rice",
         "Turmeric powder",
@@ -8560,7 +8567,6 @@
         "cucumber",
         "capsicum",
         "bell pepper",
-        "nando's peri peri mayonnaise",
         "peri peri mayonnaise",
         "rice",
         "white rice",
@@ -8571,7 +8577,7 @@
         "raisins"
       ],
       "specialty_or_less_common_ingredients": [
-        "Nando's Peri Peri Mayonnaise",
+        "Peri Peri Mayonnaise",
         "red or yellow curry paste"
       ],
       "australian_shop_notes": "Most ingredients should be available from Coles, Woolworths or IGA unless marked as less common.",
@@ -8709,7 +8715,7 @@
         "note": "Personal blog source specifies 185°C for 16 minutes for the marinated chicken.",
         "general_conversion_reminder": "Use the source-personal-blog temperature/time first. Air-fryer models vary; check doneness using visual cues and food-safety judgement."
       },
-      "image_path": null
+      "image_path": "https://marleyspoon.com/media/recipes/63404/main_photos/large/low_cal_peri_peri_chicken-1d3c34fa954d0454cebd0ebc33e806c2.jpeg"
     },
     {
       "id": "alucacooks_banana_smoothie_260608",
@@ -8727,7 +8733,7 @@
       "servings": "1",
       "prep_time_minutes": null,
       "cook_time_minutes": 0,
-      "total_time_minutes": null,
+      "total_time_minutes": 2,
       "inactive_time_minutes": 0,
       "difficulty": "easy",
       "speed": "quick",
@@ -8781,7 +8787,7 @@
           "heat_level": "no heat",
           "visual_or_texture_cue": "Banana pieces are near the blades.",
           "source_timing_provided": false,
-          "beginner_tip": "The blog notes this helps avoid banana lumps."
+          "beginner_tip": ""
         },
         {
           "order": 2,
@@ -8807,8 +8813,7 @@
       "make_ahead_or_storage": "Best made fresh.",
       "beginner_notes": [
         "Quick and easy breakfast smoothie.",
-        "The blog note suggests not relying on it every day.",
-        "The blog note also mentions possibly separating banana/mango smoothies from berry smoothies."
+        "The blog note mentions separating banana smoothies from berry smoothies, as the banana may remove berry antioxidant benefits."
       ],
       "searchable_values": {
         "difficulty_scale": "easy",
@@ -8847,7 +8852,7 @@
         "note": "Smoothie recipe; air fryer not applicable.",
         "general_conversion_reminder": "If testing an air-fryer variation: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier. Treat non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://joyfoodsunshine.com/wp-content/uploads/2022/01/banana-smoothie-recipe-3.jpg"
     },
     {
       "id": "alucacooks_pappa_al_pomodoro_260604",
@@ -9034,7 +9039,7 @@
         "note": "Soup recipe; air fryer not applicable.",
         "general_conversion_reminder": "If testing an air-fryer variation: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier. Treat non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://www.allrecipes.com/thmb/5wLy42S2gphuvdaE4lV7pUNNYUE=/750x0/filters:no_upscale():max_bytes(150000):strip_icc()/259465-tuscan-tomato-soup-pappa-al-pomodoro-VAT-Beauty-4x3-85edd48c8ff1435bbd732e404e692ad4.jpg"
     },
     {
       "id": "alucacooks_slow_cooker_chicken_curry_260601",
@@ -9230,7 +9235,7 @@
         "note": "Slow cooker recipe; air fryer not applicable.",
         "general_conversion_reminder": "If testing an air-fryer variation: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier. Treat non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://www.familyfoodonthetable.com/wp-content/uploads/2025/11/Slow-Cooker-Chicken-Curry_08.jpg"
     },
     {
       "id": "alucacooks_falafel_wrap_260527",
@@ -9246,9 +9251,9 @@
         "lunch"
       ],
       "servings": "1",
-      "prep_time_minutes": null,
-      "cook_time_minutes": null,
-      "total_time_minutes": null,
+      "prep_time_minutes": 4,
+      "cook_time_minutes": 4,
+      "total_time_minutes": 8,
       "inactive_time_minutes": 0,
       "difficulty": "easy",
       "speed": "quick",
@@ -9409,7 +9414,7 @@
         "note": "Wrap recipe; air fryer not required.",
         "general_conversion_reminder": "If testing an air-fryer variation: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier. Treat non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://static.toiimg.com/thumb/62708678.cms?imgsize=156976&width=509&height=340"
     },
     {
       "id": "alucacooks_fried_rice_and_chicken_260527",
@@ -9591,7 +9596,7 @@
         "note": "Stovetop/rice cooker recipe; air fryer not required.",
         "general_conversion_reminder": "If testing an air-fryer variation: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier. Treat non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://www.averiecooks.com/wp-content/uploads/2025/03/chickenfriedrice-9-800x1200.jpg"
     },
     {
       "id": "alucacooks_meatball_carbonara_260526",
@@ -9794,7 +9799,496 @@
         "note": "Stovetop pasta recipe; air fryer not applicable.",
         "general_conversion_reminder": "If testing an air-fryer variation: start about 10-20°C lower than oven/fan setting and check about 20-25% earlier. Treat non-source air-fryer values as first-test estimates."
       },
-      "image_path": null
+      "image_path": "https://img.taste.com.au/WSSZNSZR/w643-h428-cfill-q90/taste/2020/03/5-ingredient-meatball-carbonara-159130-1.jpg"
+    },
+    {
+      "id": "alucacooks_steak_sandwich_260701",
+      "title": "Steak Sandwich",
+      "source_name": "Aluca Cooks",
+      "source_url": "https://alucasol.mataroa.blog/p/260701-steak-sandwich/",
+      "source_fidelity": "Extracted from the user's personal Aluca Cooks blog. Ingredient and timing facts are taken from the linked post; method wording is lightly normalized for the offline beginner recipe app.",
+      "cuisine": [
+        "Australian",
+        "home cooking"
+      ],
+      "meal_type": [
+        "lunch",
+        "dinner"
+      ],
+      "servings": "not specified",
+      "prep_time_minutes": null,
+      "cook_time_minutes": 16,
+      "total_time_minutes": null,
+      "inactive_time_minutes": 0,
+      "difficulty": "easy",
+      "speed": "quick",
+      "budget": "moderate",
+      "commonness": "common",
+      "beginner_confidence": "good",
+      "tags": [
+        "steak",
+        "sandwich",
+        "air fryer",
+        "chips",
+        "fry pan",
+        "quick",
+        "forgiving"
+      ],
+      "ingredients": [
+        "Thin cut steaks",
+        "Onion chutney",
+        "Burger sauce",
+        "Rustic bread",
+        "Olive oil",
+        "Butter",
+        "Pepper",
+        "Dijon mustard",
+        "Cheese",
+        "Lettuce",
+        "Egg",
+        "Chips",
+        "Optional: peri peri mayo or dipping sauce of choice"
+      ],
+      "ingredient_keywords": [
+        "steak",
+        "thin cut steak",
+        "thin steaks",
+        "onion chutney",
+        "chutney",
+        "burger sauce",
+        "rustic bread",
+        "bread",
+        "olive oil",
+        "butter",
+        "pepper",
+        "dijon mustard",
+        "mustard",
+        "cheese",
+        "lettuce",
+        "egg",
+        "chips",
+        "fries",
+        "peri peri mayo",
+        "dipping sauce"
+      ],
+      "specialty_or_less_common_ingredients": [
+        "onion chutney",
+        "burger sauce",
+        "rustic bread",
+        "peri peri mayo optional"
+      ],
+      "australian_shop_notes": "Most ingredients should be available from Coles, Woolworths or IGA unless marked as less common. Use the chip packet instructions if they differ from the blog's default air-fryer setting.",
+      "equipment": [
+        "air fryer",
+        "fry pan",
+        "knife",
+        "cutting board",
+        "spatula or tongs",
+        "fry pan lid optional"
+      ],
+      "method_steps": [
+        {
+          "order": 1,
+          "instruction": "Put the chips in the air fryer according to the bag instructions, using the blog's default setting if the packet is not specific.",
+          "time_minutes": 16,
+          "temperature_c": 200,
+          "heat_level": "air fryer",
+          "visual_or_texture_cue": "Chips are hot and crisp enough for serving.",
+          "source_timing_provided": true,
+          "beginner_tip": "Shake the basket about every 5 minutes so the chips do not clump together.",
+          "air_fryer": {
+            "source_air_fryer_provided": true,
+            "recommended_temperature_c": 200,
+            "estimated_time_range_minutes": [
+              16,
+              16
+            ],
+            "start_check_minutes": 16,
+            "confidence": "source_personal_blog",
+            "basis": "The Aluca Cooks post gives chips as air fryer 200°C for 16 minutes by default.",
+            "note": "Shake the basket every 5 minutes or so to stop the chips clumping."
+          }
+        },
+        {
+          "order": 2,
+          "instruction": "Warm a fry pan with a small drop of olive oil.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "fry pan",
+          "visual_or_texture_cue": "Pan is warm and lightly oiled.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 3,
+          "instruction": "Cut thick slices of rustic bread and butter the slices.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Bread slices are thick and buttered.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 4,
+          "instruction": "Place the thin steaks in the fry pan.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "fry pan",
+          "visual_or_texture_cue": "Steaks begin searing in the hot pan.",
+          "source_timing_provided": false,
+          "beginner_tip": "Thin steaks cook quickly, so keep the toppings ready."
+        },
+        {
+          "order": 5,
+          "instruction": "Spread burger sauce on one slice of bread and onion chutney on the other slice to form the top and bottom of the sandwich.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "assembly",
+          "visual_or_texture_cue": "One slice has burger sauce and one has onion chutney.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 6,
+          "instruction": "Flip the steaks, then place slices of cheese on top of the steaks.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "fry pan",
+          "visual_or_texture_cue": "Second side is cooking and cheese starts softening.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 7,
+          "instruction": "Crack the egg into the pan, add salt and pepper, and cover the pan with a lid if available.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "fry pan",
+          "visual_or_texture_cue": "Egg is cooking and the covered pan helps melt the cheese.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 8,
+          "instruction": "After a couple of minutes, remove the steaks from the pan and place them onto the onion chutney slice.",
+          "time_minutes": 2,
+          "temperature_c": null,
+          "heat_level": "fry pan",
+          "visual_or_texture_cue": "Thin steaks are cooked and cheese is melted or soft.",
+          "source_timing_provided": true,
+          "beginner_tip": "The blog notes the timing is not exact because thin steaks do not take long."
+        },
+        {
+          "order": 9,
+          "instruction": "Spread Dijon mustard onto the steaks, then add washed lettuce and the cooked egg.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "assembly",
+          "visual_or_texture_cue": "Steak, mustard, lettuce and egg are stacked on the sandwich.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 10,
+          "instruction": "Place the burger-sauce bread slice face-up in the pan briefly so it absorbs some pan juices, then put it onto the rest of the sandwich.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "fry pan",
+          "visual_or_texture_cue": "Sauce-side bread picks up some pan flavour without falling apart.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 11,
+          "instruction": "Move the chips to a bowl or plate, add peri peri mayo or another dipping sauce if wanted, and serve with the sandwich.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "serving",
+          "visual_or_texture_cue": "Hot sandwich served with chips.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        }
+      ],
+      "make_ahead_or_storage": "Best served fresh so the steak, egg and chips stay hot and the bread does not go soggy.",
+      "beginner_notes": [
+        "The blog describes this as forgiving.",
+        "Shake the air-fryer basket every 5 minutes or so when cooking the chips.",
+        "The steak timing is intentionally approximate because thin steaks cook quickly."
+      ],
+      "searchable_values": {
+        "difficulty_scale": "easy",
+        "speed_scale": "quick",
+        "budget_scale": "moderate",
+        "commonness_scale": "common",
+        "personal_blog": true,
+        "air_fryer": true,
+        "fry_pan": true,
+        "sandwich": true,
+        "chips": true,
+        "work_night": true,
+        "air_fryer_candidate": true,
+        "air_fryer_recommendation_type": "source_personal_blog"
+      },
+      "user_fields": {
+        "personal_rating": 0,
+        "cooked_count": 0,
+        "last_cooked": null,
+        "would_cook_again": null,
+        "my_notes": "",
+        "note_to_future_me": "Forgiving. Shake chips in the air fryer every 5 minutes or so so they do not clump. Thin steaks cook quickly, so do not overthink exact pan timing.",
+        "changes_to_try_next_time": [],
+        "photo_paths": [],
+        "is_favourite": false,
+        "is_reliable_work_night_meal": true,
+        "household_reaction": "",
+        "rating": 0,
+        "added_to_list": false
+      },
+      "air_fryer": {
+        "applicable": true,
+        "recommendation_type": "source_personal_blog",
+        "source_air_fryer_instructions_found": true,
+        "source_air_fryer_url": "https://alucasol.mataroa.blog/p/260701-steak-sandwich/",
+        "confidence": "source_personal_blog",
+        "note": "The chips are cooked in the air fryer at 200°C for 16 minutes by default. Shake the basket about every 5 minutes to reduce clumping.",
+        "general_conversion_reminder": "Use the chip packet instructions if they differ. If testing a different air-fryer component, start cautiously and check early."
+      },
+      "image_path": "https://alucasol.mataroa.blog/images/de800d8a.jpeg"
+    },
+    {
+      "id": "alucacooks_chicken_pesto_pocket_260702",
+      "title": "Chicken Pesto Pocket",
+      "source_name": "Aluca Cooks",
+      "source_url": "https://alucasol.mataroa.blog/p/260702-chicken-pesto-pocket/",
+      "source_fidelity": "Extracted from the user's personal Aluca Cooks blog. Ingredient and timing facts are taken from the linked post; method wording is lightly normalized for the offline beginner recipe app.",
+      "cuisine": [
+        "Australian",
+        "home cooking",
+        "Italian-inspired"
+      ],
+      "meal_type": [
+        "dinner"
+      ],
+      "servings": "2",
+      "prep_time_minutes": null,
+      "cook_time_minutes": 23,
+      "total_time_minutes": 23,
+      "inactive_time_minutes": 0,
+      "difficulty": "medium",
+      "speed": "medium",
+      "budget": "moderate",
+      "commonness": "common",
+      "beginner_confidence": "good_with_careful_handling",
+      "tags": [
+        "chicken mince",
+        "pesto",
+        "air fryer",
+        "bread crumbs",
+        "stuffed chicken",
+        "cheese",
+        "spinach"
+      ],
+      "ingredients": [
+        "Chicken mince",
+        "Pesto",
+        "Tomato or cherry tomatoes",
+        "Spinach, preferably baby spinach leaves",
+        "Cheese",
+        "Breadcrumbs",
+        "Pepper"
+      ],
+      "ingredient_keywords": [
+        "chicken mince",
+        "ground chicken",
+        "chicken",
+        "pesto",
+        "tomato",
+        "tomatoes",
+        "cherry tomatoes",
+        "spinach",
+        "baby spinach",
+        "baby spinach leaves",
+        "cheese",
+        "breadcrumbs",
+        "bread crumbs",
+        "pepper",
+        "baking paper"
+      ],
+      "specialty_or_less_common_ingredients": [
+        "chicken mince",
+        "pesto",
+        "breadcrumbs"
+      ],
+      "australian_shop_notes": "Most ingredients should be available from Coles, Woolworths or IGA unless marked as less common. Baby spinach leaves are preferred for the spinach.",
+      "equipment": [
+        "air fryer",
+        "baking paper",
+        "dinner plate",
+        "butter knife",
+        "knife",
+        "cutting board",
+        "grater optional"
+      ],
+      "method_steps": [
+        {
+          "order": 1,
+          "instruction": "Cover a dinner plate with baking paper.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "The plate is covered so the mince can be lifted and folded later.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 2,
+          "instruction": "Place about half a pack of chicken mince on the baking paper and press it into a thin rough circle covering the plate.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Thin circle of chicken mince spread across the plate.",
+          "source_timing_provided": false,
+          "beginner_tip": "The blog notes half a pack makes a small but sufficient meal for 2; a whole pack makes it heartier."
+        },
+        {
+          "order": 3,
+          "instruction": "Spread a thin layer of pesto over the full surface of the chicken mince.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Pesto is spread evenly and thinly.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 4,
+          "instruction": "Put chopped tomato, cheese and washed spinach leaves over one half of the chicken circle, then season with pepper.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Filling sits on only one half so the other half can fold over it.",
+          "source_timing_provided": false,
+          "beginner_tip": "Baby spinach leaves are easier to manage here."
+        },
+        {
+          "order": 5,
+          "instruction": "Carefully lift the baking paper on one side and fold the chicken circle in half to enclose the tomato, cheese and spinach.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Chicken mince forms a folded pocket around the filling.",
+          "source_timing_provided": false,
+          "beginner_tip": "Use a butter knife to hold the filling in place and help create the hinge/fold point."
+        },
+        {
+          "order": 6,
+          "instruction": "Gently press the edges to help seal the pocket, without pressing so hard that the mince tears.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Edges are pressed together but the pocket still holds its shape.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 7,
+          "instruction": "Peel back the baking paper and sprinkle breadcrumbs over the exposed surface.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "no heat",
+          "visual_or_texture_cue": "Top surface is lightly covered in breadcrumbs.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        },
+        {
+          "order": 8,
+          "instruction": "Use the baking paper to carefully lift the chicken pocket into the air fryer, tearing away excess baking paper while leaving enough paper as handles.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "air fryer setup",
+          "visual_or_texture_cue": "Chicken pocket is supported by baking paper in the air fryer.",
+          "source_timing_provided": false,
+          "beginner_tip": "Do not leave loose paper flapping around the air fryer basket."
+        },
+        {
+          "order": 9,
+          "instruction": "Air fry the chicken pesto pocket.",
+          "time_minutes": 23,
+          "temperature_c": 180,
+          "heat_level": "air fryer",
+          "visual_or_texture_cue": "Chicken is cooked through and breadcrumbs are browned.",
+          "source_timing_provided": true,
+          "beginner_tip": "Check the thickest part if unsure; chicken mince must be cooked through.",
+          "air_fryer": {
+            "source_air_fryer_provided": true,
+            "recommended_temperature_c": 180,
+            "estimated_time_range_minutes": [
+              23,
+              23
+            ],
+            "start_check_minutes": 23,
+            "confidence": "source_personal_blog",
+            "basis": "The Aluca Cooks post specifies air fryer 180°C for 23 minutes.",
+            "note": "Use baking paper as support/handles, but trim excess paper so it does not interfere with airflow."
+          }
+        },
+        {
+          "order": 10,
+          "instruction": "Lift the cooked pocket out using the baking paper, move it to a cutting board, and cut into 2 serves.",
+          "time_minutes": null,
+          "temperature_c": null,
+          "heat_level": "serving",
+          "visual_or_texture_cue": "Pocket holds together enough to portion into two serves.",
+          "source_timing_provided": false,
+          "beginner_tip": ""
+        }
+      ],
+      "make_ahead_or_storage": "Best served fresh after air frying. If storing leftovers, cool promptly and refrigerate because the recipe uses chicken mince.",
+      "beginner_notes": [
+        "Serves 2.",
+        "Half a pack of chicken mince makes a small but sufficient meal; a whole pack makes it heartier.",
+        "Use baby spinach leaves if possible.",
+        "The fold is the fiddly part; baking paper and a butter knife help."
+      ],
+      "searchable_values": {
+        "difficulty_scale": "medium",
+        "speed_scale": "medium",
+        "budget_scale": "moderate",
+        "commonness_scale": "common",
+        "personal_blog": true,
+        "air_fryer": true,
+        "stuffed_chicken": true,
+        "chicken_mince": true,
+        "work_night": true,
+        "air_fryer_candidate": true,
+        "air_fryer_recommendation_type": "source_personal_blog"
+      },
+      "user_fields": {
+        "personal_rating": 0,
+        "cooked_count": 0,
+        "last_cooked": null,
+        "would_cook_again": null,
+        "my_notes": "",
+        "note_to_future_me": "Serves 2. Half a pack of chicken mince is small but sufficient; a whole pack makes it heartier. Baby spinach leaves are preferred. Baking paper and a butter knife make the folding step much easier.",
+        "changes_to_try_next_time": [],
+        "photo_paths": [],
+        "is_favourite": false,
+        "is_reliable_work_night_meal": true,
+        "household_reaction": "",
+        "rating": 0,
+        "added_to_list": false
+      },
+      "air_fryer": {
+        "applicable": true,
+        "recommendation_type": "source_personal_blog",
+        "source_air_fryer_instructions_found": true,
+        "source_air_fryer_url": "https://alucasol.mataroa.blog/p/260702-chicken-pesto-pocket/",
+        "confidence": "source_personal_blog",
+        "note": "The recipe is cooked in the air fryer at 180°C for 23 minutes. Baking paper is used to help shape, lift and remove the chicken pocket.",
+        "general_conversion_reminder": "Use this as the first test setting; adjust next time if your air fryer runs hotter or cooler. Keep excess baking paper trimmed so it does not block airflow."
+      },
+      "image_path": "https://alucasol.mataroa.blog/images/6db9ed40.png"
     }
   ],
   "empty_user_fields_template": {

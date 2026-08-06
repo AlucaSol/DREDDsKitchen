@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DREDDs Kitchen</title>
+  <title>Jonny's Kitchen</title>
   <style>
     :root {
       color-scheme: dark;
@@ -546,6 +546,11 @@
     .menu-list button:hover {
       background: rgba(255, 239, 218, 0.12);
     }
+    .menu-separator {
+     border: 0;
+     border-top: 1px solid rgba(255, 255, 255, 0.15);
+     margin: 10px 0;
+}
 
     .detail-panel,
     .cook-card-panel,
@@ -814,6 +819,29 @@
 
     .method-step {
       padding: 0 0 14px 4px;
+    }
+
+    .method-step-head {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .method-step-head p {
+      flex: 1 1 auto;
+      margin-bottom: 0;
+    }
+
+    .step-timer-button {
+      width: 30px;
+      height: 30px;
+      min-width: 30px;
+      margin-top: -2px;
+    }
+
+    .step-timer-button .button-icon {
+      width: 16px;
+      height: 16px;
     }
 
     .step-meta {
@@ -1314,6 +1342,7 @@
 
       var STATE_KEY = "cookingJournalAppState_v1";
       var TIMER_KEY = "dreddsKitchenTimerState_v1";
+      var COOKING_PREFERENCE_KEY = "dreddsKitchenPreferAirFryer_v1";
       var SEED_FILE = "recipe_seed.json";
       var EXPORT_PREFIX = "cooking_journal_export_";
       var DEFAULT_USER_FIELDS = {
@@ -1386,6 +1415,7 @@
       var kitchenSuggestionTimer = null;
       var toastTimer = null;
       var pendingResetConfirm = false;
+      var preferAirFryer = loadCookingPreference();
       var timerState = createEmptyTimerState();
       var timerInterval = null;
       var timerEditing = false;
@@ -1410,7 +1440,7 @@
           '<div class="app-shell">' +
             '<header class="topbar">' +
               '<button class="icon-button" type="button" data-action="open-menu" aria-label="Open menu"><span class="burger-lines"></span></button>' +
-              "<div class='brand'><strong>DREDD's Kitchen</strong><span> </span></div>" +
+              "<div class='brand'><strong>Jonny's Kitchen</strong><span> </span></div>" +
               '<div class="topbar-actions">' +
                 '<button class="text-button" type="button" data-action="open-search">Search</button>' +
                 '<button class="text-button" type="button" data-action="open-kitchen">My Kitchen</button>' +
@@ -1425,9 +1455,14 @@
                   '<button type="button" data-action="open-search">Search</button>' +
                   '<button type="button" data-action="open-my-list">My List</button>' +
                   '<button type="button" data-action="open-kitchen">My Kitchen</button>' +
+                  renderCookingPreferenceButton() +
+                  '<hr class="menu-separator">' +
                   '<button type="button" data-action="import">Import Data</button>' +
                   '<button type="button" data-action="export">Export Data</button>' +
                   '<button type="button" data-action="reset-request">Clear Local Data / Reset App</button>' +
+                  '<hr class="menu-separator">' +
+                  '<div class="menu-head"><i>Enjoying Jonny\'s Kitchen?</i></div>' +
+                  '<a href="https://ko-fi.com/G2L623AJ3W" target="_blank"><img height="36" style="border:0px;height:36px;" src="https://storage.ko-fi.com/cdn/kofi6.png?v=6" border="0" alt="Buy Me a Coffee at ko-fi.com" /></a>' +
                 '</nav>' +
               '</aside>' +
             '</div>' +
@@ -1463,7 +1498,7 @@
             "Press F11 to fullscreen this app, if viewing from a PC/laptop.\n\n" + 
 			"If this is your first time use, or you have changed browser, you must Import a JSON data file, to start.\n\n" +
 			"Use an Exported JSON file that you downloaded previously, or select the default " + SEED_FILE +
-			"\n\n Default seed file should be in the same folder as this AlucaCooks.html page. If you're viewing this page online, you can download the JSON file at:\n" +
+			"\n\n Default seed file should be in the same folder as this index.html page. If you're viewing this page online, you can download the JSON file at:\n" +
 			"https://aluca.neocities.org/recipe_seed.json"
           );
         }
@@ -1575,6 +1610,9 @@
           case "toggle-fullscreen":
             toggleFullscreen();
             break;
+          case "toggle-cooking-preference":
+            toggleCookingPreference();
+            break;
           case "open-my-list":
             closeMenu();
             navigate({ type: "category", categoryId: "my-list", title: "My List" });
@@ -1613,6 +1651,9 @@
             break;
           case "start-timer":
             startRecipeTimer(el.dataset.recipeId);
+            break;
+          case "start-step-timer":
+            startStepTimer(el.dataset.recipeId, el.dataset.stepIndex);
             break;
           case "toggle-timer-pause":
             toggleTimerPause();
@@ -1668,6 +1709,55 @@
 
       function closeMenu() {
         document.getElementById("sideBackdrop").classList.remove("is-open");
+      }
+
+      function renderCookingPreferenceButton() {
+        return '<button id="cookingPreferenceButton" type="button" data-action="toggle-cooking-preference" aria-pressed="' + escapeAttr(preferAirFryer ? "true" : "false") + '">' + escapeHtml(cookingPreferenceLabel()) + '</button>';
+      }
+
+      function cookingPreferenceLabel() {
+        return preferAirFryer ? "Preferring Air Fryer" : "Preferring Oven";
+      }
+
+      function loadCookingPreference() {
+        try {
+          var stored = localStorage.getItem(COOKING_PREFERENCE_KEY);
+          return stored == null ? true : stored !== "false";
+        } catch (error) {
+          return true;
+        }
+      }
+
+      function saveCookingPreference() {
+        try {
+          localStorage.setItem(COOKING_PREFERENCE_KEY, preferAirFryer ? "true" : "false");
+        } catch (error) {
+          // Preference persistence is best-effort; the current session still updates.
+        }
+      }
+
+      function toggleCookingPreference() {
+        preferAirFryer = !preferAirFryer;
+        saveCookingPreference();
+        updateCookingPreferenceButton();
+        refreshCookingPreferenceViews();
+      }
+
+      function updateCookingPreferenceButton() {
+        var button = document.getElementById("cookingPreferenceButton");
+        if (!button) {
+          return;
+        }
+        button.textContent = cookingPreferenceLabel();
+        button.setAttribute("aria-pressed", preferAirFryer ? "true" : "false");
+      }
+
+      function refreshCookingPreferenceViews() {
+        if (!state.data || currentPanel.type === "import" || (currentPanel.type === "detail" && currentPanel.editing)) {
+          return;
+        }
+        renderPanel(currentPanel);
+        updateCookingPreferenceButton();
       }
 
       function setupFullscreenButton() {
@@ -1792,7 +1882,7 @@
         currentPanel = { type: "import" };
         mainEl().innerHTML =
           '<section class="import-panel">' +
-            "<h1>DREDD's Kitchen</h1>" +
+            "<h1>Jonny's Kitchen</h1>" +
             '<p class="subtitle">Whats cookin?</p>' +
             '<p>' + escapeHtml(message || "Import your recipe JSON file to start.").replace(/\n/g, '<br>') + '</p>' +
             '<div class="import-actions">' +
@@ -1806,19 +1896,23 @@
       // require hard-coded recipe IDs.
       function renderHome() {
         var categories = buildCategories();
-        var rows = categories.map(renderCategoryRow).join("");
+        var shownRecipeKeys = new Set();
+        var rows = categories.map(function (category) {
+          return renderCategoryRow(category, shownRecipeKeys);
+        }).filter(Boolean).join("");
         mainEl().innerHTML =
           '<section class="home-panel">' +
             '<div class="home-header">' +
-              "<div><h1 class='home-title'>DREDD's Kitchen</h1><p class='subtitle'>What's Cookin'?</p></div>" +
+              "<div><h1 class='home-title'>Jonny's Kitchen</h1><p class='subtitle'>What's Cookin'?</p></div>" +
               '<div class="count-pill">' + recipes().length + ' recipes</div>' +
             '</div>' +
             (rows || '<div class="empty-state">No recipes are loaded yet.</div>') +
           '</section>';
       }
 
-      function renderCategoryRow(category) {
-        var cards = category.items.slice(0, 5).map(renderRecipeCard).join("");
+      function renderCategoryRow(category, shownRecipeKeys) {
+        var visibleItems = selectHomepageCategoryItems(category, shownRecipeKeys);
+        var cards = visibleItems.map(renderRecipeCard).join("");
         var viewAll = "";
         if (category.items.length > 5) {
           viewAll =
@@ -1827,12 +1921,52 @@
               '<strong>View all</strong><span>' + escapeHtml(category.name) + '</span>' +
             '</button>';
         }
+        if (!cards) {
+          return "";
+        }
         return (
           '<section class="category-row" aria-label="' + escapeAttr(category.name) + '">' +
             '<div class="row-heading"><h2>' + escapeHtml(category.name) + '</h2><span class="count-pill">' + category.items.length + '</span></div>' +
             '<div class="recipe-row">' + cards + viewAll + '</div>' +
           '</section>'
         );
+      }
+
+      function selectHomepageCategoryItems(category, shownRecipeKeys) {
+        if (!shownRecipeKeys) {
+          return category.items.slice(0, 5);
+        }
+        var selected = [];
+        var selectedKeys = new Set();
+        category.items.some(function (recipe) {
+          var key = recipeDedupeKey(recipe);
+          if (shownRecipeKeys.has(key)) {
+            return false;
+          }
+          selected.push(recipe);
+          selectedKeys.add(key);
+          shownRecipeKeys.add(key);
+          return selected.length >= 5;
+        });
+        // Not enough recipes unique to this category to hit the minimum of 5 —
+        // top up with recipes already shown elsewhere on the page so the row
+        // still displays 5 whenever the category actually has that many.
+        if (selected.length < 5) {
+          category.items.some(function (recipe) {
+            var key = recipeDedupeKey(recipe);
+            if (selectedKeys.has(key)) {
+              return false;
+            }
+            selected.push(recipe);
+            selectedKeys.add(key);
+            return selected.length >= 5;
+          });
+        }
+        return selected;
+      }
+
+      function recipeDedupeKey(recipe) {
+        return recipe && recipe.id != null ? "id:" + String(recipe.id) : recipe;
       }
 
       function renderCategoryView(panel) {
@@ -1999,6 +2133,38 @@
           ensureTimerTicker();
           requestTimerWakeLock();
         }
+      }
+
+      function startStepTimer(recipeId, stepIndex) {
+        var recipe = getRecipeById(recipeId);
+        var index = Number(stepIndex);
+        var steps = Array.isArray(recipe && recipe.method_steps) ? recipe.method_steps : [];
+        var step = Number.isInteger(index) ? steps[index] : null;
+        var minutes = toNumber(step && step.time_minutes);
+        if (!recipe || minutes <= 0) {
+          return;
+        }
+        var seconds = Math.max(1, Math.round(minutes * 60));
+        unlockTimerAudio();
+        stopTimerAlarmSound();
+        releaseTimerWakeLock();
+        timerEditing = false;
+        timerEditWasRunning = false;
+        timerState = {
+          visible: true,
+          running: true,
+          expired: false,
+          remainingSeconds: seconds,
+          durationSeconds: seconds,
+          endAt: Date.now() + seconds * 1000,
+          recipeId: recipe.id,
+          label: displayValue(recipe.title, "Timer"),
+          sourceLabel: "Step " + (index + 1) + " - " + formatStepTimerDuration(minutes)
+        };
+        saveTimerState();
+        renderTimerPanel();
+        ensureTimerTicker();
+        requestTimerWakeLock();
       }
 
       function restoreTimerState() {
@@ -2612,15 +2778,16 @@
         }
         return (
           '<section class="detail-section method-section">' +
-            '<div class="method-heading"><h2>Method</h2>' + renderTimerButton(recipe) + '</div>' +
-            '<ol class="method-list">' + items.map(function (step) {
-              return '<li class="method-step">' + renderMethodStep(step) + '</li>';
+            '<h2>Method</h2>' +
+            '<ol class="method-list">' + items.map(function (step, index) {
+              return '<li class="method-step">' + renderMethodStep(recipe, step, index) + '</li>';
             }).join("") + '</ol>' +
           '</section>'
         );
       }
 
-      function renderMethodStep(step) {
+      function renderMethodStep(recipe, step, index) {
+        step = step || {};
         var meta = [];
         if (toNumber(step.time_minutes) > 0) {
           meta.push('<span class="chip">Time: ' + escapeHtml(formatMinutes(toNumber(step.time_minutes))) + '</span>');
@@ -2631,7 +2798,11 @@
         if (hasContent(step.heat_level)) {
           meta.push('<span class="chip">Heat: ' + escapeHtml(step.heat_level) + '</span>');
         }
-        var out = '<p>' + escapeHtml(step.instruction || "Step") + '</p>';
+        var out =
+          '<div class="method-step-head">' +
+            '<p>' + escapeHtml(step.instruction || "Step") + '</p>' +
+            renderStepTimerButton(recipe, step, index) +
+          '</div>';
         if (meta.length) {
           out += '<div class="step-meta">' + meta.join("") + '</div>';
         }
@@ -2643,6 +2814,41 @@
         }
         out += renderStepAirFryer(step);
         return out;
+      }
+
+      function renderStepTimerButton(recipe, step, index) {
+        var minutes = toNumber(step && step.time_minutes);
+        if (minutes <= 0) {
+          return "";
+        }
+        return (
+          '<button class="round-button timer-button step-timer-button" type="button" data-action="start-step-timer" data-recipe-id="' + escapeAttr(recipe.id) + '" data-step-index="' + escapeAttr(index) + '" aria-label="Start timer for step ' + escapeAttr(index + 1) + ', ' + escapeAttr(formatStepTimerDuration(minutes)) + '" title="Start step timer">' +
+            renderTimerIcon() +
+          '</button>'
+        );
+      }
+
+      function formatStepTimerDuration(minutes) {
+        var seconds = Math.max(1, Math.round(toNumber(minutes) * 60));
+        if (seconds < 60) {
+          return seconds + " sec";
+        }
+        var wholeMinutes = Math.floor(seconds / 60);
+        var remainingSeconds = seconds % 60;
+        if (!remainingSeconds) {
+          return formatMinutes(wholeMinutes);
+        }
+        var hours = Math.floor(wholeMinutes / 60);
+        var minutePart = wholeMinutes % 60;
+        var parts = [];
+        if (hours) {
+          parts.push(hours + " hr");
+        }
+        if (minutePart) {
+          parts.push(minutePart + " min");
+        }
+        parts.push(remainingSeconds + " sec");
+        return parts.join(" ");
       }
 
       function renderStepAirFryer(step) {
@@ -3261,10 +3467,11 @@
         addKnown("lunch", "Lunch", function (recipe) { return fieldHas(recipe.meal_type, "lunch"); });
         addKnown("breakfast", "Breakfast", function (recipe) { return fieldHas(recipe.meal_type, "breakfast"); });
         addKnown("dessert", "Dessert", function (recipe) { return fieldHas(recipe.meal_type, "dessert") || fieldHas(recipe.tags, "dessert") || searchableTruthy(recipe, "dessert"); });
-        addKnown("snack", "Snack", function (recipe) { return fieldHas(recipe.meal_type, "snack") || fieldHas(recipe.tags, "snack"); });
+		addKnown("gluten-free", "Gluten Free", function (recipe) {  return fieldHas(recipe.tags, "gluten free") ||searchableTruthy(recipe, "gluten_free") ||searchableTruthy(recipe, "diet_gluten_free"); });
+		//addKnown("snack", "Snack", function (recipe) { return fieldHas(recipe.meal_type, "snack") || fieldHas(recipe.tags, "snack"); });
         addKnown("budget", "Budget", function (recipe) { return stringEquals(recipe.budget, "budget") || stringEquals(searchableValue(recipe, "budget_scale"), "budget"); });
         addKnown("easy", "Easy", function (recipe) { return stringEquals(recipe.difficulty, "easy") || stringEquals(searchableValue(recipe, "difficulty_scale"), "easy"); });
-        addKnown("quick", "Quick", function (recipe) { return stringEquals(recipe.speed, "quick") || fieldHas(recipe.tags, "quick") || stringEquals(searchableValue(recipe, "speed_scale"), "quick"); });
+        //addKnown("quick", "Quick", function (recipe) { return stringEquals(recipe.speed, "quick") || fieldHas(recipe.tags, "quick") || stringEquals(searchableValue(recipe, "speed_scale"), "quick"); });
         addKnown("healthy", "Healthy", function (recipe) { return fieldHas(recipe.tags, "healthy") || searchableTruthy(recipe, "healthy"); });
         addKnown("vegetarian", "Vegetarian", function (recipe) { return fieldHas(recipe.tags, "vegetarian") || searchableTruthy(recipe, "vegetarian"); });
         addKnown("vegan", "Vegan", function (recipe) { return searchableTruthy(recipe, "vegan") || fieldHas(recipe.tags, "vegan"); });
@@ -3273,11 +3480,11 @@
         addKnown("air-fryer", "Air Fryer", function (recipe) { return searchableTruthy(recipe, "air_fryer_candidate") || Boolean(recipe.air_fryer && recipe.air_fryer.applicable); });
         addKnown("freezer-friendly", "Freezer Friendly", function (recipe) { return searchableTruthy(recipe, "freezer_friendly"); });
         addKnown("make-ahead", "Make Ahead", function (recipe) { return searchableTruthy(recipe, "make_ahead") || fieldHas(recipe.tags, "make-ahead") || fieldHas(recipe.tags, "make ahead"); });
-        addKnown("pasta", "Pasta", function (recipe) { return recipeHasWord(recipe, "pasta"); });
-        addKnown("chicken", "Chicken", function (recipe) { return recipeHasWord(recipe, "chicken"); });
-        addKnown("rice", "Rice", function (recipe) { return recipeHasWord(recipe, "rice"); });
-        addKnown("noodles", "Noodles", function (recipe) { return recipeHasWord(recipe, "noodle") || recipeHasWord(recipe, "noodles"); });
-        addKnown("curry", "Curry", function (recipe) { return recipeHasWord(recipe, "curry"); });
+        //addKnown("pasta", "Pasta", function (recipe) { return recipeHasWord(recipe, "pasta"); });
+        //addKnown("chicken", "Chicken", function (recipe) { return recipeHasWord(recipe, "chicken"); });
+        //addKnown("rice", "Rice", function (recipe) { return recipeHasWord(recipe, "rice"); });
+        //addKnown("noodles", "Noodles", function (recipe) { return recipeHasWord(recipe, "noodle") || recipeHasWord(recipe, "noodles"); });
+        //addKnown("curry", "Curry", function (recipe) { return recipeHasWord(recipe, "curry"); });
 
         var dynamicMap = new Map();
         recipes().forEach(function (recipe) {
@@ -3779,9 +3986,9 @@
       }
 
       function getPrimaryCookingInfo(recipe) {
-        var candidate =
-          getBestCookingCandidate(recipe, "air-fryer") ||
-          getBestCookingCandidate(recipe, "oven");
+        var candidate = preferAirFryer ?
+          (getBestCookingCandidate(recipe, "air-fryer") || getBestCookingCandidate(recipe, "oven")) :
+          (getBestCookingCandidate(recipe, "air-fryer", { sourceOnly: true }) || getBestCookingCandidate(recipe, "oven"));
         if (candidate) {
           return cookingInfoFromCandidate(candidate);
         }
@@ -3794,8 +4001,8 @@
         };
       }
 
-      function getBestCookingCandidate(recipe, deviceKey) {
-        var candidates = getCookingCandidates(recipe, deviceKey);
+      function getBestCookingCandidate(recipe, deviceKey, options) {
+        var candidates = getCookingCandidates(recipe, deviceKey, options);
         if (!candidates.length) {
           return null;
         }
@@ -3805,11 +4012,11 @@
         return candidates[0];
       }
 
-      function getCookingCandidates(recipe, deviceKey) {
+      function getCookingCandidates(recipe, deviceKey, options) {
         var steps = Array.isArray(recipe.method_steps) ? recipe.method_steps : [];
         return steps.map(function (step, index) {
           if (deviceKey === "air-fryer") {
-            return makeAirFryerCandidate(recipe, step, index);
+            return makeAirFryerCandidate(recipe, step, index, options);
           }
           if (deviceKey === "oven") {
             return makeOvenCandidate(recipe, step, index);
@@ -3818,8 +4025,11 @@
         }).filter(Boolean);
       }
 
-      function makeAirFryerCandidate(recipe, step, index) {
+      function makeAirFryerCandidate(recipe, step, index, options) {
         var airFryer = step && typeof step.air_fryer === "object" ? step.air_fryer : null;
+        if (options && options.sourceOnly && !isSourceAirFryerStep(step, airFryer)) {
+          return null;
+        }
         var heat = normalizeSearch(step ? step.heat_level : "");
         var hasAirFryer = heat.indexOf("air fryer") !== -1 || hasUsefulAirFryerStepInfo(airFryer);
         if (!hasAirFryer) {
@@ -3843,6 +4053,14 @@
           sortMinutes: timeInfo.sortMinutes,
           order: index
         };
+      }
+
+      function isSourceAirFryerStep(step, airFryer) {
+        if (airFryer && airFryer.source_air_fryer_provided === true) {
+          return true;
+        }
+        var text = normalizeSearch([step && step.heat_level, step && step.instruction]);
+        return text.indexOf("air fryer") !== -1 && step && step.source_timing_provided === true;
       }
 
       function makeOvenCandidate(recipe, step, index) {
