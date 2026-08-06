@@ -38,6 +38,10 @@
     html {
       background: var(--bg);
       scroll-behavior: smooth;
+      /* The page itself never scrolls sideways: rows that are wider than the
+         screen scroll (or drag) inside their own strip instead. `clip` rather
+         than `hidden` so the sticky topbar keeps working. */
+      overflow-x: clip;
     }
 
     body {
@@ -375,15 +379,22 @@
       border-radius: 99px;
     }
 
+    /* On screens too narrow for the full row, the "View all" tile sits past the
+       right edge and is simply clipped — the category heading links to the same
+       page. Clipping only the x axis keeps the cards' hover lift and shadow. */
     .recipe-row.is-carousel-row {
-      overflow: visible;
+      overflow: hidden;
+      overflow-x: clip;
+      overflow-y: visible;
       scroll-snap-type: none;
     }
 
     .recipe-viewport {
       overflow: hidden;
       flex: 0 0 auto;
-      width: calc(var(--card-w) * 5 + var(--card-gap) * 4);
+      /* Five cards where there is room for them, otherwise whatever the screen
+         allows — cards are never scaled down, the rest are a drag away. */
+      width: min(calc(var(--card-w) * 5 + var(--card-gap) * 4), 100%);
       touch-action: pan-y;
       cursor: grab;
     }
