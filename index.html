@@ -305,6 +305,12 @@
       margin: 0 0 32px;
     }
 
+    .view-more-row {
+      display: flex;
+      justify-content: center;
+      margin: 0 0 32px;
+    }
+
     .row-heading {
       display: flex;
       align-items: center;
@@ -1438,6 +1444,11 @@
       // panel synchronously when saved state already exists in localStorage.
       var CAROUSEL_VISIBLE = 5;
       var CAROUSEL_MAX_SHIFT = 5;
+      // Home shows categories a page at a time behind a "View more" button.
+      // Assigned here, above boot(), for the same reason as the constants
+      // above: boot() renders home synchronously when localStorage has state.
+      var HOME_CATEGORY_PAGE_SIZE = 9;
+      var homeVisibleCategoryCount = HOME_CATEGORY_PAGE_SIZE;
       var cardCarousel = {
         active: false,
         settling: false,
@@ -1846,6 +1857,9 @@
           case "view-category":
             navigate({ type: "category", categoryId: el.dataset.categoryId, title: el.dataset.categoryTitle });
             break;
+          case "load-more-categories":
+            loadMoreCategories();
+            break;
           case "open-recipe":
             navigate({ type: "cook-card", recipeId: el.dataset.recipeId });
             break;
@@ -2037,7 +2051,14 @@
       // instead of moving to another HTML page.
       function renderPanel(panel) {
         pendingResetConfirm = false;
+        // Re-rendering the panel already on screen (a rating change, "View
+        // more") keeps the expanded category count; genuinely navigating to
+        // home collapses it back to the first page.
+        var isInPlaceRefresh = panel === currentPanel;
         currentPanel = panel || { type: "home" };
+        if (currentPanel.type === "home" && !isInPlaceRefresh) {
+          homeVisibleCategoryCount = HOME_CATEGORY_PAGE_SIZE;
+        }
         if (!state.data && currentPanel.type !== "import") {
           renderImportPanel(
             "Automatic import failed. Please manually import " + SEED_FILE + " to start.\n\nAfter first import, this browser will remember you."
@@ -2099,10 +2120,18 @@
       // require hard-coded recipe IDs.
       function renderHome() {
         var categories = buildCategories();
+        var visibleCategories = categories.slice(0, homeVisibleCategoryCount);
         var shownRecipeKeys = new Set();
-        var rows = categories.map(function (category) {
+        var rows = visibleCategories.map(function (category) {
           return renderCategoryRow(category, shownRecipeKeys);
         }).filter(Boolean).join("");
+        var viewMore = "";
+        if (categories.length > visibleCategories.length) {
+          viewMore =
+            '<div class="view-more-row">' +
+              '<button type="button" class="ghost-button" data-action="load-more-categories">View more categories</button>' +
+            '</div>';
+        }
         mainEl().innerHTML =
           '<section class="home-panel">' +
             '<div class="home-header">' +
@@ -2110,7 +2139,13 @@
               '<div class="count-pill">' + recipes().length + ' recipes</div>' +
             '</div>' +
             (rows || '<div class="empty-state">No recipes are loaded yet.</div>') +
+            viewMore +
           '</section>';
+      }
+
+      function loadMoreCategories() {
+        homeVisibleCategoryCount += HOME_CATEGORY_PAGE_SIZE;
+        renderPanel(currentPanel, false);
       }
 
       function renderCategoryRow(category, shownRecipeKeys) {
